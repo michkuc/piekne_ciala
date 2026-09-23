@@ -1,0 +1,97 @@
+window.PC_SONGS = [
+  {
+    n: 1, slug: "piekne-ciala", title: "Piękne Ciała", version: "Original / DNA Zero",
+    cover: "18cItejCwXmUvzql39JnsQrwN8H_9WqVu", hero: "1JPTBzX75XJmmOqUhWwfx5jmw5SMyG8AT",
+    story: "Manifest całej serii: dojrzały facet zachowuje poker face, podczas gdy w środku walczą rozsądek, pożądanie i instynkt.",
+    tag: "DNA serii", lyrics: "verified"
+  },
+  {
+    n: 2, slug: "mlode-boginie", title: "Młode Boginie", version: "No Filter Cut",
+    cover: "1Zzpv6q-lFYKGB85_gj8m0MMTU4ctPQm8", hero: "1LbDpuH-rZjhJendVbe3cXdHGZVjgeoU3",
+    story: "Fascynacja młodymi dorosłymi kobietami staje się pytaniem o wiek, ego i to, dlaczego instynkt wciąż działa z pełną mocą.",
+    tag: "Fascynacja", lyrics: "archive-missing"
+  },
+  {
+    n: 3, slug: "po-polnocy", title: "Po Północy", version: "Hard Night Cut",
+    cover: "1hkJjKiM1gmpiZzr1ASexlUzTzrOT5Ddc", hero: "1phhsteMQ0vMb9d-E0bV2sQc9HDCojd91",
+    story: "Po północy dzienna wersja faceta znika. Zostają głód, ryzyko i potrzeba jeszcze jednego błędu.",
+    tag: "Noc", lyrics: "verified"
+  },
+  {
+    n: 4, slug: "prezent", title: "Prezent", version: "v6 Hard Cut",
+    cover: "14vzjKvSUb2_vlEzJrDcQvfo2Dnco7chx", hero: "11emU0Li-k-yGFGskiG-hpx8BdIs9cIuO",
+    story: "Zwykłe zakupy w sklepie z bielizną zmieniają się w erotyczny tor przeszkód jego własnej wyobraźni.",
+    tag: "Czarny humor", lyrics: "verified"
+  },
+  {
+    n: 5, slug: "swipe-w-prawo", title: "Swipe w Prawo", version: "Digital Hard Cut",
+    cover: "1yFC3Urf9WKYGY2PtNN1_j3SyGIkwhEWP", hero: "1ogSZGNoCWifpCvO5axsHTuYRf3HTG0RO",
+    story: "Facet 40+ w świecie aplikacji randkowych, filtrów, ego i absurdalnych decyzji. W końcu sam staje się produktem, który ocenia.",
+    tag: "Digital desire", lyrics: "verified"
+  },
+  {
+    n: 6, slug: "na-co-dzien", title: "Piękne Ciała", version: "Na ulicy / Na co dzień",
+    cover: "1-iIxTQkbMhhdIFeUyA9MMl6sryrX8e7w", hero: "1hvf8Fh87UkqCT5UzOp_m6nULh0Hd68iO",
+    story: "Tramwaj, sklep, siłownia i zwykła ulica. Seksualny radar narratora nie wyłącza się tylko dlatego, że jest dzień.",
+    tag: "Codzienność", lyrics: "verified"
+  },
+  {
+    n: 7, slug: "american-girl", title: "American Girl", version: "NYC Hard Noir Cut",
+    cover: "1t8d6__-ZFUpXY7Jrd1rHZEKojrnt5CeJ", hero: "1ZbGTCk7v9HYamXSTRcfmcSoN7TGzMgQb",
+    story: "Nowy Jork, pewna siebie kobieta i noc, w której to ona przejmuje kontrolę. Mężczyzna wie, że rano może żałować.",
+    tag: "NYC noir", lyrics: "verified"
+  },
+  {
+    n: 8, slug: "mam-zone", title: "Mam Żonę", version: "",
+    cover: "1GBLlOImWuRprm3wlptPoQJsHm0QKCwvM", hero: "1cP1WlQcwHbF6Q_Z7_7kzlTms0TVVxxwn",
+    story: "Miłość i małżeństwo nie wyłączają wzroku, libido ani fantazji. Spotkanie staje się testem granicy między „chcę” i „robię”.",
+    tag: "Granica", lyrics: "verified"
+  },
+  {
+    n: 9, slug: "sauna", title: "Sauna", version: "",
+    cover: "1QuJq3Z2nMCglcUZPkjTLvia6b8Cd9G26", hero: "14v210T18IEzC4GTlUTCa0A7237qSgwTq",
+    story: "Prawie nic się nie dzieje — i właśnie dlatego wszystko dzieje się w jego głowie. Para, cisza i desperacka próba patrzenia w ścianę.",
+    tag: "Niedopowiedzenie", lyrics: "archive-missing"
+  },
+  {
+    n: 10, slug: "bez-obraczki", title: "Bez Obrączki", version: "",
+    cover: "1UNcI6ddn8ME-Zn5AH0NTobrd-zOdDOm-", hero: "1H9eHv0_gR_-zTVWKczSbW2Z3NtxE-KTA",
+    story: "Obrączka zostaje w domu. Nic realnie się nie zmienia, ale narrator na kilka godzin czuje się jak niezidentyfikowana wersja samego siebie.",
+    tag: "Tożsamość", lyrics: "verified"
+  },
+  {
+    n: 11, slug: "nordic-heat", title: "Nordic Heat", version: "Ice & Fire",
+    cover: "1nB0nx0wE7G2iHIKKQcSvqy3qGzcHN1_d", hero: "1DqjvbbDQWAS00IXifeqMWoRjArBQO46N",
+    story: "Zimna północ kontra gorące myśli. Skandynawska kontrola pęka w hotelu, saunie i bursztynowym świetle.",
+    tag: "Ice & fire", lyrics: "archive-missing"
+  },
+  {
+    n: 12, slug: "silownia-i-lustra", title: "Siłownia i Lustra", version: "Iron Heat",
+    cover: "1LpKVozK0wjeiYJv0oGqOo4ktLir9BJie", hero: "1o1yLJD99X-jI_9raYn4Dfzw49qu0nNXK",
+    story: "Miał poprawić zdrowie. Zamiast tego porównuje się z młodszymi facetami i sprawdza w lustrze, czy nadal „jest w grze”.",
+    tag: "Ego", lyrics: "archive-missing"
+  },
+  {
+    n: 13, slug: "christmas-party", title: "Christmas Party", version: "",
+    cover: "1qSCa-P3uoFxg5kLQTw5VP-cVikW-7RC3", hero: "15xRpeHClHWnO51XMQmlUCoTcFpXSTEig",
+    story: "Firmowe „Pozdrawiam serdecznie” spotyka alkohol, sukienki i napięcie tłumione przez cały rok. Rano wszyscy znów są profesjonalni.",
+    tag: "Corporate noir", lyrics: "verified"
+  },
+  {
+    n: 14, slug: "dubai-arabian-heat", title: "Dubai", version: "Arabian Heat",
+    cover: "1SzZAM7vh2FWQuPRFN5n0IuyM46mV-Rde", hero: "1mnncdlaEcHOYUGLqQi8qKEJeNR79xFcz",
+    story: "Luksus, pieniądze, egzotyka i świat, w którym wszystko wygląda, jakby miało swoją cenę. Nie wiadomo, kto kogo naprawdę uwodzi.",
+    tag: "Luxury heat", lyrics: "archive-missing"
+  },
+  {
+    n: 15, slug: "wall-street", title: "Wall Street", version: "",
+    cover: "1rzS3qlwKJg0CCkoHxOHpyYdxx4J9RlQx", hero: "1qdxDdGsXXUs7WjJhq_faOSzsB2n_CcmY",
+    story: "Status, pieniądze i ego spotykają seksualne napięcie. Pewność siebie działa świetnie — do chwili, gdy ktoś przejmuje nad nią kontrolę.",
+    tag: "Power", lyrics: "archive-missing"
+  }
+];
+
+window.PC = {
+  drive: (id, size = 1800) => `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`,
+  getSong: (slug) => window.PC_SONGS.find(s => s.slug === slug)
+};
