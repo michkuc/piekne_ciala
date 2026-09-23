@@ -1,0 +1,1 @@
+{"cleanUrls":true,"trailingSlash":false,"rewrites":[{"source":"/song/:slug","destination":"/song.html?slug=:slug"}]}
