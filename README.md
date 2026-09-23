@@ -9,8 +9,10 @@ Static multi-page site for the music project **Piękne Ciała**.
 - `about.html` — The Man
 - `song.html` — reusable song detail template
 - `assets/songs.js` — canonical song data + Google Drive asset IDs
+- `assets/lyrics.js` — verified 1:1 lyrics available in the project archive
 - `assets/styles.css` — visual system
 - `assets/app.js` — navigation, age gate, rendering, animation
+- `scripts/build-lyrics.mjs` — deterministic archive-to-site lyrics generator
 - `vercel.json` — clean song routes
 
 ## Source of truth
@@ -19,5 +21,8 @@ Visual assets are stored in the Google Drive folder **PIĘKNE CIAŁA – WEBSITE
 ## Visual DNA
 One anonymous male narrator, 40+, short dark-blond hair. Women vary. Cinematic noir, sensual, mysterious, premium, black / burgundy / amber / neon.
 
-## Notes
-Audio files are not yet connected. Pages expose the visual/story layer and are ready for audio URLs when final masters are available.
+## Content status
+- 15 visual chapters are live.
+- 9 full lyrics are connected as verified 1:1 archive records.
+- 6 lyrics remain explicitly marked for source recovery; they are not reconstructed.
+- Audio files are not yet connected. The player activates automatically after an `audio` URL is added to a song record.
