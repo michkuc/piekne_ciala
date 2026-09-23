@@ -25,4 +25,5 @@ One anonymous male narrator, 40+, short dark-blond hair. Women vary. Cinematic n
 - 15 visual chapters are live.
 - 9 full lyrics are connected as verified 1:1 archive records.
 - 6 lyrics remain explicitly marked for source recovery; they are not reconstructed.
-- Audio files are not yet connected. The player activates automatically after an `audio` URL is added to a song record.
+- 10 audio masters are connected to their visual chapters through the project audio folder in Google Drive.
+- Track 16, **Samotność w wielkim mieście**, is staged in the audio folder and awaits its visual chapter.

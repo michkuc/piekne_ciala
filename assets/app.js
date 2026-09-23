@@ -71,10 +71,11 @@
 
   const renderCard = (song) => {
     const lyricsReady = song.lyrics === "verified";
+    const status = song.audio ? "audio dostępne" : (lyricsReady ? "tekst 1:1" : "visual chapter");
     return `<a class="song-card reveal" href="${storyUrl(song)}" aria-label="${esc(song.title)}">
       <div class="song-cover">
         <img loading="lazy" referrerpolicy="no-referrer" src="${PC.drive(song.cover, 900)}" alt="Okładka ${esc(song.title)}">
-        <span class="card-status">${lyricsReady ? "tekst 1:1" : "visual chapter"}</span>
+        <span class="card-status">${status}</span>
       </div>
       <div class="song-meta">
         <span class="song-no">${String(song.n).padStart(2, "0")}</span>
@@ -89,7 +90,8 @@
   const stats = qs("#collection-stats");
   if (stats) {
     const verified = PC_SONGS.filter((song) => song.lyrics === "verified").length;
-    stats.textContent = `${PC_SONGS.length} historii · ${verified} tekstów archiwalnych 1:1`;
+    const withAudio = PC_SONGS.filter((song) => song.audio).length;
+    stats.textContent = `${PC_SONGS.length} historii · ${withAudio} nagrań · ${verified} tekstów archiwalnych 1:1`;
   }
 
   const featured = qs("#featured-songs");

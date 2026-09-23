@@ -15,4 +15,22 @@ window.PC_SONGS = [
   {n:14,slug:"dubai-arabian-heat",title:"Dubai",version:"Arabian Heat",cover:"1SzZAM7vh2FWQuPRFN5n0IuyM46mV-Rde",hero:"1mnncdlaEcHOYUGLqQi8qKEJeNR79xFcz",story:"Luksus, pieniądze, egzotyka i świat, w którym wszystko wygląda, jakby miało swoją cenę. Nie wiadomo, kto kogo naprawdę uwodzi.",storyLong:"Miasto błyszczy tak mocno, że trudno odróżnić pragnienie od transakcji. W świecie apartamentów, drogich zapachów i perfekcyjnych obrazów narrator próbuje zrozumieć, czy to on zdobywa noc, czy noc właśnie wycenia jego ego.",chapterTitle:"Wszystko błyszczy. Wszystko ma cenę.",tag:"Luxury heat",lyrics:"archive-missing"},
   {n:15,slug:"wall-street",title:"Wall Street",version:"",cover:"1rzS3qlwKJg0CCkoHxOHpyYdxx4J9RlQx",hero:"1qdxDdGsXXUs7WjJhq_faOSzsB2n_CcmY",story:"Status, pieniądze i ego spotykają seksualne napięcie. Pewność siebie działa świetnie — do chwili, gdy ktoś przejmuje nad nią kontrolę.",storyLong:"W dzień wszystko opiera się na przewadze, wyniku i kontroli. Noc pokazuje, jak szybko pewność siebie traci wartość, gdy po drugiej stronie pojawia się ktoś, kto nie potrzebuje jego statusu i nie zamierza grać według jego zasad.",chapterTitle:"Rynek kontroli właśnie się zamknął.",tag:"Power",lyrics:"archive-missing"}
 ];
+const PC_AUDIO_IDS = {
+  2: "1OSiIajlPBnxQR06KHVsGcuKIrtHCwlX7",
+  3: "1mRQOUDVFKZodTqoOk7OFyXa3Ahvj3na2",
+  4: "1iMMWrQ2OD6kU4OWbgR7QxZRD6UIS2oJ3",
+  6: "1cWKxtd6zsibxbaTcVXFJMdiG9JSRPvZB",
+  8: "1g9mjeQicgNYrbpOt3C8crwxGfO567LsI",
+  9: "19Xybz1qBIFBax8twfBfe2YtwXge7144I",
+  10: "1MI6Ka3gBar0_8s8GcFO3jFxzmHKRPvWv",
+  12: "1Rr9mg9agoVqBSeHnV0ZKMYtNXG1CYAmh",
+  13: "1YXbdD9AWnoMwkYmtBhpiJJWrqTs5SbNm",
+  14: "1Xa-pik2YvJt4mrsxgdl-51ke1VbOmY1E"
+};
+
+window.PC_SONGS.forEach((song) => {
+  const audioId = PC_AUDIO_IDS[song.n];
+  if (audioId) song.audio = `https://drive.google.com/uc?export=download&id=${audioId}`;
+});
+
 window.PC={drive:(id,size=1800)=>`https://drive.google.com/thumbnail?id=${id}&sz=w${size}`,getSong:(slug)=>window.PC_SONGS.find(s=>s.slug===slug)};
