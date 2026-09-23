@@ -30,7 +30,7 @@ const PC_AUDIO_IDS = {
 
 window.PC_SONGS.forEach((song) => {
   const audioId = PC_AUDIO_IDS[song.n];
-  if (audioId) song.audio = `https://drive.google.com/uc?export=download&id=${audioId}`;
+  if (audioId) song.audio = `/api/audio?id=${audioId}`;
 });
 
 window.PC={drive:(id,size=1800)=>`https://drive.google.com/thumbnail?id=${id}&sz=w${size}`,getSong:(slug)=>window.PC_SONGS.find(s=>s.slug===slug)};
