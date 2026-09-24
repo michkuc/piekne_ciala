@@ -104,6 +104,208 @@
       </a>`).join("");
   }
 
+  const playlistRoot = qs("#playlist-root");
+  if (playlistRoot) {
+    const availableSongs = PC_SONGS.filter((song) => song.audio);
+    const library = qs("[data-track-library]", playlistRoot);
+    const queueList = qs("[data-queue-list]", playlistRoot);
+    const emptyState = qs("[data-queue-empty]", playlistRoot);
+    const audio = qs("[data-playlist-audio]", playlistRoot);
+    const title = qs("[data-playlist-title]", playlistRoot);
+    const version = qs("[data-playlist-version]", playlistRoot);
+    const cover = qs("[data-playlist-cover]", playlistRoot);
+    const toggle = qs("[data-playlist-toggle]", playlistRoot);
+    const previous = qs("[data-playlist-prev]", playlistRoot);
+    const next = qs("[data-playlist-next]", playlistRoot);
+    const range = qs("[data-playlist-range]", playlistRoot);
+    const time = qs("[data-playlist-time]", playlistRoot);
+    const status = qs("[data-playlist-status]", playlistRoot);
+    let queue = [];
+    let currentIndex = -1;
+
+    const formatTime = (seconds) => {
+      const safe = Number.isFinite(seconds) ? seconds : 0;
+      return `${Math.floor(safe / 60)}:${String(Math.floor(safe % 60)).padStart(2, "0")}`;
+    };
+
+    const renderLibrary = () => {
+      library.innerHTML = availableSongs.map((song) => {
+        const added = queue.some((item) => item.slug === song.slug);
+        return `<div class="track-row">
+          <img loading="lazy" referrerpolicy="no-referrer" src="${PC.drive(song.cover, 240)}" alt="">
+          <span class="track-number">${String(song.n).padStart(2, "0")}</span>
+          <div class="track-copy"><strong>${esc(song.title)}</strong><small>${esc(song.version || song.tag)}</small></div>
+          <button class="track-add" type="button" data-add-track="${esc(song.slug)}" aria-label="Dodaj ${esc(song.title)} do playlisty" ${added ? "disabled" : ""}>${added ? "✓" : "+"}</button>
+        </div>`;
+      }).join("");
+    };
+
+    const updateControls = () => {
+      const hasQueue = queue.length > 0;
+      toggle.disabled = !hasQueue;
+      previous.disabled = !hasQueue || currentIndex <= 0;
+      next.disabled = !hasQueue || (currentIndex >= queue.length - 1 && currentIndex !== -1);
+      qs("[data-clear-queue]", playlistRoot).disabled = !hasQueue;
+      qs("[data-add-all]", playlistRoot).disabled = queue.length === availableSongs.length;
+    };
+
+    const renderQueue = () => {
+      emptyState.hidden = queue.length > 0;
+      queueList.innerHTML = queue.map((song, index) => `<li class="queue-item ${index === currentIndex ? "is-current" : ""}">
+        <span class="queue-index">${String(index + 1).padStart(2, "0")}</span>
+        <img referrerpolicy="no-referrer" src="${PC.drive(song.cover, 240)}" alt="">
+        <button class="track-copy queue-play-copy" type="button" data-play-index="${index}" aria-label="Odtwórz ${esc(song.title)}"><strong>${esc(song.title)}</strong><small>${esc(song.version || song.tag)}</small></button>
+        <div class="queue-actions">
+          <button class="queue-action" type="button" data-move-up="${index}" aria-label="Przesuń ${esc(song.title)} wyżej" ${index === 0 ? "disabled" : ""}>↑</button>
+          <button class="queue-action" type="button" data-move-down="${index}" aria-label="Przesuń ${esc(song.title)} niżej" ${index === queue.length - 1 ? "disabled" : ""}>↓</button>
+          <button class="queue-action" type="button" data-remove="${index}" aria-label="Usuń ${esc(song.title)} z playlisty">×</button>
+        </div>
+      </li>`).join("");
+      updateControls();
+    };
+
+    const resetPlayer = () => {
+      audio.pause();
+      audio.removeAttribute("src");
+      audio.load();
+      currentIndex = -1;
+      title.textContent = "Wybierz pierwszy utwór";
+      version.textContent = "Playlista tymczasowa";
+      cover.hidden = true;
+      cover.removeAttribute("src");
+      toggle.textContent = "▶";
+      range.value = "0";
+      time.textContent = "0:00 / 0:00";
+      status.textContent = queue.length ? `${queue.length} utworów w kolejce.` : "Kolejka jest pusta.";
+      renderQueue();
+    };
+
+    const selectTrack = async (index, autoplay = false) => {
+      const song = queue[index];
+      if (!song) return;
+      currentIndex = index;
+      if (audio.getAttribute("src") !== song.audio) {
+        audio.src = song.audio;
+        audio.load();
+      }
+      title.textContent = song.title;
+      version.textContent = song.version || song.tag;
+      cover.src = PC.drive(song.cover, 300);
+      cover.alt = `Okładka ${song.title}`;
+      cover.hidden = false;
+      status.textContent = `Utwór ${index + 1} z ${queue.length}`;
+      renderQueue();
+      if (autoplay) {
+        try {
+          await audio.play();
+        } catch {
+          status.textContent = "Dotknij przycisku play, aby rozpocząć odtwarzanie.";
+        }
+      }
+    };
+
+    const removeTrack = (index) => {
+      const removingCurrent = index === currentIndex;
+      const wasPlaying = !audio.paused;
+      queue.splice(index, 1);
+      if (!queue.length) {
+        resetPlayer();
+      } else if (removingCurrent) {
+        selectTrack(Math.min(index, queue.length - 1), wasPlaying);
+      } else {
+        if (index < currentIndex) currentIndex -= 1;
+        renderQueue();
+      }
+      renderLibrary();
+    };
+
+    library.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-add-track]");
+      if (!button) return;
+      const song = availableSongs.find((item) => item.slug === button.dataset.addTrack);
+      if (!song || queue.some((item) => item.slug === song.slug)) return;
+      queue.push(song);
+      status.textContent = `${queue.length} utworów w kolejce.`;
+      renderLibrary();
+      renderQueue();
+    });
+
+    queueList.addEventListener("click", (event) => {
+      const play = event.target.closest("[data-play-index]");
+      const remove = event.target.closest("[data-remove]");
+      const up = event.target.closest("[data-move-up]");
+      const down = event.target.closest("[data-move-down]");
+      if (play) selectTrack(Number(play.dataset.playIndex), true);
+      if (remove) removeTrack(Number(remove.dataset.remove));
+      const move = up || down;
+      if (!move) return;
+      const from = Number(up ? up.dataset.moveUp : down.dataset.moveDown);
+      const to = from + (up ? -1 : 1);
+      if (!queue[to]) return;
+      const currentSlug = queue[currentIndex]?.slug;
+      [queue[from], queue[to]] = [queue[to], queue[from]];
+      currentIndex = currentSlug ? queue.findIndex((song) => song.slug === currentSlug) : -1;
+      renderQueue();
+    });
+
+    qs("[data-add-all]", playlistRoot).addEventListener("click", () => {
+      queue = [...availableSongs];
+      status.textContent = `${queue.length} utworów w kolejce.`;
+      renderLibrary();
+      renderQueue();
+    });
+    qs("[data-clear-queue]", playlistRoot).addEventListener("click", () => {
+      queue = [];
+      resetPlayer();
+      renderLibrary();
+    });
+
+    toggle.addEventListener("click", async () => {
+      if (!queue.length) return;
+      if (currentIndex === -1) {
+        await selectTrack(0, true);
+      } else if (audio.paused) {
+        try { await audio.play(); } catch { status.textContent = "Nie udało się uruchomić odtwarzania."; }
+      } else {
+        audio.pause();
+      }
+    });
+    previous.addEventListener("click", () => {
+      if (audio.currentTime > 4 || currentIndex <= 0) audio.currentTime = 0;
+      else selectTrack(currentIndex - 1, true);
+    });
+    next.addEventListener("click", () => {
+      if (currentIndex === -1 && queue.length) selectTrack(0, true);
+      else if (currentIndex < queue.length - 1) selectTrack(currentIndex + 1, true);
+    });
+    range.addEventListener("input", () => {
+      if (audio.duration) audio.currentTime = (Number(range.value) / 100) * audio.duration;
+    });
+    audio.addEventListener("play", () => { toggle.textContent = "❚❚"; });
+    audio.addEventListener("pause", () => { toggle.textContent = "▶"; });
+    audio.addEventListener("timeupdate", () => {
+      if (!audio.duration) return;
+      range.value = String((audio.currentTime / audio.duration) * 100);
+      time.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+    });
+    audio.addEventListener("loadedmetadata", () => {
+      time.textContent = `0:00 / ${formatTime(audio.duration)}`;
+    });
+    audio.addEventListener("ended", () => {
+      if (currentIndex < queue.length - 1) selectTrack(currentIndex + 1, true);
+      else {
+        toggle.textContent = "▶";
+        status.textContent = "Koniec playlisty.";
+      }
+    });
+    audio.addEventListener("error", () => {
+      status.textContent = "Nie udało się wczytać tego utworu.";
+    });
+
+    renderLibrary();
+    renderQueue();
+  }
+
   const lyricsMarkup = (record) => {
     if (!record?.text) return "";
     return record.text.split(/\n{2,}/).map((block) => {

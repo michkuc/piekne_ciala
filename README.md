@@ -5,6 +5,7 @@ Static multi-page site for the music project **Piękne Ciała**.
 ## Structure
 - `index.html` — Home
 - `music.html` — song catalogue
+- `playlist.html` — temporary in-browser queue with sequential playback
 - `archive.html` — Night Archive
 - `about.html` — The Man
 - `song.html` — reusable song detail template
@@ -26,4 +27,5 @@ One anonymous male narrator, 40+, short dark-blond hair. Women vary. Cinematic n
 - 9 full lyrics are connected as verified 1:1 archive records.
 - 6 lyrics remain explicitly marked for source recovery; they are not reconstructed.
 - 10 audio masters are connected to their visual chapters through the project audio folder in Google Drive.
+- The playlist is intentionally session-only: it is not written to local storage and resets after refresh or closing the page.
 - Track 16, **Samotność w wielkim mieście**, is staged in the audio folder and awaits its visual chapter.
