@@ -16,6 +16,17 @@ window.PC_SONGS = [
   {n:15,slug:"wall-street",title:"Wall Street",version:"",cover:"1rzS3qlwKJg0CCkoHxOHpyYdxx4J9RlQx",hero:"1qdxDdGsXXUs7WjJhq_faOSzsB2n_CcmY",story:"Status, pieniądze i ego spotykają seksualne napięcie. Pewność siebie działa świetnie — do chwili, gdy ktoś przejmuje nad nią kontrolę.",storyLong:"W dzień wszystko opiera się na przewadze, wyniku i kontroli. Noc pokazuje, jak szybko pewność siebie traci wartość, gdy po drugiej stronie pojawia się ktoś, kto nie potrzebuje jego statusu i nie zamierza grać według jego zasad.",chapterTitle:"Rynek kontroli właśnie się zamknął.",tag:"Power",lyrics:"archive-missing"},
   {n:16,slug:"samotnosc-w-wielkim-miescie",title:"Samotność w Wielkim Mieście",version:"Final Cut",cover:"18cItejCwXmUvzql39JnsQrwN8H_9WqVu",hero:"1Lz-vdFIgmqKcvBPMwcdwp8m42FyXNlPf",story:"Pełne łóżka, puste wiadomości i wolność, która zbyt łatwo zaczyna przypominać samotność.",storyLong:"Miasto daje narratorowi wybór bez końca: nowe twarze, nowe ciała i bliskość na godziny. Dopiero cisza po zamknięciu drzwi pokazuje cenę układu, w którym wszystko jest dostępne, ale nikt naprawdę nie zostaje.",chapterTitle:"Wolność premium. Cisza w pakiecie.",tag:"City loneliness",lyrics:"verified",artFallback:true}
 ];
+
+const PC_ART_OVERRIDES = {
+  "po-polnocy": {hero:"1yi1YMir7DvoDKwXbUHxNyIeFWjs_CVin"},
+  "mam-zone": {cover:"1J22Rrpi1Rr-nAH94uofeOeZThgKCzFxg",hero:"1Lw6k85G6dWBtKUZEb59Gv8b8UwRX9fZd"},
+  "nordic-heat": {hero:"1K7fDJTAr96uQgBcNTvjgTpjfOL7Q6AvA"},
+  "silownia-i-lustra": {hero:"1BcGbagyfFMB4WifMpqcTtVQUvXNZaJ8u"},
+  "christmas-party": {hero:"1PKdh0RuA_B6EOHKxKEZcuLG3mbQz5Eaz"},
+  "samotnosc-w-wielkim-miescie": {cover:"1f1GwAOXYV2R6wLiBnpt_TVZbAEbHTbd9",hero:"1R-MZxMpF_v7oOUxKYQ4MSIjkNMdBP_lS",artFallback:false}
+};
+window.PC_SONGS.forEach((song) => Object.assign(song, PC_ART_OVERRIDES[song.slug] || {}));
+
 const PC_AUDIO_IDS = {
   1: "1SuXyUfOStEH5deRssh6F-WoHRTZCEHHo",
   2: "1OSiIajlPBnxQR06KHVsGcuKIrtHCwlX7",
