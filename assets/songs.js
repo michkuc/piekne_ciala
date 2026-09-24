@@ -18,7 +18,12 @@ window.PC_SONGS = [
 ];
 
 const PC_ART_OVERRIDES = {
-  "po-polnocy": {hero:"1yi1YMir7DvoDKwXbUHxNyIeFWjs_CVin"},
+  "piekne-ciala": {cover:"1YeIf4iVt_ekf073tUtG1wfAlfQE-ouGT"},
+  "mlode-boginie": {cover:"1fGVSaqZe12YSNxa_K6-cpRE2Up909Hxy"},
+  "po-polnocy": {cover:"1C-acBZi6KM_odGfGwL4ZRe2KrXhF6Tge",hero:"1yi1YMir7DvoDKwXbUHxNyIeFWjs_CVin"},
+  "prezent": {cover:"18cItejCwXmUvzql39JnsQrwN8H_9WqVu"},
+  "swipe-w-prawo": {cover:"1Zzpv6q-lFYKGB85_gj8m0MMTU4ctPQm8"},
+  "na-co-dzien": {cover:"1hkJjKiM1gmpiZzr1ASexlUzTzrOT5Ddc"},
   "mam-zone": {cover:"1J22Rrpi1Rr-nAH94uofeOeZThgKCzFxg",hero:"1Lw6k85G6dWBtKUZEb59Gv8b8UwRX9fZd"},
   "nordic-heat": {hero:"1K7fDJTAr96uQgBcNTvjgTpjfOL7Q6AvA"},
   "silownia-i-lustra": {hero:"1BcGbagyfFMB4WifMpqcTtVQUvXNZaJ8u"},
