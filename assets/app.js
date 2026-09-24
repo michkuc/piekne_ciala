@@ -10,7 +10,7 @@
   const storyUrl = (song) => `/stories/${song.slug}`;
 
   const ensureAgeGate = () => {
-    if (localStorage.getItem("pc-age-ok")) return;
+    if (sessionStorage.getItem("pc-age-ok")) return;
     let gate = qs("#age-gate");
     if (!gate) {
       gate = document.createElement("div");
@@ -20,12 +20,14 @@
       gate.setAttribute("aria-modal", "true");
       gate.setAttribute("aria-labelledby", "age-title");
       gate.innerHTML = `<div class="age-box">
-        <span class="eyebrow">18+</span>
-        <h2 id="age-title">Treści dla dorosłych</h2>
-        <p>Projekt zawiera dojrzałe tematy, erotyczne napięcie i mocny język. Potwierdź pełnoletność.</p>
+        <span class="age-kicker">PRYWATNY KLUB · TREŚCI 18+</span>
+        <h2 id="age-title">Piękne Ciała</h2>
+        <strong>Wstęp 40+</strong>
+        <p>Bo po czterdziestce wchodzi się już tylko z klasą.</p>
+        <small>Projekt zawiera dojrzałe tematy, erotyczne napięcie i mocny język.</small>
         <div class="age-actions">
-          <button class="btn primary" data-age-yes>Jestem pełnoletni/a</button>
-          <button class="btn ghost" data-age-no>Wyjdź</button>
+          <button class="btn primary" data-age-yes>Mam 18 lat · wchodzę</button>
+          <button class="btn ghost" data-age-no>Jeszcze nie</button>
         </div>
       </div>`;
       document.body.appendChild(gate);
@@ -35,7 +37,7 @@
     const yes = gate.querySelector("[data-age-yes]");
     yes?.focus();
     yes?.addEventListener("click", () => {
-      localStorage.setItem("pc-age-ok", "1");
+      sessionStorage.setItem("pc-age-ok", "1");
       gate.classList.remove("show");
       document.body.classList.remove("modal-open");
     });
