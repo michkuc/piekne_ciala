@@ -31,3 +31,4 @@
 @media(max-width:560px){.queue-tools{display:grid;grid-template-columns:1fr 1fr}.queue-tools .btn{padding:0 8px}.art-note{font-size:7px}}
 @media(max-width:560px){.age-gate{padding:16px;background-position:56% center}.age-box{padding:30px 20px 24px}.age-box h2{font-size:58px}.age-box p{font-size:20px}.age-kicker{font-size:8px;letter-spacing:.23em}.age-actions .btn{min-width:0}}
 .age-gate{background-image:url('https://drive.google.com/thumbnail?id=1k3OgXocbq3AkE236vIe7jU2zowaBbYVl&sz=w1800')}
+.archive-card.focus-left{background-position:35% center}.archive-card.focus-right{background-position:68% center}.archive-card.focus-center{background-position:center}
