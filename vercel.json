@@ -2,6 +2,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
+    {"source":"/series/piekne-ciala","destination":"/series?series=main"},
+    {"source":"/series/w-podrozy","destination":"/series?series=travel"},
     {"source":"/stories/:slug","destination":"/song?slug=:slug"},
     {"source":"/story/:slug","destination":"/song?slug=:slug"},
     {"source":"/song/:slug","destination":"/song?slug=:slug"}

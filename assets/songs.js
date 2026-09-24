@@ -13,24 +13,39 @@ window.PC_SONGS = [
   {n:12,slug:"silownia-i-lustra",title:"Siłownia i Lustra",version:"Iron Heat",cover:"1LpKVozK0wjeiYJv0oGqOo4ktLir9BJie",hero:"1o1yLJD99X-jI_9raYn4Dfzw49qu0nNXK",story:"Miał poprawić zdrowie. Zamiast tego porównuje się z młodszymi facetami i sprawdza w lustrze, czy nadal „jest w grze”.",storyLong:"Trening miał być inwestycją w zdrowie, ale lustra szybko zmieniają go w audyt wieku, ego i pozycji w stadzie. Każde powtórzenie staje się pytaniem, czy nadal jest zauważany — przez kobiety i przez samego siebie.",chapterTitle:"Trening ciała. Audyt ego.",tag:"Ego",lyrics:"archive-missing"},
   {n:13,slug:"christmas-party",title:"Christmas Party",version:"",cover:"1qSCa-P3uoFxg5kLQTw5VP-cVikW-7RC3",hero:"15xRpeHClHWnO51XMQmlUCoTcFpXSTEig",story:"Firmowe „Pozdrawiam serdecznie” spotyka alkohol, sukienki i napięcie tłumione przez cały rok. Rano wszyscy znów są profesjonalni.",storyLong:"Przez jedenaście miesięcy obowiązuje dress code, hierarchia i firmowy język. Potem organizacja kupuje alkohol, krawaty robią się luźniejsze, a ludzie znani z Teamsa dostają ciała, zapachy i drugie znaczenia. W poniedziałek wszyscy wrócą do swoich ról.",chapterTitle:"Best regards poszło spać.",tag:"Corporate noir",lyrics:"verified"},
   {n:14,slug:"dubai-arabian-heat",title:"Dubai",version:"Arabian Heat",cover:"1SzZAM7vh2FWQuPRFN5n0IuyM46mV-Rde",hero:"1mnncdlaEcHOYUGLqQi8qKEJeNR79xFcz",story:"Luksus, pieniądze, egzotyka i świat, w którym wszystko wygląda, jakby miało swoją cenę. Nie wiadomo, kto kogo naprawdę uwodzi.",storyLong:"Miasto błyszczy tak mocno, że trudno odróżnić pragnienie od transakcji. W świecie apartamentów, drogich zapachów i perfekcyjnych obrazów narrator próbuje zrozumieć, czy to on zdobywa noc, czy noc właśnie wycenia jego ego.",chapterTitle:"Wszystko błyszczy. Wszystko ma cenę.",tag:"Luxury heat",lyrics:"archive-missing"},
-  {n:15,slug:"wall-street",title:"Wall Street",version:"",cover:"1rzS3qlwKJg0CCkoHxOHpyYdxx4J9RlQx",hero:"1qdxDdGsXXUs7WjJhq_faOSzsB2n_CcmY",story:"Status, pieniądze i ego spotykają seksualne napięcie. Pewność siebie działa świetnie — do chwili, gdy ktoś przejmuje nad nią kontrolę.",storyLong:"W dzień wszystko opiera się na przewadze, wyniku i kontroli. Noc pokazuje, jak szybko pewność siebie traci wartość, gdy po drugiej stronie pojawia się ktoś, kto nie potrzebuje jego statusu i nie zamierza grać według jego zasad.",chapterTitle:"Rynek kontroli właśnie się zamknął.",tag:"Power",lyrics:"archive-missing"}
+  {n:15,slug:"wall-street",title:"Wall Street",version:"",cover:"1rzS3qlwKJg0CCkoHxOHpyYdxx4J9RlQx",hero:"1qdxDdGsXXUs7WjJhq_faOSzsB2n_CcmY",story:"Status, pieniądze i ego spotykają seksualne napięcie. Pewność siebie działa świetnie — do chwili, gdy ktoś przejmuje nad nią kontrolę.",storyLong:"W dzień wszystko opiera się na przewadze, wyniku i kontroli. Noc pokazuje, jak szybko pewność siebie traci wartość, gdy po drugiej stronie pojawia się ktoś, kto nie potrzebuje jego statusu i nie zamierza grać według jego zasad.",chapterTitle:"Rynek kontroli właśnie się zamknął.",tag:"Power",lyrics:"archive-missing"},
+  {n:16,slug:"samotnosc-w-wielkim-miescie",title:"Samotność w Wielkim Mieście",version:"Final Cut",cover:"18cItejCwXmUvzql39JnsQrwN8H_9WqVu",hero:"1Lz-vdFIgmqKcvBPMwcdwp8m42FyXNlPf",story:"Pełne łóżka, puste wiadomości i wolność, która zbyt łatwo zaczyna przypominać samotność.",storyLong:"Miasto daje narratorowi wybór bez końca: nowe twarze, nowe ciała i bliskość na godziny. Dopiero cisza po zamknięciu drzwi pokazuje cenę układu, w którym wszystko jest dostępne, ale nikt naprawdę nie zostaje.",chapterTitle:"Wolność premium. Cisza w pakiecie.",tag:"City loneliness",lyrics:"verified",artFallback:true}
 ];
 const PC_AUDIO_IDS = {
+  1: "1SuXyUfOStEH5deRssh6F-WoHRTZCEHHo",
   2: "1OSiIajlPBnxQR06KHVsGcuKIrtHCwlX7",
   3: "1mRQOUDVFKZodTqoOk7OFyXa3Ahvj3na2",
   4: "1iMMWrQ2OD6kU4OWbgR7QxZRD6UIS2oJ3",
+  5: "1VhCTqQfBfLRTIC9wFZrWCuIJtsNNnmY1",
   6: "1cWKxtd6zsibxbaTcVXFJMdiG9JSRPvZB",
+  7: "1DEIHAVo476Pc5PRHHuckuhGC-nfz4ASD",
   8: "1g9mjeQicgNYrbpOt3C8crwxGfO567LsI",
   9: "19Xybz1qBIFBax8twfBfe2YtwXge7144I",
   10: "1MI6Ka3gBar0_8s8GcFO3jFxzmHKRPvWv",
+  11: "1QpwpmUvRzYuLRrU2lSDmlQCu4E-G8MaU",
   12: "1Rr9mg9agoVqBSeHnV0ZKMYtNXG1CYAmh",
   13: "1YXbdD9AWnoMwkYmtBhpiJJWrqTs5SbNm",
-  14: "1Xa-pik2YvJt4mrsxgdl-51ke1VbOmY1E"
+  14: "1Xa-pik2YvJt4mrsxgdl-51ke1VbOmY1E",
+  16: "13gqI1nOaNHv2GJTzCq9LG4Po-uGfK2_o"
 };
 
+const PC_TRAVEL_SLUGS = new Set(["american-girl", "nordic-heat", "dubai-arabian-heat", "wall-street"]);
 window.PC_SONGS.forEach((song) => {
+  song.series = PC_TRAVEL_SLUGS.has(song.slug) ? "travel" : "main";
   const audioId = PC_AUDIO_IDS[song.n];
   if (audioId) song.audio = `/api/audio?id=${audioId}`;
 });
 
-window.PC={drive:(id,size=1800)=>`https://drive.google.com/thumbnail?id=${id}&sz=w${size}`,getSong:(slug)=>window.PC_SONGS.find(s=>s.slug===slug)};
+window.PC={
+  drive:(id,size=1800)=>`https://drive.google.com/thumbnail?id=${id}&sz=w${size}`,
+  getSong:(slug)=>window.PC_SONGS.find(s=>s.slug===slug),
+  series:{
+    main:{key:"main",name:"Piękne Ciała",label:"SERIA GŁÓWNA",url:"/series/piekne-ciala",description:"Codzienność, noc, małżeństwo, ego i instynkt — główny nurt historii jednego dojrzałego narratora."},
+    travel:{key:"travel",name:"Piękne Ciała: W Podróży",label:"TRAVEL SPIN-OFF",url:"/series/w-podrozy",description:"Ten sam świat i ten sam narrator poza codzienną scenerią: miasta, hotele, luksus i obce zasady."}
+  }
+};

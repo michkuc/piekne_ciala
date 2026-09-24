@@ -76,6 +76,7 @@
       <div class="song-cover">
         <img loading="lazy" referrerpolicy="no-referrer" src="${PC.drive(song.cover, 900)}" alt="Okładka ${esc(song.title)}">
         <span class="card-status">${status}</span>
+        ${song.artFallback ? `<span class="art-note">grafika serii</span>` : ""}
       </div>
       <div class="song-meta">
         <span class="song-no">${String(song.n).padStart(2, "0")}</span>
@@ -86,6 +87,20 @@
 
   const songGrid = qs("#song-grid");
   if (songGrid) songGrid.innerHTML = PC_SONGS.map(renderCard).join("");
+
+  qsa("[data-series-grid]").forEach((grid) => {
+    grid.innerHTML = PC_SONGS.filter((song) => song.series === grid.dataset.seriesGrid).map(renderCard).join("");
+  });
+
+  const seriesRoot = qs("#series-root");
+  if (seriesRoot) {
+    const key = new URLSearchParams(location.search).get("series") === "travel" ? "travel" : "main";
+    const series = PC.series[key];
+    const songs = PC_SONGS.filter((song) => song.series === key);
+    const hero = key === "travel" ? PC.getSong("american-girl").hero : PC.getSong("piekne-ciala").hero;
+    document.title = `${series.name} — utwory`;
+    seriesRoot.innerHTML = `<section class="page-hero series-hero" style="background-image:linear-gradient(90deg,rgba(5,5,7,.94),rgba(5,5,7,.28) 52%,rgba(5,5,7,.7)),url('${PC.drive(hero)}')"><div class="wrap"><span class="eyebrow">${series.label}</span><h1>${esc(series.name)}</h1><p>${esc(series.description)}</p></div></section><section class="section wrap"><div class="section-head"><div><span class="eyebrow">${songs.length} HISTORII</span><h2>Utwory serii</h2></div><a class="btn ghost" href="/music.html">Cały katalog</a></div><div class="song-grid">${songs.map(renderCard).join("")}</div></section>`;
+  }
 
   const stats = qs("#collection-stats");
   if (stats) {
@@ -120,8 +135,11 @@
     const range = qs("[data-playlist-range]", playlistRoot);
     const time = qs("[data-playlist-time]", playlistRoot);
     const status = qs("[data-playlist-status]", playlistRoot);
+    const shuffle = qs("[data-shuffle-queue]", playlistRoot);
+    const repeat = qs("[data-repeat-mode]", playlistRoot);
     let queue = [];
     let currentIndex = -1;
+    let repeatMode = "off";
 
     const formatTime = (seconds) => {
       const safe = Number.isFinite(seconds) ? seconds : 0;
@@ -147,6 +165,7 @@
       next.disabled = !hasQueue || (currentIndex >= queue.length - 1 && currentIndex !== -1);
       qs("[data-clear-queue]", playlistRoot).disabled = !hasQueue;
       qs("[data-add-all]", playlistRoot).disabled = queue.length === availableSongs.length;
+      shuffle.disabled = queue.length < 2;
     };
 
     const renderQueue = () => {
@@ -259,6 +278,22 @@
       resetPlayer();
       renderLibrary();
     });
+    shuffle.addEventListener("click", () => {
+      const currentSlug = queue[currentIndex]?.slug;
+      for (let index = queue.length - 1; index > 0; index -= 1) {
+        const random = Math.floor(Math.random() * (index + 1));
+        [queue[index], queue[random]] = [queue[random], queue[index]];
+      }
+      currentIndex = currentSlug ? queue.findIndex((song) => song.slug === currentSlug) : -1;
+      status.textContent = "Kolejność została wylosowana.";
+      renderQueue();
+    });
+    repeat.addEventListener("click", () => {
+      repeatMode = repeatMode === "off" ? "all" : repeatMode === "all" ? "one" : "off";
+      const labels = {off:"Powtarzanie: wył.",all:"Powtarzanie: całość",one:"Powtarzanie: utwór"};
+      repeat.textContent = labels[repeatMode];
+      repeat.setAttribute("aria-pressed", repeatMode === "off" ? "false" : "true");
+    });
 
     toggle.addEventListener("click", async () => {
       if (!queue.length) return;
@@ -292,7 +327,11 @@
       time.textContent = `0:00 / ${formatTime(audio.duration)}`;
     });
     audio.addEventListener("ended", () => {
-      if (currentIndex < queue.length - 1) selectTrack(currentIndex + 1, true);
+      if (repeatMode === "one") {
+        audio.currentTime = 0;
+        audio.play();
+      } else if (currentIndex < queue.length - 1) selectTrack(currentIndex + 1, true);
+      else if (repeatMode === "all" && queue.length) selectTrack(0, true);
       else {
         toggle.textContent = "▶";
         status.textContent = "Koniec playlisty.";
@@ -302,6 +341,13 @@
       status.textContent = "Nie udało się wczytać tego utworu.";
     });
 
+    const initialSlug = new URLSearchParams(location.search).get("add");
+    const initialSong = availableSongs.find((song) => song.slug === initialSlug);
+    if (initialSong) {
+      queue.push(initialSong);
+      history.replaceState({}, "", location.pathname);
+      status.textContent = `Dodano „${initialSong.title}”. Kolejka nadal zniknie po odświeżeniu.`;
+    }
     renderLibrary();
     renderQueue();
   }
@@ -382,8 +428,11 @@
     const routeSlug = ["song", "story", "stories"].includes(path[0]) ? path[path.length - 1] : "";
     const song = PC.getSong(querySlug || routeSlug) || PC_SONGS[0];
     const lyric = window.PC_LYRICS?.[song.slug];
-    const previous = PC_SONGS[(song.n - 2 + PC_SONGS.length) % PC_SONGS.length];
-    const next = PC_SONGS[song.n % PC_SONGS.length];
+    const seriesSongs = PC_SONGS.filter((item) => item.series === song.series);
+    const seriesIndex = seriesSongs.findIndex((item) => item.slug === song.slug);
+    const previous = seriesSongs[(seriesIndex - 1 + seriesSongs.length) % seriesSongs.length];
+    const next = seriesSongs[(seriesIndex + 1) % seriesSongs.length];
+    const series = PC.series[song.series];
 
     document.title = `${song.title} — Piękne Ciała`;
     qs('meta[name="description"]')?.setAttribute("content", song.story);
@@ -392,7 +441,7 @@
       <section class="song-art" style="--song-hero:url('${PC.drive(song.hero)}')">
         <div class="song-art-shade"></div>
         <div class="song-art-label wrap">
-          <span>PIĘKNE CIAŁA · ${String(song.n).padStart(2, "0")}</span>
+          <span>${esc(series.name)} · ${String(song.n).padStart(2, "0")}</span>
           <h1>${esc(song.title)}</h1>
           <p>${esc(song.version || song.tag)}</p>
         </div>
@@ -400,15 +449,18 @@
       <section class="song-body wrap">
         <div class="cover-large reveal"><img referrerpolicy="no-referrer" src="${PC.drive(song.cover, 1200)}" alt="Okładka ${esc(song.title)}"></div>
         <div class="song-copy reveal">
-          <span class="eyebrow">VISUAL CHAPTER · ${String(song.n).padStart(2, "0")}</span>
+          <span class="eyebrow">${esc(series.label)} · ${String(song.n).padStart(2, "0")}</span>
           <h2 class="song-title">${esc(song.title)}</h2>
           <p class="version">${esc(song.version || song.tag)}</p>
           <p>${esc(song.story)}</p>
           <div class="hero-actions">
             ${song.audio ? `<button class="btn primary" type="button" data-start-audio>Odtwórz utwór</button>` : `<span class="audio-pending">Audio · final master w przygotowaniu</span>`}
-            <a class="btn ghost" href="/music.html">Wszystkie historie</a>
+            ${song.audio ? `<a class="btn ghost" href="/playlist?add=${esc(song.slug)}">Dodaj do playlisty</a>` : ""}
+            <a class="btn ghost" href="${series.url}">${esc(series.name)}</a>
           </div>
           <div class="fact-line"><span>Klimat</span><strong>${esc(song.tag)}</strong></div>
+          <div class="fact-line"><span>Seria</span><strong>${esc(series.name)}</strong></div>
+          ${song.artFallback ? `<div class="fact-line"><span>Grafika</span><strong>tymczasowa identyfikacja serii</strong></div>` : ""}
           <div class="fact-line"><span>Wersja</span><strong>${esc(song.version || "Original")}</strong></div>
           <div class="fact-line"><span>Tekst</span><strong>${lyric ? "pełny zapis 1:1" : "do odzyskania z archiwum"}</strong></div>
         </div>
@@ -431,9 +483,9 @@
           <span class="eyebrow">CREDITS</span>
           <h2>Jedna noc. Jeden narrator.</h2>
           <dl>
-            <div><dt>Projekt</dt><dd>Piękne Ciała · Night Stories</dd></div>
+            <div><dt>Projekt</dt><dd>${esc(series.name)} · Night Stories</dd></div>
             <div><dt>Narrator</dt><dd>Dojrzały męski głos · jeden bohater całej serii</dd></div>
-            <div><dt>Rozdział</dt><dd>${String(song.n).padStart(2, "0")} / ${PC_SONGS.length}</dd></div>
+            <div><dt>Rozdział serii</dt><dd>${String(seriesIndex + 1).padStart(2, "0")} / ${seriesSongs.length}</dd></div>
             <div><dt>Wersja</dt><dd>${esc(song.version || "Original")}</dd></div>
             <div><dt>Status tekstu</dt><dd>${lyric ? "Zweryfikowany zapis 1:1" : "Do odzyskania 1:1"}</dd></div>
           </dl>
