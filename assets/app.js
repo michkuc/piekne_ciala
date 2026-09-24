@@ -94,7 +94,7 @@
 
   const seriesRoot = qs("#series-root");
   if (seriesRoot) {
-    const key = new URLSearchParams(location.search).get("series") === "travel" ? "travel" : "main";
+    const key = location.pathname.includes("w-podrozy") || new URLSearchParams(location.search).get("series") === "travel" ? "travel" : "main";
     const series = PC.series[key];
     const songs = PC_SONGS.filter((song) => song.series === key);
     const hero = key === "travel" ? PC.getSong("american-girl").hero : PC.getSong("piekne-ciala").hero;
