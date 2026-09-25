@@ -28,6 +28,7 @@ for (let index = 0; index < headings.length; index += 1) {
 
 const selected = {
   "piekne-ciala": 1,
+  "mlode-boginie": 24,
   "na-co-dzien": 2,
   "po-polnocy": 5,
   prezent: 9,
@@ -36,6 +37,9 @@ const selected = {
   "mam-zone": 19,
   "bez-obraczki": 20,
   "christmas-party": 21,
+  sauna: 25,
+  "nordic-heat": 26,
+  "silownia-i-lustra": 27,
 };
 
 const lyrics = Object.fromEntries(
