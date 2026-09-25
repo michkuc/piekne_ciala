@@ -18,6 +18,7 @@ window.PC_SONGS = [
 ];
 
 const PC_ART_OVERRIDES = {
+  "american-girl": {hero:"1ZRno09aYy1KqbAcSTfStykMgZzafqYqC"},
   "piekne-ciala": {cover:"1YeIf4iVt_ekf073tUtG1wfAlfQE-ouGT"},
   "mlode-boginie": {cover:"1fGVSaqZe12YSNxa_K6-cpRE2Up909Hxy"},
   "po-polnocy": {cover:"1C-acBZi6KM_odGfGwL4ZRe2KrXhF6Tge",hero:"1yi1YMir7DvoDKwXbUHxNyIeFWjs_CVin"},
@@ -27,7 +28,7 @@ const PC_ART_OVERRIDES = {
   "nordic-heat": {hero:"1K7fDJTAr96uQgBcNTvjgTpjfOL7Q6AvA"},
   "silownia-i-lustra": {cover:"1LLYyI7xebzwbsBWjaM3nenTThsVL92-G",hero:"1lRyqCNtnfh627sohZjgCajYXdVkCYhw0"},
   "christmas-party": {hero:"1PKdh0RuA_B6EOHKxKEZcuLG3mbQz5Eaz"},
-  "dubai-arabian-heat": {cover:"1O_4mR1i94z2qy4sLkBviKcK7jswV4d4h"},
+  "dubai-arabian-heat": {cover:"1Dqv9qfPDL66cSeOaXqHlye9U-d-FlR1t",hero:"10j8AOG40DmKMIalKTKVAHeY1aAbRktTE"},
   "wall-street": {cover:"1ZT0dMWId3V9ZzY_59LUy3s4mS49kgqx3",hero:"1YgLosneU3hIYbQ_ohxRk_RwS0JyCa4Fd"},
   "samotnosc-w-wielkim-miescie": {cover:"1f1GwAOXYV2R6wLiBnpt_TVZbAEbHTbd9",hero:"1R-MZxMpF_v7oOUxKYQ4MSIjkNMdBP_lS",artFallback:false}
 };
