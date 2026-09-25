@@ -4,6 +4,7 @@
   <url><loc>https://piekne-ciala.vercel.app/music</loc></url>
   <url><loc>https://piekne-ciala.vercel.app/playlist</loc></url>
   <url><loc>https://piekne-ciala.vercel.app/archive</loc></url>
+  <url><loc>https://piekne-ciala.vercel.app/gallery</loc></url>
   <url><loc>https://piekne-ciala.vercel.app/about</loc></url>
   <url><loc>https://piekne-ciala.vercel.app/series/piekne-ciala</loc></url>
   <url><loc>https://piekne-ciala.vercel.app/series/w-podrozy</loc></url>
@@ -23,4 +24,7 @@
   <url><loc>https://piekne-ciala.vercel.app/stories/dubai-arabian-heat</loc></url>
   <url><loc>https://piekne-ciala.vercel.app/stories/wall-street</loc></url>
   <url><loc>https://piekne-ciala.vercel.app/stories/samotnosc-w-wielkim-miescie</loc></url>
+  <url><loc>https://piekne-ciala.vercel.app/stories/dotyk-nocy</loc></url>
+  <url><loc>https://piekne-ciala.vercel.app/stories/poranek</loc></url>
+  <url><loc>https://piekne-ciala.vercel.app/stories/ona-tanczy</loc></url>
 </urlset>

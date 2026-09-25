@@ -9,8 +9,13 @@
     .replaceAll("'", "&#039;");
   const storyUrl = (song) => `/stories/${song.slug}`;
 
-  const ensureAgeGate = () => {
+  const ensureAgeGate = async () => {
     if (sessionStorage.getItem("pc-age-ok")) return;
+    let pinRequired = false;
+    try {
+      const accessResponse = await fetch("/api/access", {headers: {"Accept": "application/json"}});
+      if (accessResponse.ok) pinRequired = Boolean((await accessResponse.json()).required);
+    } catch {}
     let gate = qs("#age-gate");
     if (!gate) {
       gate = document.createElement("div");
@@ -38,9 +43,34 @@
     const previousFocus = document.activeElement;
     const yes = gate.querySelector("[data-age-yes]");
     const no = gate.querySelector("[data-age-no]");
-    const focusable = [yes, no].filter(Boolean);
-    yes?.focus();
-    yes?.addEventListener("click", () => {
+    let pinInput = null;
+    let pinError = null;
+    if (pinRequired) {
+      const pinBox = document.createElement("div");
+      pinBox.className = "pin-box";
+      pinBox.innerHTML = `<label for="site-pin">PIN dostępu</label><input id="site-pin" type="password" inputmode="numeric" autocomplete="one-time-code" maxlength="24" aria-describedby="pin-error"><small id="pin-error" aria-live="polite"></small>`;
+      gate.querySelector(".age-actions")?.before(pinBox);
+      pinInput = pinBox.querySelector("input");
+      pinError = pinBox.querySelector("#pin-error");
+      if (yes) yes.textContent = "Sprawdź PIN · wchodzę";
+    }
+    const focusable = [pinInput, yes, no].filter(Boolean);
+    (pinInput || yes)?.focus();
+    yes?.addEventListener("click", async () => {
+      if (pinRequired) {
+        pinError.textContent = "";
+        try {
+          const pinResponse = await fetch("/api/access", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({pin:pinInput.value})});
+          if (!pinResponse.ok) {
+            pinError.textContent = "Nieprawidłowy PIN.";
+            pinInput.select();
+            return;
+          }
+        } catch {
+          pinError.textContent = "Nie udało się sprawdzić PIN-u. Spróbuj ponownie.";
+          return;
+        }
+      }
       sessionStorage.setItem("pc-age-ok", "1");
       gate.classList.remove("show");
       document.body.classList.remove("modal-open");
@@ -64,6 +94,18 @@
   };
 
   ensureAgeGate();
+
+  const visitorCount = qs("[data-visitor-count]");
+  if (visitorCount) {
+    const alreadyCounted = sessionStorage.getItem("pc-visit-counted") === "1";
+    fetch("/api/visits", {method: alreadyCounted ? "GET" : "POST", headers:{"Accept":"application/json"}})
+      .then((response) => response.ok ? response.json() : Promise.reject())
+      .then((data) => {
+        if (Number.isFinite(data.value)) visitorCount.textContent = new Intl.NumberFormat("pl-PL").format(data.value);
+        if (!alreadyCounted) sessionStorage.setItem("pc-visit-counted", "1");
+      })
+      .catch(() => { visitorCount.textContent = "—"; });
+  }
 
   const nav = qs(".nav");
   const toggle = qs(".nav-toggle");

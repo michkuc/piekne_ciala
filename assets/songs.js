@@ -14,7 +14,10 @@ window.PC_SONGS = [
   {n:13,slug:"christmas-party",title:"Christmas Party",version:"",cover:"1qSCa-P3uoFxg5kLQTw5VP-cVikW-7RC3",hero:"15xRpeHClHWnO51XMQmlUCoTcFpXSTEig",story:"Firma kupuje alkohol i kultura organizacyjna nagle ma dekolt. Jutro znów Teams; dzisiaj body language.",storyLong:"Finanse mają czerwoną sukienkę, marketing tańczy z compliance, a mózg narratora organizuje spotkanie bez agendy. W poniedziałek wszyscy wrócą do marynarek i uprzejmego „dzień dobry”, jak profesjonaliści, którzy doskonale potrafią udawać.",chapterTitle:"Best regards poszło spać.",tag:"Corporate noir",lyrics:"verified"},
   {n:14,slug:"dubai-arabian-heat",title:"Dubai",version:"Arabian Heat",cover:"1SzZAM7vh2FWQuPRFN5n0IuyM46mV-Rde",hero:"1mnncdlaEcHOYUGLqQi8qKEJeNR79xFcz",story:"Luksus, pieniądze, egzotyka i świat, w którym wszystko wygląda, jakby miało swoją cenę. Nie wiadomo, kto kogo naprawdę uwodzi.",storyLong:"Miasto błyszczy tak mocno, że trudno odróżnić pragnienie od transakcji. W świecie apartamentów, drogich zapachów i perfekcyjnych obrazów narrator próbuje zrozumieć, czy to on zdobywa noc, czy noc właśnie wycenia jego ego.",chapterTitle:"Wszystko błyszczy. Wszystko ma cenę.",tag:"Luxury heat",lyrics:"archive-missing"},
   {n:15,slug:"wall-street",title:"Wall Street",version:"",cover:"1rzS3qlwKJg0CCkoHxOHpyYdxx4J9RlQx",hero:"1qdxDdGsXXUs7WjJhq_faOSzsB2n_CcmY",story:"Status, pieniądze i ego spotykają seksualne napięcie. Pewność siebie działa świetnie — do chwili, gdy ktoś przejmuje nad nią kontrolę.",storyLong:"W dzień wszystko opiera się na przewadze, wyniku i kontroli. Noc pokazuje, jak szybko pewność siebie traci wartość, gdy po drugiej stronie pojawia się ktoś, kto nie potrzebuje jego statusu i nie zamierza grać według jego zasad.",chapterTitle:"Rynek kontroli właśnie się zamknął.",tag:"Power",lyrics:"archive-missing"},
-  {n:16,slug:"samotnosc-w-wielkim-miescie",title:"Samotność w Wielkim Mieście",version:"Final Cut",cover:"18cItejCwXmUvzql39JnsQrwN8H_9WqVu",hero:"1Lz-vdFIgmqKcvBPMwcdwp8m42FyXNlPf",story:"Pełne łóżka, puste wiadomości i wolność, która zbyt łatwo zaczyna przypominać samotność.",storyLong:"Miasto daje narratorowi wybór bez końca: nowe twarze, nowe ciała i bliskość na godziny. Dopiero cisza po zamknięciu drzwi pokazuje cenę układu, w którym wszystko jest dostępne, ale nikt naprawdę nie zostaje.",chapterTitle:"Wolność premium. Cisza w pakiecie.",tag:"City loneliness",lyrics:"verified",artFallback:true}
+  {n:16,slug:"samotnosc-w-wielkim-miescie",title:"Samotność w Wielkim Mieście",version:"Final Cut",cover:"18cItejCwXmUvzql39JnsQrwN8H_9WqVu",hero:"1Lz-vdFIgmqKcvBPMwcdwp8m42FyXNlPf",story:"Pełne łóżka, puste wiadomości i wolność, która zbyt łatwo zaczyna przypominać samotność.",storyLong:"Miasto daje narratorowi wybór bez końca: nowe twarze, nowe ciała i bliskość na godziny. Dopiero cisza po zamknięciu drzwi pokazuje cenę układu, w którym wszystko jest dostępne, ale nikt naprawdę nie zostaje.",chapterTitle:"Wolność premium. Cisza w pakiecie.",tag:"City loneliness",lyrics:"verified",artFallback:true},
+  {n:17,slug:"dotyk-nocy",title:"Dotyk Nocy",version:"Remastered",cover:"1cHO8LJxwimxVbhJqnESjN7KDbykyfA7d",hero:"1Tg_Jjz0mZ7YAz8ucWqsdnIuuwyA3vxRh",story:"Nic jeszcze się nie wydarzyło. Wystarcza odległość krótsza o kilka centymetrów, spojrzenie dłuższe o sekundę i wyobraźnia, która natychmiast dopisuje resztę.",storyLong:"Przy stoliku trwa zwyczajna rozmowa, ale jego głowa już dawno opuściła oficjalną wersję wieczoru. Ona pochyla się odrobinę bliżej, on zachowuje poker face, a cała historia rozgrywa się w napięciu między gestem, który mógł nic nie znaczyć, i instynktem, który znaczenie nadał mu natychmiast.",chapterTitle:"Kilka centymetrów od złej decyzji.",tag:"Sensual pulse",lyrics:"archive-missing"},
+  {n:18,slug:"poranek",title:"Poranek",version:"Aftermath Cut",cover:"1NGm5LQj80FzfmlH8n5VW7s0R3L0UKaMB",hero:"1DiHAy68pOOUDdSHUj6A4lEGYI8CltDB4",story:"Światło dnia odbiera nocy filtr. Zostają kawa, cisza i dwoje ludzi próbujących ustalić, czy pamiętają to samo.",storyLong:"Rano wszystko wygląda zbyt wyraźnie: ubrania na podłodze, niedopita szklanka i pytanie, którego żadne z nich nie chce wypowiedzieć pierwsze. On próbuje odzyskać kontrolę, ona patrzy tak, jakby już znała zakończenie. Czarny humor zaczyna się dokładnie tam, gdzie kończy się nocna pewność siebie.",chapterTitle:"Noc obiecuje. Poranek wystawia rachunek.",tag:"Morning after",lyrics:"archive-missing"},
+  {n:19,slug:"ona-tanczy",title:"Ona Tańczy",version:"Dark Cut",cover:"1hRytfPYZzcXYLwixuFe9K9ZGu9INqs6P",hero:"1cagJB-McXMKZEZkHWy8kQJVV1xWBNgWs",story:"Ona tańczy dla siebie. On oczywiście potrzebuje kilku sekund, żeby wmówić sobie, że każdy ruch jest wiadomością skierowaną właśnie do niego.",storyLong:"Parkiet robi z gestów język, który narrator tłumaczy wyłącznie na własną korzyść. Ona porusza się bez pośpiechu, nie obiecuje niczego i nawet nie musi podejść bliżej. Cała groteska polega na tym, że wystarcza rytm, spojrzenie i ego faceta po czterdziestce, by z trzech minut tańca zbudować pełną fabułę.",chapterTitle:"Ona słyszy muzykę. On słyszy zaproszenie.",tag:"Dark dance",lyrics:"archive-missing"}
 ];
 
 const PC_ART_OVERRIDES = {
@@ -34,6 +37,10 @@ const PC_ART_OVERRIDES = {
   "samotnosc-w-wielkim-miescie": {cover:"1f1GwAOXYV2R6wLiBnpt_TVZbAEbHTbd9",hero:"1R-MZxMpF_v7oOUxKYQ4MSIjkNMdBP_lS",artFallback:false}
 };
 window.PC_SONGS.forEach((song) => Object.assign(song, PC_ART_OVERRIDES[song.slug] || {}));
+window.PC_SONGS.forEach((song) => {
+  song.cover = `/assets/art/${song.slug}-cover.webp`;
+  song.hero = `/assets/art/${song.slug}-hero.webp`;
+});
 
 const PC_AUDIO_IDS = {
   1: "1SuXyUfOStEH5deRssh6F-WoHRTZCEHHo",
@@ -50,7 +57,10 @@ const PC_AUDIO_IDS = {
   12: "1Rr9mg9agoVqBSeHnV0ZKMYtNXG1CYAmh",
   13: "1YXbdD9AWnoMwkYmtBhpiJJWrqTs5SbNm",
   14: "1Xa-pik2YvJt4mrsxgdl-51ke1VbOmY1E",
-  16: "13gqI1nOaNHv2GJTzCq9LG4Po-uGfK2_o"
+  16: "13gqI1nOaNHv2GJTzCq9LG4Po-uGfK2_o",
+  17: "1dqo862rBr9JK6ELZSuj-nb7FPd2R1vjh",
+  18: "1bqXNrUNjBtAQ0pEgF_sS1aQRBs1Y88AJ",
+  19: "19dNX7S6TNQkJSitblaWRS-Ul5Wj1P3tj"
 };
 
 const PC_TRAVEL_SLUGS = new Set(["american-girl", "nordic-heat", "dubai-arabian-heat", "wall-street"]);
@@ -61,7 +71,7 @@ window.PC_SONGS.forEach((song) => {
 });
 
 window.PC={
-  drive:(id,size=1800)=>`https://drive.google.com/thumbnail?id=${id}&sz=w${size}`,
+  drive:(id,size=1800)=>String(id).startsWith("/") ? id : `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`,
   getSong:(slug)=>window.PC_SONGS.find(s=>s.slug===slug),
   series:{
     main:{key:"main",name:"Piękne Ciała",label:"SERIA GŁÓWNA",url:"/series/piekne-ciala",description:"Facet 40+, pożądanie, ego i współczesne relacje. Groteska i czarny humor w rozdźwięku między rozsądkiem a instynktem — bez moralizowania."},
