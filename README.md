@@ -10,7 +10,7 @@ Static multi-page site for the music project **Piękne Ciała**.
 - `about.html` — The Man
 - `song.html` — reusable song detail template
 - `assets/songs.js` — canonical song data + Google Drive asset IDs
-- `assets/lyrics.js` — verified 1:1 lyrics available in the project archive
+- `assets/lyrics.js` — pełne teksty dostępne w archiwum projektu
 - `assets/styles.css` — visual system
 - `assets/app.js` — navigation, age gate, rendering, animation
 - `scripts/build-lyrics.mjs` — deterministic archive-to-site lyrics generator
@@ -24,7 +24,7 @@ One anonymous male narrator, 40+, short dark-blond hair. Women vary. Cinematic n
 
 ## Content status
 - 15 visual chapters are live.
-- 9 full lyrics are connected as verified 1:1 archive records.
+- Pełne teksty są podłączone jako zweryfikowane rekordy archiwum.
 - 6 lyrics remain explicitly marked for source recovery; they are not reconstructed.
 - 10 audio masters are connected to their visual chapters through the project audio folder in Google Drive.
 - The playlist is intentionally session-only: it is not written to local storage and resets after refresh or closing the page.

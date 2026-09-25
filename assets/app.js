@@ -183,7 +183,7 @@
 
   const renderCard = (song) => {
     const lyricsReady = song.lyrics === "verified";
-    const status = song.audio ? "audio dostępne" : (lyricsReady ? "tekst 1:1" : "visual chapter");
+    const status = song.audio ? "audio dostępne" : (lyricsReady ? "pełny tekst" : "visual chapter");
     return `<a class="song-card reveal" href="${storyUrl(song)}" aria-label="${esc(song.title)}">
       <div class="song-cover">
         <img loading="lazy" referrerpolicy="no-referrer" src="${PC.drive(song.cover, 900)}" alt="Okładka ${esc(song.title)}">
@@ -218,7 +218,7 @@
   if (stats) {
     const verified = PC_SONGS.filter((song) => song.lyrics === "verified").length;
     const withAudio = PC_SONGS.filter((song) => song.audio).length;
-    stats.textContent = `${PC_SONGS.length} historii · ${withAudio} nagrań · ${verified} tekstów archiwalnych 1:1`;
+    stats.textContent = `${PC_SONGS.length} historii · ${withAudio} nagrań · ${verified} pełnych tekstów`;
   }
 
   const featured = qs("#featured-songs");
@@ -586,7 +586,7 @@
           <div class="fact-line"><span>Seria</span><strong>${esc(series.name)}</strong></div>
           ${song.artFallback ? `<div class="fact-line"><span>Grafika</span><strong>tymczasowa identyfikacja serii</strong></div>` : ""}
           <div class="fact-line"><span>Wersja</span><strong>${esc(song.version || "Original")}</strong></div>
-          <div class="fact-line"><span>Tekst</span><strong>${lyric ? "pełny zapis 1:1" : "do odzyskania z archiwum"}</strong></div>
+          <div class="fact-line"><span>Tekst</span><strong>${lyric ? "pełny tekst archiwalny" : "do odzyskania z archiwum"}</strong></div>
         </div>
       </section>
       <section class="chapter wrap reveal" data-tabs>
@@ -601,7 +601,7 @@
           <p>${esc(song.storyLong || song.story)}</p>
         </div>
         <div class="chapter-panel lyrics-panel" id="panel-lyrics" role="tabpanel" aria-labelledby="tab-lyrics" hidden>
-          ${lyric ? `<div class="lyrics-head"><div><span class="eyebrow">FULL VERIFIED · ARCHIVE ${String(lyric.archiveNumber).padStart(2, "0")}</span><h2>${esc(lyric.archiveTitle)}</h2></div><p>Treść zachowana 1:1 z archiwum projektu.</p></div><div class="lyrics-text">${lyricsMarkup(lyric)}</div>` : `<div class="missing-copy"><span class="eyebrow">ARCHIVE STATUS</span><h2>Tekst czeka na odzyskanie.</h2><p>Pełna wersja 1:1 nie występuje w aktualnym archiwum. Nie rekonstruujemy jej z pamięci ani fragmentów.</p></div>`}
+          ${lyric ? `<div class="lyrics-head"><div><span class="eyebrow">PEŁNY TEKST · ARCHIWUM ${String(lyric.archiveNumber).padStart(2, "0")}</span><h2>${esc(lyric.archiveTitle)}</h2></div><p>Oryginalna treść zachowana w archiwum projektu.</p></div><div class="lyrics-text">${lyricsMarkup(lyric)}</div>` : `<div class="missing-copy"><span class="eyebrow">STATUS ARCHIWUM</span><h2>Tekst czeka na odzyskanie.</h2><p>Pełnej wersji nie ma w aktualnym archiwum. Nie rekonstruujemy jej z pamięci ani fragmentów.</p></div>`}
         </div>
         <div class="chapter-panel credits-panel" id="panel-credits" role="tabpanel" aria-labelledby="tab-credits" hidden>
           <span class="eyebrow">CREDITS</span>
@@ -611,7 +611,7 @@
             <div><dt>Narrator</dt><dd>Dojrzały męski głos · jeden bohater całej serii</dd></div>
             <div><dt>Rozdział serii</dt><dd>${String(seriesIndex + 1).padStart(2, "0")} / ${seriesSongs.length}</dd></div>
             <div><dt>Wersja</dt><dd>${esc(song.version || "Original")}</dd></div>
-            <div><dt>Status tekstu</dt><dd>${lyric ? "Zweryfikowany zapis 1:1" : "Do odzyskania 1:1"}</dd></div>
+            <div><dt>Status tekstu</dt><dd>${lyric ? "Pełny tekst archiwalny" : "Do odzyskania"}</dd></div>
           </dl>
         </div>
       </section>
