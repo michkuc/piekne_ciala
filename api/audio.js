@@ -15,7 +15,10 @@ const AUDIO_IDS = new Set([
   "1Rr9mg9agoVqBSeHnV0ZKMYtNXG1CYAmh",
   "1YXbdD9AWnoMwkYmtBhpiJJWrqTs5SbNm",
   "1Xa-pik2YvJt4mrsxgdl-51ke1VbOmY1E",
-  "13gqI1nOaNHv2GJTzCq9LG4Po-uGfK2_o"
+  "13gqI1nOaNHv2GJTzCq9LG4Po-uGfK2_o",
+  "1dqo862rBr9JK6ELZSuj-nb7FPd2R1vjh",
+  "1bqXNrUNjBtAQ0pEgF_sS1aQRBs1Y88AJ",
+  "19dNX7S6TNQkJSitblaWRS-Ul5Wj1P3tj"
 ]);
 
 export default async function handler(request, response) {

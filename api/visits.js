@@ -3,7 +3,7 @@ const COUNTER_URL = "https://counterapi.com/api/piekne-ciala.vercel.app/view/hom
 module.exports = async function handler(request, response) {
   try {
     const readOnly = request.method !== "POST";
-    const upstream = await fetch(`${COUNTER_URL}?readOnly=${readOnly ? "true" : "false"}`, {
+    const upstream = await fetch(readOnly ? `${COUNTER_URL}?readOnly=true` : COUNTER_URL, {
       headers: {"Accept": "application/json"},
       signal: AbortSignal.timeout(4500)
     });
