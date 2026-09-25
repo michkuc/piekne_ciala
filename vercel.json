@@ -1,6 +1,10 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {"source":"/gallery","destination":"/archive#gallery","permanent":false},
+    {"source":"/gallery.html","destination":"/archive#gallery","permanent":false}
+  ],
   "rewrites": [
     {"source":"/series/piekne-ciala","destination":"/series?series=main"},
     {"source":"/series/w-podrozy","destination":"/series?series=travel"},

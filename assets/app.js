@@ -107,6 +107,51 @@
       .catch(() => { visitorCount.textContent = "—"; });
   }
 
+  const lightboxButtons = qsa("[data-lightbox-src]");
+  if (lightboxButtons.length) {
+    const lightbox = document.createElement("div");
+    lightbox.className = "lightbox";
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-label", "Pełnoekranowy podgląd zdjęcia");
+    lightbox.innerHTML = `<button class="lightbox-close" type="button" aria-label="Zamknij podgląd">×</button><button class="lightbox-nav prev" type="button" aria-label="Poprzednie zdjęcie">‹</button><figure><img alt=""><figcaption></figcaption></figure><button class="lightbox-nav next" type="button" aria-label="Następne zdjęcie">›</button>`;
+    document.body.appendChild(lightbox);
+    const fullImage = qs("img", lightbox);
+    const caption = qs("figcaption", lightbox);
+    let activeIndex = 0;
+    let previousFocus = null;
+    const showImage = (index) => {
+      activeIndex = (index + lightboxButtons.length) % lightboxButtons.length;
+      const button = lightboxButtons[activeIndex];
+      fullImage.src = button.dataset.lightboxSrc;
+      fullImage.alt = qs("img", button)?.alt || "Zdjęcie z Night Archive";
+      caption.textContent = button.dataset.lightboxCaption || "";
+    };
+    const openLightbox = (index) => {
+      previousFocus = document.activeElement;
+      showImage(index);
+      lightbox.classList.add("show");
+      document.body.classList.add("modal-open");
+      qs(".lightbox-close", lightbox).focus();
+    };
+    const closeLightbox = () => {
+      lightbox.classList.remove("show");
+      document.body.classList.remove("modal-open");
+      fullImage.removeAttribute("src");
+      previousFocus?.focus?.();
+    };
+    lightboxButtons.forEach((button, index) => button.addEventListener("click", () => openLightbox(index)));
+    qs(".lightbox-close", lightbox).addEventListener("click", closeLightbox);
+    qs(".lightbox-nav.prev", lightbox).addEventListener("click", () => showImage(activeIndex - 1));
+    qs(".lightbox-nav.next", lightbox).addEventListener("click", () => showImage(activeIndex + 1));
+    lightbox.addEventListener("click", (event) => { if (event.target === lightbox) closeLightbox(); });
+    lightbox.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeLightbox();
+      if (event.key === "ArrowLeft") showImage(activeIndex - 1);
+      if (event.key === "ArrowRight") showImage(activeIndex + 1);
+    });
+  }
+
   const nav = qs(".nav");
   const toggle = qs(".nav-toggle");
   toggle?.addEventListener("click", () => {
