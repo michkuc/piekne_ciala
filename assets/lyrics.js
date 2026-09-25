@@ -1,5 +1,362 @@
 // Generated from the verified Piękne Ciała lyrics archive. Do not hand-edit.
 window.PC_LYRICS = {
+  "mlode-boginie": {
+    "archiveTitle": "MŁODE BOGINIE – No Filter Cut",
+    "text": `[Intro – clean guitar riff + nagły drop]
+(instrumental: spokojne arpeggio, FX: klubowy bas, kobiecy śmiech, zapalniczka → ciężki riff + wybuch bębnów)
+
+[Verse 1 – rap, narastające napięcie]
+Światło neonów, drink w dłoń,
+na parkiecie tańczą jak sen, jak broń.
+Mam czterdzieści parę i ciągle mnie nosi,
+głowa mówi „spokój”, ciało prosi.
+One patrzą jak ogień, śmieją się w dym,
+ja w marynarce gram w poker z cieniem swym.
+Nie jestem ich targetem, wiem,
+ale ich zapach pali tlen.
+
+[Pre-Chorus – gitary wznoszą się, perkusja rośnie]
+Z zewnątrz luz, wewnątrz szał,
+mówią „proszę pana”, a świat się pali cały.
+
+[Chorus – drop, chór + ciężkie gitary]
+Młode boginie — ogień i grzech,
+na zewnątrz cisza, a w środku seks.
+Młode boginie — błysk i dym,
+śmieją się ze mnie, a ja tonę w tym.
+
+[Instrumental Break – ciężki riff + FX: śmiech, szkło, echo basu]
+
+[Verse 2 – mroczniej, mocniejsze bębny]
+Ich świat — filtry, taniec, flesz,
+mój — faktury, stres, kawa i deszcz.
+Ale gdy patrzą, to czas się topi,
+w środku wilk, choć w garniturze chłopiec.
+Nie chcę być „ten”, nie chcę być śmieszny,
+ale, kurwa, prąd jest grzeszny.
+Każdy ruch to cios w rozsądek,
+a każda z nich to nowy początek.
+
+[Pre-Chorus – szybsze narastanie, tomy + echo wokalu]
+Z zewnątrz luz, wewnątrz szał,
+mówią „proszę pana”, a świat się pali cały.
+
+[Chorus – drugi drop, chór głośniejszy, groove pełniejszy]
+Młode boginie — ogień i grzech,
+na zewnątrz cisza, a w środku seks.
+Młode boginie — błysk i dym,
+śmieją się ze mnie, a ja tonę w tym.
+Młode boginie — raj i strach,
+żyję rozsądkiem, a chcę ich tak.
+
+[Bridge – dwa głosy + długa solówka + DROP]
+(szept – głos 1: anioł) „Patrz, ale nie dotykaj.”
+(szept – głos 2: diabeł) „Dotknij, zanim znikną.”
+(narrator – echo) „Dwa światy w głowie, dwa życia w nim…”
+(Guitar solo – narastający reverb → DRUM + GUITAR DROP)
+
+[Verse 3 – groteskowe obrazy, półmówiony ton]
+Bar się zamyka, noc się kończy,
+ona mówi „dobranoc”, a mózg się kończy.
+W kieszeni numer, którego nie chcę znać,
+a w sercu ogień, co nie chce zgasnąć.
+Winda jedzie, a ja jak cień,
+myślę: „Za tydzień znowu — pewnie że ten dzień.”
+
+[Final Chorus – epicki, chór + pełny band, dłuższy]
+Młode boginie — ogień i grzech,
+na zewnątrz cisza, a w środku seks.
+Młode boginie — błysk i dym,
+śmieją się ze mnie, a ja tonę w tym.
+Młode boginie — raj i strach,
+żyję rozsądkiem, a chcę ich tak.
+Młode boginie — sen bez dna,
+każda z nich to nowa gra.
+
+[Outro – clean gitara + FX: zapalniczka gaszona, echo śmiechu → nagła cisza]
+(szept)
+Nie jestem ich światem...
+ale, kurwa, one są moim.`,
+    "archiveNumber": 24
+  },
+  "sauna": {
+    "archiveTitle": "SAUNA",
+    "text": `[Intro – nisko schodzący pad + FX: para, krople, echo w drewnie]
+(półszept)
+Ciepło zabija myśl… zostawia tylko instynkt.
+
+[Verse 1 – rap, wolny groove, sarkastyczny ton]
+Wchodzę do sauny, okulary w dół,
+miała być regeneracja — a tu pełen bój.
+Para jak dym, ciała jak sen,
+ona siada naprzeciw, ja udaję zen.
+Ręcznik na biodrach, w głowie pożar,
+myślę: „bądź poważny, nie rób ze siebie potwora”.
+Ona ociera kark, a ja tonę w tym,
+każdy ruch jak pokusa, jak grzech i dym.
+
+[Pre-Chorus – synth-pluck + rosnące hi-haty]
+Na zewnątrz spokój, hotelowy rytm,
+a w środku wrzask: „człowieku, żyj!”.
+
+[Chorus – wokal melodyjny + żeński chór]
+Piękne ciała — w parze i żarze,
+ona oddycha, ja gubię marze.
+Piękne ciała — szept i pot,
+na twarzy poker, a w środku lot.
+Piękne ciała — grzech na skórze,
+chcę być rozsądny, lecz w takim tłumie?…
+
+[Instrumental Break – synth bas + krótkie trapowe fill-drums, FX para syczy]
+
+[Verse 2 – mocniej, bardziej bezczelnie]
+Kropla spływa po plecach, jak wolny beat,
+ona poprawia ręcznik — i czuję, że znikł mi wstyd.
+Przechyla głowę, patrzy jak smok,
+a ja próbuję nie umrzeć od własnych myśli w bok.
+Serce jak 808, skacze w klatce,
+myślę: „zrób krok”, rozum: „wracaj na matce”.
+Nie wiem, co bardziej pali — sauna czy ona,
+ale wiem, że znów przegrywam z hormonem jak tona.
+
+[Pre-Chorus – narastanie + sidechain bass]
+Na zewnątrz spokój, hotelowy rytm,
+a w środku wrzask: „człowieku, żyj!”.
+
+[Chorus – drugi drop, więcej napięcia]
+Piękne ciała — w parze i żarze,
+ona oddycha, ja gubię marze.
+Piękne ciała — szept i pot,
+na twarzy poker, a w środku lot.
+Piękne ciała — ogień i mgła,
+czterdzieści lat… a głowa wciąż gra.
+
+[Bridge – dwa głosy: anioł i diabeł, mroczny synth]
+(Anioł – szept) „Zejdź z obrotów, bądź człowiek, stój.”
+(Diabeł – szept) „Masz jedno życie, skacz na dół.”
+(Narrator – echo) „Dwa światy w nim — jeden chce, drugi nie…”
+
+[Verse 3 – półmówiony, humor czarno-erotyczny]
+Drzwi się otwierają, chłód leci w bok,
+ona wstaje pierwsza, ja robię: „spok”.
+Ręcznik spada jej trochę… odwracam wzrok,
+ale w głowie krzyczę: „Dzięki, los, za ten szok!”
+Na zewnątrz grzeczny, w środku skandal,
+taka sauna robi z faceta zwierzę — i to legal.
+
+[Final Chorus – pełny trap + chór, szeroko]
+Piękne ciała — w parze i żarze,
+ona oddycha, ja gubię marze.
+Piękne ciała — szept i pot,
+na twarzy poker, a w środku lot.
+Piękne ciała — raj i wrzask,
+znowu rozsądek przegrywa — i to jest fakt.
+
+[Outro – synth pad + FX para, powolne oddalanie]
+(półszept)
+Sauna milczy… ale noc pamięta wszystko.`,
+    "archiveNumber": 25
+  },
+  "nordic-heat": {
+    "archiveTitle": "NORDIC HEAT – Ice & Fire",
+    "text": `[Intro – wolne synthy, zimny pad, FX: wiatr, echo kroków po śniegu]
+
+Norwegia. -12°C.
+A ja myślałem, że tu nic nie płonie.
+O mój Boże, jak się myliłem.
+
+[Verse 1 – rap, chłodna ironia 40+]
+
+Spotykam ją w lobby — blond jak świt, spojrzenie jak laser.
+Zero uśmiechu. Zero gestu.
+Tylko podnosi brew… i już wiem, że jestem w tarapatach.
+
+Skandynawki nie flirtują.
+One… auditują mężczyzn wzrokiem.
+Ocena 0–10, w sekundę.
+Czuję, że mam 6,5 — ale z sentymentu, bo mam koszulę wyprasowaną.
+
+Mówi: „You here for business?”
+A ja: „Yes.”
+Ale mój mózg dodaje: „Unfortunately.”
+
+Ona tylko kiwa głową.
+A jej oczy mówią:
+„Sprawdzę, czy jesteś wart rozmowy.”
+
+[Pre-Chorus – narastające zimno → ciepło]
+
+W Skandynawii ciało nie krzyczy.
+Tu krzyczą spojrzenia.
+Krótko. Ostro.
+I trafiają prosto w klatkę.
+
+[Chorus – drop, nordic bass, chłodne chóry]
+
+Ciała świata — lód i żar,
+jej chłód parzy mocniej niż brazylijski skwar.
+Ciała świata — cisza i rytm,
+każdy jej krok to nordycki mit.
+
+Ciała świata — stal i dym,
+ona mówi mało, a ja tonę w tym.
+Ciała świata — mgła i blask,
+mówi „hej”, a mnie już nie ma — gdzieś w swoich wizjach.
+
+[Verse 2 – bardziej zmysłowo, ale zimno, precyzyjnie]
+
+Idziemy przez zimne Oslo, mówię za dużo — ona prawie wcale.
+To nie Brazylia.
+Tu kobiety są jak zimowe morze —
+piękne, niebezpieczne i kompletnie nieprzejednane.
+
+Dotyka mnie „przypadkiem” —
+ale to przypadek jak u chirurgów:
+precyzyjny, zaplanowany, wolny, oceniający.
+
+Uśmiecha się minimalnie —
+to w Skandynawii oznacza „jest okej, możesz oddychać”.
+
+A ja?
+Zachowuję się jak dzieciak:
+robię głupie żarty, bo cisza zabija bardziej niż grzech.
+
+[Pre-Chorus – delikatny build, „zimne napięcie”]
+
+Patrzy na mnie jak na zagadkę.
+A ja czekam, aż mnie rozwiąże.
+Albo rozbierze…
+ale to w Skandynawii trwa godzinami.
+
+[Chorus – drugi drop, bardziej ognisty]
+
+Ciała świata — lód i żar,
+jej spojrzenie pali, choć mróz trzyma nas.
+Ciała świata — świt i cień,
+mówi „later”… a ja już nie chcę „later”, chcę teraz.
+
+Ciała świata — nordic flame,
+ona jest spokojem, ja jestem snem.
+Ciała świata — cicha gra,
+Skandynawia uczy, że pożądanie ma rytm jak mróz: powoli, aż boli.
+
+[Bridge – półszept + zimny pad]
+
+(ona – szept)
+„You think too loud.”
+
+(on – szept)
+„You say too little.”
+
+(echo – narrator)
+A jednak rozmowa płonęła… nawet jeśli było -12°C.
+
+[Verse 3 – dramatyczno-komiczny, z ironią 40+]
+
+Zaprasza mnie na saunę.
+Ja: „Co? Teraz?”
+Ona: „It’s normal here.”
+
+Normalne?!
+Normalne dla kogo?!
+Ja mam 40 lat, jestem z Europy Środkowej —
+dla mnie normalne to herbata i spokój.
+
+A ona siedzi obok mnie — nago, bez wstydu, bez lęku, bez uśmiechu.
+Tylko oczy mówią:
+„Don’t overthink. Feel.”
+
+I pierwszy raz w życiu
+czuję, jak lód pali mocniej niż ogień.
+
+[Final Chorus – epicko, nordic choirs + dark bass]
+
+Ciała świata — lód i żar,
+ona niszczy mnie spojrzeniem jak burzą śnieżną.
+Ciała świata — noc i blask,
+cisza bardziej erotyczna niż taniec w Rio.
+
+Ciała świata — rytm i mgła,
+Skandynawki uczą, że pożądanie to gra.
+Ciała świata — spokój i krzyk,
+zmarzłem na zewnątrz… i płonąłem w środku.
+
+[Outro ]
+
+(półszept)
+Zimno?
+Nie.
+To ona.`,
+    "archiveNumber": 26
+  },
+  "silownia-i-lustra": {
+    "archiveTitle": "SIŁOWNIA I LUSTRA – Iron Heat",
+    "text": `[Verse 1]
+Miała być godzina cardio
+A wyszedł kryzys wieku średniego na full HD
+Wchodzę na siłkę, myślę robię plecy
+A tu plejady bogiń i koniec koncepcji
+Jedna robi hip thrust, druga przysiady
+A ja próbuję nie umrzeć od jej gładkiej szaty
+Marzenia piszą moje serce też
+Trener patrzy krzywo, ja patrzę w grzech
+Rozgrzewka niby, ale w głowie sprint
+Bo każde lustro odbija grzech jak film
+Na zewnątrz spokój
+Crossfit nowy chill
+A w środku głos weź się ogarnij typ
+[Chorus]
+Piękne ciała pod tiblast
+Ona podnosi, a ja tracę czas
+Piękne ciała, ciężar i rytm
+Na twarzy spokój, a w środku krzyk
+Piękne ciała, lustra i żar
+Robię trening, a patrzę jak star
+[Verse 2]
+Ona w legginsach jak druga skóra
+Każdy jej ruch jak uderzenie pioruna
+Poprawia włosy, robi półuśmiech
+A ja w głowie nie patrz, nie patrz
+Dobra jeszcze chwilę
+Ciężar niby 200 kg, ale gdy patrzy to ja jestem słaby nie on
+Woda z bidonu płynie jej po brodzie
+A ja jestem gotów trenować codziennie po godzinie
+[Chorus]
+Na zewnątrz spokój
+Crossfit nowy chill
+A w środku głos weź się ogarnij typ
+Piękne ciała pod tiblast
+Ona podnosi, a ja tracę czas
+Piękne ciała, ciężar i rytm
+Na twarzy spokój, a w środku krzyk
+Piękne ciała, lustra i żar
+Robię trening, a patrzę jak star
+[Bridge]
+Skup się na formie człowieku, błagam
+Zobacz jej tyłek, to jest twój program
+Dwa światy w głowie, siłka jak grzech
+Staram się liczyć powtórzenia, ale liczę jej kroki, nie moje zgięcia
+Trener mówi plecy, ja robię wow, bo akurat przeszła i trawi mnie zmuchnął łaską maurą
+Wychodzę spocony niby progres mam
+Ale to nie mięśnie, to jej wzrok mnie pcha
+[Chorus]
+Piękne ciała pod tiblast
+Ona podnosi, a ja tracę czas
+Piękne ciała, ciężar i rytm
+Na twarzy spokój, a w środku krzyk
+Piękne ciała, lustra gra
+I nawet cardio ma drugi plan
+[Outro]
+Jutro znowu tu wrócę
+Jutro znowu tu wrócę
+Jutro znowu tu wrócę
+Dla zdrowia
+Jutro znowu tu wrócę
+Jutro znowu tu wrócę
+Jutro znowu tu wrócę
+Dla zdrowia`,
+    "archiveNumber": 27
+  },
   "piekne-ciala": {
     "archiveTitle": "PIĘKNE CIAŁA – Original / DNA Zero",
     "text": "[Intro – clean guitar riff + nagły drop]\n\n(instrumental: spokojne arpeggio, FX kobiecy śmiech + chlupnięcie wody →\nciężki riff + wybuch bębnów)\n\n[Verse 1 – rap, narastające napięcie]\n\nSzklanka w ręce, whisky jak żar,\n\nbiodra się kołyszą, pieprzony koszmar.\n\nNa twarzy spokój, maska i szyk,\n\na w głowie wrzeszczy: „Chcę poczuć ten krzyk!”\n\n[Pre-Chorus – gitary wznoszą się, perkusja rośnie]\n\nUsta milczą, spojrzenia tnę,\n\nw środku pragnienie, rozrywa mnie.\n\n[Chorus – drop, chór + ciężkie gitary]\n\nPiękne ciała — pot i grzech,\n\nna zewnątrz cisza, a w środku seks.\n\nPiękne ciała — ogień i wstyd,\n\nna twarzy poker, a w środku dzik.\n\n[Instrumental Break – ciężki riff + krótkie solo gitarowe, FX jęk w tle]\n\n[Verse 2 – mroczniej, mocniejsze bębny]\n\nSkóra jak ogień, tatuaże drżą,\n\nbiusty jak sztorm, niech mnie pochłoną.\n\nŚmiech ich rozcina, pośladki jak stal,\n\na w głowie burza: „Rozpierdol ten bal!”\n\n[Pre-Chorus – szybsze narastanie, tomy]\n\nUsta milczą, spojrzenia tnę,\n\nw środku pragnienie, rozrywa mnie.\n\n[Chorus – drugi drop, chór głośniejszy]\n\nPiękne ciała — pot i grzech,\n\nna zewnątrz cisza, a w środku seks.\n\nPiękne ciała — ogień i wstyd,\n\nna twarzy poker, a w środku dzik.\n\n[Bridge – dwa głosy + długa solówka + DROP]\n\n(szept – głos 1: anioł) „Trzymaj fason, nie ruszaj nic.”\n\n(szept – głos 2: diabeł) „Rwij sukienki, spal ten wstyd!”\n\n(narrator – echo) „Dwa światy w głowie, dwa życia w nim…”\n\n(Guitar solo, napięcie rośnie → nagły DRUM + GUITAR DROP)\n\n[Verse 3 – groteskowe obrazy, prawie mówiony]\n\nBasen kipiący, bikini spada,\n\nja stoję sztywny, a w środku lawa.\n\nŻona w telefonie, mówi: „Jak tam?”\n\na ja mam w oczach ogień i spam.\n\n[Final Chorus – epicki, chór + pełny band, dłuższy]\n\nPiękne ciała — pot i grzech,\n\nna zewnątrz cisza, a w środku seks.\n\nPiękne ciała — ogień i wstyd,\n\nna twarzy poker, a w środku dzik.\n\nPiękne ciała — raj i strach,\n\nżyję rozsądkiem, a chcę ich brać.\n\n[Outro – finałowy riff + chór wygasa]\n\n(instrumental outro: ciężki riff, FX kobiecy jęk + echo oddechów → nagła\ncisza)",
