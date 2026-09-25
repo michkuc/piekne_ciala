@@ -35,3 +35,6 @@
 @media(max-width:560px){.age-gate{padding:16px;background-position:56% center}.age-box{padding:30px 20px 24px}.age-box h2{font-size:58px}.age-box p{font-size:20px}.age-kicker{font-size:8px;letter-spacing:.23em}.age-actions .btn{min-width:0}}
 .age-gate{background-image:url('https://drive.google.com/thumbnail?id=1k3OgXocbq3AkE236vIe7jU2zowaBbYVl&sz=w1800')}
 .archive-card.focus-left{background-position:35% center}.archive-card.focus-right{background-position:68% center}.archive-card.focus-center{background-position:center}
+body.has-audio-dock{padding-bottom:104px}
+.footer .wrap>div:last-child{text-align:right}
+@media(max-width:560px){body.has-audio-dock{padding-bottom:118px}.audio-dock{grid-template-columns:38px minmax(0,1fr) auto;gap:10px;padding:9px 10px}.audio-toggle{width:36px;height:36px}.audio-id span{display:none}.audio-id strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:16px}.audio-range{grid-column:1/3}.audio-dock time{grid-column:3;grid-row:2}.footer .wrap>div:last-child{text-align:left}}

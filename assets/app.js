@@ -19,30 +19,47 @@
       gate.setAttribute("role", "dialog");
       gate.setAttribute("aria-modal", "true");
       gate.setAttribute("aria-labelledby", "age-title");
+      gate.setAttribute("aria-describedby", "age-description");
       gate.innerHTML = `<div class="age-box">
         <span class="age-kicker">PRYWATNY KLUB · TREŚCI 18+</span>
         <h2 id="age-title">Piękne Ciała</h2>
         <strong>Wstęp 40+</strong>
         <p>Bo po czterdziestce wchodzi się już tylko z klasą.</p>
-        <small>Projekt zawiera dojrzałe tematy, erotyczne napięcie i mocny język.</small>
+        <small id="age-description">Wstęp jest dla osób pełnoletnich. Projekt zawiera dojrzałe tematy, erotyczne napięcie i mocny język.</small>
         <div class="age-actions">
           <button class="btn primary" data-age-yes>Mam 18 lat · wchodzę</button>
-          <button class="btn ghost" data-age-no>Jeszcze nie</button>
+          <button class="btn ghost" data-age-no>Nie mam 18 lat</button>
         </div>
       </div>`;
       document.body.appendChild(gate);
     }
     gate.classList.add("show");
     document.body.classList.add("modal-open");
+    const previousFocus = document.activeElement;
     const yes = gate.querySelector("[data-age-yes]");
+    const no = gate.querySelector("[data-age-no]");
+    const focusable = [yes, no].filter(Boolean);
     yes?.focus();
     yes?.addEventListener("click", () => {
       sessionStorage.setItem("pc-age-ok", "1");
       gate.classList.remove("show");
       document.body.classList.remove("modal-open");
+      previousFocus?.focus?.();
     });
-    gate.querySelector("[data-age-no]")?.addEventListener("click", () => {
-      location.href = "https://www.google.com";
+    no?.addEventListener("click", () => {
+      if (history.length > 1) history.back();
+      else location.href = "about:blank";
+    });
+    gate.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab" || focusable.length < 2) return;
+      const index = focusable.indexOf(document.activeElement);
+      if (event.shiftKey && index <= 0) {
+        event.preventDefault();
+        focusable.at(-1).focus();
+      } else if (!event.shiftKey && index === focusable.length - 1) {
+        event.preventDefault();
+        focusable[0].focus();
+      }
     });
   };
 
@@ -69,6 +86,12 @@
       ? "linear-gradient(180deg,rgba(5,5,7,.02),rgba(5,5,7,.12) 45%,rgba(5,5,7,.94))"
       : "linear-gradient(90deg,rgba(5,5,7,.94),rgba(5,5,7,.28) 48%,rgba(5,5,7,.36) 72%,rgba(5,5,7,.72))";
     element.style.backgroundImage = `${overlay},url("${PC.drive(element.dataset.bgId)}")`;
+  });
+  qsa("[data-song-hero]").forEach((element) => {
+    const song = PC.getSong(element.dataset.songHero);
+    if (!song) return;
+    const overlay = "linear-gradient(180deg,rgba(5,5,7,.02),rgba(5,5,7,.12) 45%,rgba(5,5,7,.94))";
+    element.style.backgroundImage = `${overlay},url("${PC.drive(song.hero)}")`;
   });
 
   const renderCard = (song) => {
@@ -318,8 +341,14 @@
     range.addEventListener("input", () => {
       if (audio.duration) audio.currentTime = (Number(range.value) / 100) * audio.duration;
     });
-    audio.addEventListener("play", () => { toggle.textContent = "❚❚"; });
-    audio.addEventListener("pause", () => { toggle.textContent = "▶"; });
+    audio.addEventListener("play", () => {
+      toggle.textContent = "❚❚";
+      toggle.setAttribute("aria-label", "Wstrzymaj playlistę");
+    });
+    audio.addEventListener("pause", () => {
+      toggle.textContent = "▶";
+      toggle.setAttribute("aria-label", "Odtwórz playlistę");
+    });
     audio.addEventListener("timeupdate", () => {
       if (!audio.duration) return;
       range.value = String((audio.currentTime / audio.duration) * 100);
@@ -401,7 +430,7 @@
     </div>`;
   };
 
-  const initPlayer = (root) => {
+  const initPlayer = (root, song) => {
     const audio = qs("[data-audio]", root);
     if (!audio) return;
     const toggleButton = qs("[data-audio-toggle]", root);
@@ -411,8 +440,14 @@
     toggleButton?.addEventListener("click", async () => {
       if (audio.paused) await audio.play(); else audio.pause();
     });
-    audio.addEventListener("play", () => { toggleButton.textContent = "❚❚"; });
-    audio.addEventListener("pause", () => { toggleButton.textContent = "▶"; });
+    audio.addEventListener("play", () => {
+      toggleButton.textContent = "❚❚";
+      toggleButton.setAttribute("aria-label", `Wstrzymaj ${song.title}`);
+    });
+    audio.addEventListener("pause", () => {
+      toggleButton.textContent = "▶";
+      toggleButton.setAttribute("aria-label", `Odtwórz ${song.title}`);
+    });
     audio.addEventListener("timeupdate", () => {
       if (!audio.duration) return;
       range.value = String((audio.currentTime / audio.duration) * 100);
@@ -499,8 +534,10 @@
       </nav>
       ${renderPlayer(song)}`;
 
+    if (song.audio) document.body.classList.add("has-audio-dock");
+
     initTabs(qs("[data-tabs]", songRoot));
-    initPlayer(songRoot);
+    initPlayer(songRoot, song);
     qs("[data-start-audio]", songRoot)?.addEventListener("click", () => qs("[data-audio-toggle]", songRoot)?.click());
   }
 
