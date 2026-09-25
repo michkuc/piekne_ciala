@@ -18,7 +18,7 @@ window.PC_SONGS = [
 ];
 
 const PC_ART_OVERRIDES = {
-  "swipe-w-prawo": {cover:"1Un3FDQzFZsPua6peyO0_GRNibrOIaG5b",hero:"1BR8xxsG9IAvkixB4Sgq5PJ98R2gKhsEU"},
+  "swipe-w-prawo": {cover:"1CI9uJFVliE_8M__MhQNddLN21lLZNqMQ",hero:"1CI9uJFVliE_8M__MhQNddLN21lLZNqMQ"},
   "american-girl": {hero:"1ZRno09aYy1KqbAcSTfStykMgZzafqYqC"},
   "piekne-ciala": {cover:"1YeIf4iVt_ekf073tUtG1wfAlfQE-ouGT"},
   "mlode-boginie": {cover:"1fGVSaqZe12YSNxa_K6-cpRE2Up909Hxy"},
