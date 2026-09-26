@@ -17,7 +17,9 @@ window.PC_SONGS = [
   {n:16,slug:"samotnosc-w-wielkim-miescie",title:"Samotność w Wielkim Mieście",version:"Final Cut",cover:"18cItejCwXmUvzql39JnsQrwN8H_9WqVu",hero:"1Lz-vdFIgmqKcvBPMwcdwp8m42FyXNlPf",story:"Pełne łóżka, puste wiadomości i wolność, która zbyt łatwo zaczyna przypominać samotność.",storyLong:"Miasto daje narratorowi wybór bez końca: nowe twarze, nowe ciała i bliskość na godziny. Dopiero cisza po zamknięciu drzwi pokazuje cenę układu, w którym wszystko jest dostępne, ale nikt naprawdę nie zostaje.",chapterTitle:"Wolność premium. Cisza w pakiecie.",tag:"City loneliness",lyrics:"verified",artFallback:true},
   {n:17,slug:"dotyk-nocy",title:"Dotyk Nocy",version:"Remastered",cover:"1cHO8LJxwimxVbhJqnESjN7KDbykyfA7d",hero:"1Tg_Jjz0mZ7YAz8ucWqsdnIuuwyA3vxRh",story:"Nic jeszcze się nie wydarzyło. Wystarcza odległość krótsza o kilka centymetrów, spojrzenie dłuższe o sekundę i wyobraźnia, która natychmiast dopisuje resztę.",storyLong:"Przy stoliku trwa zwyczajna rozmowa, ale jego głowa już dawno opuściła oficjalną wersję wieczoru. Ona pochyla się odrobinę bliżej, on zachowuje poker face, a cała historia rozgrywa się w napięciu między gestem, który mógł nic nie znaczyć, i instynktem, który znaczenie nadał mu natychmiast.",chapterTitle:"Kilka centymetrów od złej decyzji.",tag:"Sensual pulse",lyrics:"archive-missing"},
   {n:18,slug:"poranek",title:"Poranek",version:"Aftermath Cut",cover:"1NGm5LQj80FzfmlH8n5VW7s0R3L0UKaMB",hero:"1DiHAy68pOOUDdSHUj6A4lEGYI8CltDB4",story:"Światło dnia odbiera nocy filtr. Zostają kawa, cisza i dwoje ludzi próbujących ustalić, czy pamiętają to samo.",storyLong:"Rano wszystko wygląda zbyt wyraźnie: ubrania na podłodze, niedopita szklanka i pytanie, którego żadne z nich nie chce wypowiedzieć pierwsze. On próbuje odzyskać kontrolę, ona patrzy tak, jakby już znała zakończenie. Czarny humor zaczyna się dokładnie tam, gdzie kończy się nocna pewność siebie.",chapterTitle:"Noc obiecuje. Poranek wystawia rachunek.",tag:"Morning after",lyrics:"archive-missing"},
-  {n:19,slug:"ona-tanczy",title:"Ona Tańczy",version:"Dark Cut",cover:"1hRytfPYZzcXYLwixuFe9K9ZGu9INqs6P",hero:"1cagJB-McXMKZEZkHWy8kQJVV1xWBNgWs",story:"Ona tańczy dla siebie. On oczywiście potrzebuje kilku sekund, żeby wmówić sobie, że każdy ruch jest wiadomością skierowaną właśnie do niego.",storyLong:"Parkiet robi z gestów język, który narrator tłumaczy wyłącznie na własną korzyść. Ona porusza się bez pośpiechu, nie obiecuje niczego i nawet nie musi podejść bliżej. Cała groteska polega na tym, że wystarcza rytm, spojrzenie i ego faceta po czterdziestce, by z trzech minut tańca zbudować pełną fabułę.",chapterTitle:"Ona słyszy muzykę. On słyszy zaproszenie.",tag:"Dark dance",lyrics:"archive-missing"}
+  {n:19,slug:"ona-tanczy",title:"Ona Tańczy",version:"Dark Cut",cover:"1hRytfPYZzcXYLwixuFe9K9ZGu9INqs6P",hero:"1cagJB-McXMKZEZkHWy8kQJVV1xWBNgWs",story:"Ona tańczy dla siebie. On oczywiście potrzebuje kilku sekund, żeby wmówić sobie, że każdy ruch jest wiadomością skierowaną właśnie do niego.",storyLong:"Parkiet robi z gestów język, który narrator tłumaczy wyłącznie na własną korzyść. Ona porusza się bez pośpiechu, nie obiecuje niczego i nawet nie musi podejść bliżej. Cała groteska polega na tym, że wystarcza rytm, spojrzenie i ego faceta po czterdziestce, by z trzech minut tańca zbudować pełną fabułę.",chapterTitle:"Ona słyszy muzykę. On słyszy zaproszenie.",tag:"Dark dance",lyrics:"archive-missing"},
+  {n:20,slug:"za-malo-miejsca",title:"Za Mało Miejsca",version:"",cover:"1hLppBOI3y_YYOeU9DpC8vQeaJhCkU1Ui",hero:"1hLppBOI3y_YYOeU9DpC8vQeaJhCkU1Ui",story:"Winda, zamknięte drzwi i dwoje ludzi, którzy stoją odrobinę za blisko. Każde piętro zabiera trochę miejsca rozsądkowi.",storyLong:"W zamkniętej windzie nie ma gdzie odsunąć spojrzenia ani własnych myśli. Liczą piętra, udają spokój i zauważają każdy ruch o sekundę za długo. Nic nie musi zostać powiedziane — napięcie rośnie właśnie dlatego, że cała historia mieści się w kilku metrach kwadratowych i kilku oddechach.",chapterTitle:"Za mało miejsca na rozsądek.",tag:"Closed-space tension",lyrics:"verified",externalArt:true},
+  {n:21,slug:"po-godzinach",title:"Po Godzinach",version:"",cover:"1mipJ7b5ZdZkaqvFv8hxbpYd8q4o3T05Q",hero:"1Z-mzYPfh03_WTb3adDPHschIYMvH2UzZ",story:"Puste piętro, zimne światło i dwoje ludzi, którzy zostali w biurze dłużej, niż wymagała praca.",storyLong:"Biuro po godzinach traci oficjalny język. Zostają echo kroków, cisza między biurkami i pytanie, czy któreś z nich naprawdę zostało przypadkiem. Każdy kolejny krok skraca dystans, a to, co miało być chwilą, zaczyna wyglądać jak decyzja, której jutro oboje będą musieli nadać bezpieczniejszą nazwę.",chapterTitle:"Kiedy kończy się praca, zaczynają się niedopowiedzenia.",tag:"After-hours tension",lyrics:"verified",externalArt:true}
 ];
 
 const PC_ART_OVERRIDES = {
@@ -38,6 +40,7 @@ const PC_ART_OVERRIDES = {
 };
 window.PC_SONGS.forEach((song) => Object.assign(song, PC_ART_OVERRIDES[song.slug] || {}));
 window.PC_SONGS.forEach((song) => {
+  if (song.externalArt) return;
   song.cover = `/assets/art/${song.slug}-cover.webp`;
   song.hero = `/assets/art/${song.slug}-hero.webp`;
 });
@@ -60,12 +63,15 @@ const PC_AUDIO_IDS = {
   16: "13gqI1nOaNHv2GJTzCq9LG4Po-uGfK2_o",
   17: "1dqo862rBr9JK6ELZSuj-nb7FPd2R1vjh",
   18: "1bqXNrUNjBtAQ0pEgF_sS1aQRBs1Y88AJ",
-  19: "19dNX7S6TNQkJSitblaWRS-Ul5Wj1P3tj"
+  19: "19dNX7S6TNQkJSitblaWRS-Ul5Wj1P3tj",
+  20: "16VlS3B2Sdb953qlH8D7YcsH3etnlnPpw",
+  21: "11GLdHOWS0qVf3_TaIDCBwzTo4DitVsBr"
 };
 
 const PC_TRAVEL_SLUGS = new Set(["american-girl", "nordic-heat", "dubai-arabian-heat", "wall-street"]);
+const PC_CLOSE_SLUGS = new Set(["za-malo-miejsca", "po-godzinach"]);
 window.PC_SONGS.forEach((song) => {
-  song.series = PC_TRAVEL_SLUGS.has(song.slug) ? "travel" : "main";
+  song.series = PC_CLOSE_SLUGS.has(song.slug) ? "close" : PC_TRAVEL_SLUGS.has(song.slug) ? "travel" : "main";
   const audioId = PC_AUDIO_IDS[song.n];
   if (audioId) song.audio = `/api/audio?id=${audioId}`;
 });
@@ -75,6 +81,7 @@ window.PC={
   getSong:(slug)=>window.PC_SONGS.find(s=>s.slug===slug),
   series:{
     main:{key:"main",name:"Piękne Ciała",label:"SERIA GŁÓWNA",url:"/series/piekne-ciala",description:"Facet 40+, pożądanie, ego i współczesne relacje. Groteska i czarny humor w rozdźwięku między rozsądkiem a instynktem — bez moralizowania."},
-    travel:{key:"travel",name:"Piękne Ciała: W Podróży",label:"TRAVEL SPIN-OFF",url:"/series/w-podrozy",description:"Ten sam narrator 40+ i ten sam konflikt, przeniesiony do hoteli, obcych miast i świata luksusu. Zmienia się sceneria, nie apetyt ani ego."}
+    travel:{key:"travel",name:"Piękne Ciała: W Podróży",label:"TRAVEL SPIN-OFF",url:"/series/w-podrozy",description:"Ten sam narrator 40+ i ten sam konflikt, przeniesiony do hoteli, obcych miast i świata luksusu. Zmienia się sceneria, nie apetyt ani ego."},
+    close:{key:"close",name:"Za blisko",label:"SERIA 03 · ZA BLISKO",url:"/series/za-blisko",description:"Dwoje ludzi, za mało przestrzeni i za dużo ciszy. Winda, puste biuro i gesty o sekundę za długie — seria o napięciu, które zaczyna się, zanim wydarzy się cokolwiek."}
   }
 };

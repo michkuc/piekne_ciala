@@ -213,10 +213,12 @@
 
   const seriesRoot = qs("#series-root");
   if (seriesRoot) {
-    const key = location.pathname.includes("w-podrozy") || new URLSearchParams(location.search).get("series") === "travel" ? "travel" : "main";
+    const requestedSeries = new URLSearchParams(location.search).get("series");
+    const key = location.pathname.includes("za-blisko") || requestedSeries === "close" ? "close" : location.pathname.includes("w-podrozy") || requestedSeries === "travel" ? "travel" : "main";
     const series = PC.series[key];
     const songs = PC_SONGS.filter((song) => song.series === key);
-    const hero = key === "travel" ? PC.getSong("american-girl").hero : PC.getSong("piekne-ciala").hero;
+    const heroSlug = key === "close" ? "za-malo-miejsca" : key === "travel" ? "american-girl" : "piekne-ciala";
+    const hero = PC.getSong(heroSlug).hero;
     document.title = `${series.name} — utwory`;
     seriesRoot.innerHTML = `<section class="page-hero series-hero" style="background-image:linear-gradient(90deg,rgba(5,5,7,.94),rgba(5,5,7,.28) 52%,rgba(5,5,7,.7)),url('${PC.drive(hero)}')"><div class="wrap"><span class="eyebrow">${series.label}</span><h1>${esc(series.name)}</h1><p>${esc(series.description)}</p></div></section><section class="section wrap"><div class="section-head"><div><span class="eyebrow">${songs.length} HISTORII</span><h2>Utwory serii</h2></div><a class="btn ghost" href="/music.html">Cały katalog</a></div><div class="song-grid">${songs.map(renderCard).join("")}</div></section>`;
   }
