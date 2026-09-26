@@ -114,10 +114,11 @@
     lightbox.setAttribute("role", "dialog");
     lightbox.setAttribute("aria-modal", "true");
     lightbox.setAttribute("aria-label", "Pełnoekranowy podgląd zdjęcia");
-    lightbox.innerHTML = `<button class="lightbox-close" type="button" aria-label="Zamknij podgląd">×</button><button class="lightbox-nav prev" type="button" aria-label="Poprzednie zdjęcie">‹</button><figure><img alt=""><figcaption></figcaption></figure><button class="lightbox-nav next" type="button" aria-label="Następne zdjęcie">›</button>`;
+    lightbox.innerHTML = `<button class="lightbox-close" type="button" aria-label="Zamknij podgląd">×</button><div class="lightbox-counter" aria-live="polite"></div><button class="lightbox-nav prev" type="button" aria-label="Poprzednie zdjęcie">‹</button><figure><img alt=""><figcaption></figcaption></figure><button class="lightbox-nav next" type="button" aria-label="Następne zdjęcie">›</button>`;
     document.body.appendChild(lightbox);
     const fullImage = qs("img", lightbox);
     const caption = qs("figcaption", lightbox);
+    const counter = qs(".lightbox-counter", lightbox);
     let activeIndex = 0;
     let previousFocus = null;
     const showImage = (index) => {
@@ -126,6 +127,12 @@
       fullImage.src = button.dataset.lightboxSrc;
       fullImage.alt = qs("img", button)?.alt || "Zdjęcie z Night Archive";
       caption.textContent = button.dataset.lightboxCaption || "";
+      if (counter) counter.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(lightboxButtons.length).padStart(2, "0")}`;
+      [activeIndex - 1, activeIndex + 1].forEach((nearIndex) => {
+        const nearby = lightboxButtons[(nearIndex + lightboxButtons.length) % lightboxButtons.length];
+        const src = nearby?.dataset?.lightboxSrc;
+        if (src) { const preload = new Image(); preload.src = src; }
+      });
     };
     const openLightbox = (index) => {
       previousFocus = document.activeElement;
