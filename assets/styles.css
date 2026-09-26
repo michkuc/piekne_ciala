@@ -94,3 +94,38 @@ body.has-audio-dock{padding-bottom:104px}
   .archive-catalog{padding-top:14px}
   .archive-category{padding:36px 0 50px}
 }
+
+
+/* Night Archive — finishing polish */
+.archive-gallery .section-head{margin-bottom:22px}
+.archive-featured-meta{background:linear-gradient(90deg,rgba(255,255,255,.018),transparent 58%)}
+.archive-taxonomy span{position:relative;padding-left:12px}
+.archive-taxonomy span:before{content:"";position:absolute;left:0;top:50%;width:4px;height:4px;border-radius:50%;background:var(--gold);transform:translateY(-50%);opacity:.7}
+.archive-featured-grid{margin-bottom:2px}
+.gallery-open{cursor:zoom-in;outline:0}
+.gallery-open:before{content:"↗";position:absolute;z-index:3;top:14px;right:14px;display:grid;place-items:center;width:32px;height:32px;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:rgba(5,5,7,.38);color:#fff;font:400 14px var(--sans);opacity:0;transform:translateY(4px);transition:opacity .25s ease,transform .25s ease,background .25s ease}
+.gallery-open:hover:before,.gallery-open:focus-visible:before{opacity:1;transform:none}
+.gallery-open:focus-visible{box-shadow:0 0 0 2px var(--gold) inset}
+.gallery-open:hover img,.gallery-open:focus-visible img{transform:scale(1.035)}
+.archive-featured-grid .gallery-open:first-child:after{inset:36% 0 0;background:linear-gradient(transparent,rgba(4,4,5,.95))}
+.archive-category{scroll-margin-top:96px}
+.archive-category-head{position:relative}
+.archive-category-head:after{content:"";position:absolute;left:0;right:0;bottom:-25px;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.archive-full[open] .archive-expand{color:var(--gold);border-bottom:1px solid var(--line)}
+.lightbox{animation:none}
+.lightbox.show{animation:archiveFade .18s ease both}
+@keyframes archiveFade{from{opacity:0}to{opacity:1}}
+.lightbox figure img{padding:18px 64px 70px;box-sizing:border-box}
+.lightbox-counter{position:fixed;z-index:4;top:27px;left:28px;padding:8px 11px;border:1px solid var(--line);background:rgba(5,5,7,.58);color:var(--gold);font:500 9px var(--sans);letter-spacing:.18em}
+.lightbox-close,.lightbox-nav{transition:background .2s ease,border-color .2s ease,color .2s ease}
+.lightbox-close:hover,.lightbox-nav:hover,.lightbox-close:focus-visible,.lightbox-nav:focus-visible{background:rgba(151,104,58,.28);border-color:rgba(210,170,117,.55);color:var(--gold)}
+.lightbox figcaption{max-width:min(820px,calc(100vw - 180px));overflow:hidden;text-overflow:ellipsis}
+@media(max-width:700px){
+  .archive-gallery .section-head{margin-bottom:16px}
+  .archive-taxonomy{gap:8px 12px}
+  .archive-taxonomy span{padding-left:10px}
+  .gallery-open:before{opacity:.8;top:12px;right:12px;width:30px;height:30px}
+  .lightbox figure img{padding:54px 10px 118px}
+  .lightbox-counter{top:16px;left:14px}
+  .lightbox figcaption{max-width:calc(100% - 24px)}
+}
