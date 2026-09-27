@@ -82,7 +82,7 @@ window.PC={
   getSong:(slug)=>window.PC_SONGS.find(s=>s.slug===slug),
   series:{
     main:{key:"main",name:"Piękne Ciała",label:"SERIA GŁÓWNA",url:"/series/piekne-ciala",description:"Facet 40+, pożądanie, ego i współczesne relacje. Groteska i czarny humor w rozdźwięku między rozsądkiem a instynktem — bez moralizowania."},
-    travel:{key:"travel",name:"Piękne Ciała: W Podróży",label:"TRAVEL SPIN-OFF",url:"/series/w-podrozy",description:"Ten sam narrator 40+ i ten sam konflikt, przeniesiony do hoteli, obcych miast i świata luksusu. Zmienia się sceneria, nie apetyt ani ego."},
+    travel:{key:"travel",name:"Ciała świata",label:"SERIA 02 · CIAŁA ŚWIATA",url:"/series/w-podrozy",description:"Ten sam narrator 40+, ale tym razem świat staje się sceną: miasta, hotele, obce zasady i spotkania, które zaczynają się daleko od domu."},
     close:{key:"close",name:"Za blisko",label:"SERIA 03 · ZA BLISKO",url:"/series/za-blisko",hero:"15VgUrDvJUNhaxgRX5MWwEbdnHNxdQ-rK",description:"Dwoje ludzi, za mało przestrzeni i za dużo ciszy. Winda, puste biuro i gesty o sekundę za długie — seria o napięciu, które zaczyna się, zanim wydarzy się cokolwiek."}
   }
 };
