@@ -149,22 +149,28 @@
     const fullImage = qs("img", lightbox);
     const caption = qs("figcaption", lightbox);
     const counter = qs(".lightbox-counter", lightbox);
+    const visibleButtons = () => lightboxButtons.filter((button) => !button.hidden);
     let activeIndex = 0;
     let previousFocus = null;
     const showImage = (index) => {
-      activeIndex = (index + lightboxButtons.length) % lightboxButtons.length;
-      const button = lightboxButtons[activeIndex];
+      const buttons = visibleButtons();
+      if (!buttons.length) return;
+      activeIndex = (index + buttons.length) % buttons.length;
+      const button = buttons[activeIndex];
       fullImage.src = button.dataset.lightboxSrc;
       fullImage.alt = qs("img", button)?.alt || "Zdjęcie z Night Archive";
       caption.textContent = button.dataset.lightboxCaption || "";
-      if (counter) counter.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(lightboxButtons.length).padStart(2, "0")}`;
+      if (counter) counter.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(buttons.length).padStart(2, "0")}`;
       [activeIndex - 1, activeIndex + 1].forEach((nearIndex) => {
-        const nearby = lightboxButtons[(nearIndex + lightboxButtons.length) % lightboxButtons.length];
+        const nearby = buttons[(nearIndex + buttons.length) % buttons.length];
         const src = nearby?.dataset?.lightboxSrc;
         if (src) { const preload = new Image(); preload.src = src; }
       });
     };
-    const openLightbox = (index) => {
+    const openLightbox = (button) => {
+      const buttons = visibleButtons();
+      const index = buttons.indexOf(button);
+      if (index < 0) return;
       previousFocus = document.activeElement;
       showImage(index);
       lightbox.classList.add("show");
@@ -177,7 +183,7 @@
       fullImage.removeAttribute("src");
       previousFocus?.focus?.();
     };
-    lightboxButtons.forEach((button, index) => button.addEventListener("click", () => openLightbox(index)));
+    lightboxButtons.forEach((button) => button.addEventListener("click", () => openLightbox(button)));
     qs(".lightbox-close", lightbox).addEventListener("click", closeLightbox);
     qs(".lightbox-nav.prev", lightbox).addEventListener("click", () => showImage(activeIndex - 1));
     qs(".lightbox-nav.next", lightbox).addEventListener("click", () => showImage(activeIndex + 1));
@@ -704,31 +710,63 @@
     qs("[data-start-audio]", songRoot)?.addEventListener("click", () => qs("[data-audio-toggle]", songRoot)?.click());
   }
 
-  const archiveCategoryLinks = qsa("[data-archive-jump]");
-  if (archiveCategoryLinks.length) {
-    const archiveFull = qs(".archive-full");
-    const openArchiveCategory = (id, smooth = true) => {
-      const target = document.getElementById(id);
-      const section = target?.closest(".archive-category");
-      if (!target || !section) return;
-      if (archiveFull) archiveFull.open = true;
-      requestAnimationFrame(() => {
-        section.scrollIntoView({behavior:smooth ? "smooth" : "auto", block:"start"});
-      });
+  const archiveGrid = qs("[data-archive-grid]");
+  const archiveFilterButtons = qsa("[data-archive-filter]");
+  if (archiveGrid && archiveFilterButtons.length) {
+    const archiveCards = qsa("[data-archive-category]", archiveGrid);
+    const status = qs("[data-archive-status]");
+    const labels = {
+      selected:"15 wybranych kadrów",
+      all:"61 kadrów",
+      night:"NIGHT · 13 kadrów",
+      city:"CITY · 8 kadrów",
+      travel:"TRAVEL · 19 kadrów",
+      sport:"SPORT · 11 kadrów",
+      everyday:"EVERYDAY · 7 kadrów",
+      "after-hours":"AFTER HOURS · 3 kadry"
     };
-    archiveCategoryLinks.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        const id = link.dataset.archiveJump;
-        if (!id) return;
-        history.replaceState(null, "", `#${id}`);
-        openArchiveCategory(id, true);
+    const hashes = {
+      selected:"#gallery",
+      all:"#gallery-all",
+      night:"#gallery-night",
+      city:"#gallery-city",
+      travel:"#gallery-travel",
+      sport:"#gallery-sport",
+      everyday:"#gallery-everyday",
+      "after-hours":"#gallery-after-hours"
+    };
+    const legacy = {
+      "archive-night":"night",
+      "archive-city":"city",
+      "archive-travel":"travel",
+      "archive-sport":"sport",
+      "archive-everyday":"everyday",
+      "archive-after-hours":"after-hours"
+    };
+    const applyFilter = (filter, {updateHash=true, scroll=false} = {}) => {
+      archiveCards.forEach((card) => {
+        const visible = filter === "all"
+          || (filter === "selected" && card.dataset.archiveSelected === "true")
+          || card.dataset.archiveCategory === filter;
+        card.hidden = !visible;
       });
-    });
-    const initialId = location.hash.replace(/^#/, "");
-    if (initialId && archiveCategoryLinks.some((link) => link.dataset.archiveJump === initialId)) {
-      openArchiveCategory(initialId, false);
-    }
+      archiveFilterButtons.forEach((button) => {
+        const active = button.dataset.archiveFilter === filter;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+      if (status) status.textContent = labels[filter] || labels.selected;
+      if (updateHash && hashes[filter]) history.replaceState(null, "", hashes[filter]);
+      if (scroll) qs("#gallery")?.scrollIntoView({behavior:"smooth", block:"start"});
+    };
+    archiveFilterButtons.forEach((button) => button.addEventListener("click", () => {
+      applyFilter(button.dataset.archiveFilter || "selected", {updateHash:true, scroll:false});
+    }));
+    const rawHash = location.hash.replace(/^#/, "");
+    const fromHash = legacy[rawHash]
+      || Object.entries(hashes).find(([,hash]) => hash.slice(1) === rawHash)?.[0]
+      || "selected";
+    applyFilter(fromHash, {updateHash:false, scroll:false});
   }
 
   if ("IntersectionObserver" in window) {
