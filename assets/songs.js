@@ -30,7 +30,7 @@ const PC_ART_OVERRIDES = {
   "prezent": {cover:"1VKaqTDoqKzQGa9sQF6y7iU-88494fn0h",hero:"1tAiff1PRZWyE9HJ8WmggN6D07WIXYdDH"},
   "na-co-dzien": {cover:"1eu7rWR4MdqGcpgfssZ20w-Knr32gP5TT",hero:"1rMz6qyden_6rs0IlyQGm9h7_mLKF51wF"},
   "mam-zone": {cover:"1J22Rrpi1Rr-nAH94uofeOeZThgKCzFxg",hero:"1Lw6k85G6dWBtKUZEb59Gv8b8UwRX9fZd"},
-  "nordic-heat": {hero:"1K7fDJTAr96uQgBcNTvjgTpjfOL7Q6AvA"},
+  "nordic-heat": {cover:"1jpBVulreFDPL4OkI-cXPwuLBAatZtkpb",hero:"1GUR1WLWgaIrHAy54vbEvfVF0H8wPFErf"},
   "bez-obraczki": {cover:"18-aCg3qj2VKGXInqVdb6U1hlTTaA4SpP",hero:"1axVcUo30a5TG4r7_1tS_UnWbziuihmXQ"},
   "silownia-i-lustra": {cover:"1lRyqCNtnfh627sohZjgCajYXdVkCYhw0",hero:"1lRyqCNtnfh627sohZjgCajYXdVkCYhw0"},
   "christmas-party": {cover:"1nX_Lr3YJCGzYnEJnx-Wqht8TBl9TVY9z",hero:"1PKdh0RuA_B6EOHKxKEZcuLG3mbQz5Eaz"},
