@@ -219,8 +219,20 @@
     const songs = PC_SONGS.filter((song) => song.series === key);
     const heroSlug = key === "close" ? "za-malo-miejsca" : key === "travel" ? "american-girl" : "piekne-ciala";
     const hero = series.hero || PC.getSong(heroSlug).hero;
+    const signatures = {
+      main:["GROTESKA","EGO","INSTYNKT"],
+      travel:["MIASTA","HOTELE","LUKSUS"],
+      close:["CISZA","DYSTANS","NAPIĘCIE"]
+    };
+    const temperatures = {
+      main:"DARK GOLD / BURGUND",
+      travel:"MIDNIGHT BLUE / HOTEL GOLD",
+      close:"STEEL / COLD LIGHT"
+    };
+    document.body.dataset.series = key;
+    seriesRoot.className = `series-page series-page--${key}`;
     document.title = `${series.name} — utwory`;
-    seriesRoot.innerHTML = `<section class="page-hero series-hero" style="background-image:linear-gradient(90deg,rgba(5,5,7,.94),rgba(5,5,7,.28) 52%,rgba(5,5,7,.7)),url('${PC.drive(hero)}')"><div class="wrap"><span class="eyebrow">${series.label}</span><h1>${esc(series.name)}</h1><p>${esc(series.description)}</p></div></section><section class="section wrap"><div class="section-head"><div><span class="eyebrow">${songs.length} HISTORII</span><h2>Utwory serii</h2></div><a class="btn ghost" href="/music.html">Cały katalog</a></div><div class="song-grid">${songs.map(renderCard).join("")}</div></section>`;
+    seriesRoot.innerHTML = `<section class="page-hero series-hero" style="background-image:url('${PC.drive(hero)}')"><div class="series-hero-shade"></div><div class="wrap"><span class="eyebrow">${series.label}</span><h1>${esc(series.name)}</h1><p>${esc(series.description)}</p><div class="series-signature-strip"><span>${temperatures[key]}</span>${signatures[key].map((item)=>`<b>${item}</b>`).join("")}</div></div></section><section class="section wrap series-page-catalog"><div class="section-head"><div><span class="eyebrow">${songs.length} HISTORII</span><h2>Utwory serii</h2></div><a class="btn ghost" href="/music.html">Cały katalog</a></div><div class="song-grid">${songs.map(renderCard).join("")}</div></section>`;
   }
 
   const stats = qs("#collection-stats");

@@ -342,3 +342,169 @@ body[data-page="about"] .man-ending-actions .btn:hover{border-color:#b99b74;colo
   .man-ending-actions{flex-direction:column;align-items:center}
   .man-ending-actions .btn{width:min(100%,320px)}
 }
+
+
+/* Music — three series, three temperatures */
+.series-cards{align-items:stretch}
+.series-card{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  min-height:320px;
+}
+.series-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  opacity:.95;
+  transition:transform .5s ease,opacity .3s ease;
+}
+.series-card:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(180deg,rgba(6,6,8,.12),rgba(6,6,8,.88));
+}
+.series-card:hover:before{transform:scale(1.025);opacity:1}
+.series-card--main:before{
+  background:
+    radial-gradient(circle at 82% 16%,rgba(151,104,58,.32),transparent 31%),
+    radial-gradient(circle at 20% 82%,rgba(111,24,35,.3),transparent 38%),
+    #0c090b;
+}
+.series-card--travel:before{
+  background:
+    radial-gradient(circle at 85% 15%,rgba(190,151,85,.22),transparent 30%),
+    linear-gradient(135deg,#0a1320,#07101b 54%,#11151b);
+}
+.series-card--close:before{
+  background:
+    linear-gradient(115deg,rgba(172,184,196,.08),transparent 48%),
+    radial-gradient(circle at 82% 18%,rgba(119,143,164,.16),transparent 27%),
+    #090c0f;
+}
+.series-card--main:hover{border-color:#b88a58}
+.series-card--travel:hover{border-color:#c1a46f}
+.series-card--close:hover{border-color:#91a6b8}
+.series-card-signature{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:auto;
+  padding-top:34px;
+}
+.series-card-signature b{
+  padding:7px 9px;
+  border:1px solid rgba(255,255,255,.12);
+  color:#bfc3c7;
+  font:500 8px var(--sans);
+  letter-spacing:.18em;
+}
+.series-card--main .series-card-signature b{color:#c9a474;border-color:rgba(185,137,85,.24)}
+.series-card--travel .series-card-signature b{color:#c6ad7d;border-color:rgba(198,173,125,.22)}
+.series-card--close .series-card-signature b{color:#9fb3c4;border-color:rgba(159,179,196,.22)}
+
+.series-section{
+  position:relative;
+  margin-top:20px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.series-section-kicker{
+  margin-bottom:18px;
+  font:500 8px var(--sans);
+  letter-spacing:.22em;
+  color:#71767c;
+}
+.series-section--main{background:linear-gradient(90deg,rgba(83,20,29,.08),transparent 35%)}
+.series-section--travel{background:linear-gradient(90deg,rgba(21,51,82,.1),transparent 35%)}
+.series-section--close{background:linear-gradient(90deg,rgba(102,121,137,.08),transparent 35%)}
+.series-section--main .eyebrow,.series-section--main .song-no{color:#b88a58}
+.series-section--travel .eyebrow,.series-section--travel .song-no{color:#c1a46f}
+.series-section--close .eyebrow,.series-section--close .song-no{color:#91a6b8}
+.series-section--main .song-cover:after{background:linear-gradient(transparent 50%,rgba(47,10,16,.72))}
+.series-section--travel .song-cover:after{background:linear-gradient(transparent 50%,rgba(5,21,37,.78))}
+.series-section--close .song-cover:after{background:linear-gradient(transparent 48%,rgba(8,13,17,.82))}
+.series-section--close .song-cover img{filter:saturate(.78) contrast(1.03)}
+.series-section--travel .song-cover img{filter:saturate(.88) contrast(1.02)}
+
+.series-page{background:#09090b}
+.series-page .series-hero{
+  min-height:80svh;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background-size:cover;
+  background-position:center;
+}
+.series-hero-shade{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+.series-page .series-hero>.wrap{position:relative;z-index:2}
+.series-page .series-hero h1{max-width:1100px}
+.series-page .series-hero p{max-width:720px}
+.series-page--main .series-hero-shade{
+  background:
+    linear-gradient(90deg,rgba(22,8,11,.94),rgba(22,8,11,.48) 48%,rgba(22,8,11,.28)),
+    linear-gradient(180deg,rgba(7,7,8,.05),rgba(7,7,8,.82));
+}
+.series-page--travel .series-hero-shade{
+  background:
+    linear-gradient(90deg,rgba(4,14,26,.94),rgba(4,14,26,.42) 48%,rgba(4,14,26,.24)),
+    linear-gradient(180deg,rgba(7,7,8,.03),rgba(5,10,16,.84));
+}
+.series-page--close .series-hero-shade{
+  background:
+    linear-gradient(90deg,rgba(7,11,15,.96),rgba(7,11,15,.48) 48%,rgba(7,11,15,.42)),
+    linear-gradient(180deg,rgba(8,12,15,.18),rgba(5,8,11,.9));
+}
+.series-page--main .eyebrow,.series-page--main .song-no{color:#b88a58}
+.series-page--travel .eyebrow,.series-page--travel .song-no{color:#c1a46f}
+.series-page--close .eyebrow,.series-page--close .song-no{color:#91a6b8}
+.series-page--close .series-hero{background-position:center 46%}
+.series-page--travel .series-hero{background-position:center 42%}
+
+.series-signature-strip{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  margin-top:34px;
+}
+.series-signature-strip span{
+  margin-right:8px;
+  color:#8e949a;
+  font:500 8px var(--sans);
+  letter-spacing:.2em;
+}
+.series-signature-strip b{
+  padding:8px 10px;
+  border:1px solid rgba(255,255,255,.16);
+  color:#d2d4d6;
+  font:500 8px var(--sans);
+  letter-spacing:.18em;
+}
+.series-page--main .series-signature-strip b{border-color:rgba(184,138,88,.32);color:#c8a273}
+.series-page--travel .series-signature-strip b{border-color:rgba(193,164,111,.3);color:#c8ae7e}
+.series-page--close .series-signature-strip b{border-color:rgba(145,166,184,.3);color:#a9bdcd}
+.series-page-catalog{position:relative}
+.series-page--main .series-page-catalog{background:linear-gradient(90deg,rgba(83,20,29,.06),transparent 30%)}
+.series-page--travel .series-page-catalog{background:linear-gradient(90deg,rgba(21,51,82,.07),transparent 30%)}
+.series-page--close .series-page-catalog{background:linear-gradient(90deg,rgba(102,121,137,.06),transparent 30%)}
+
+@media(max-width:700px){
+  .series-card{min-height:270px;padding:28px}
+  .series-card h3{margin-top:28px}
+  .series-card-signature{padding-top:24px}
+  .series-section{padding-top:72px}
+  .series-section-kicker{margin-bottom:12px}
+  .series-page .series-hero{min-height:72svh}
+  .series-signature-strip span{width:100%;margin-bottom:3px}
+}
