@@ -704,6 +704,33 @@
     qs("[data-start-audio]", songRoot)?.addEventListener("click", () => qs("[data-audio-toggle]", songRoot)?.click());
   }
 
+  const archiveCategoryLinks = qsa("[data-archive-jump]");
+  if (archiveCategoryLinks.length) {
+    const archiveFull = qs(".archive-full");
+    const openArchiveCategory = (id, smooth = true) => {
+      const target = document.getElementById(id);
+      const section = target?.closest(".archive-category");
+      if (!target || !section) return;
+      if (archiveFull) archiveFull.open = true;
+      requestAnimationFrame(() => {
+        section.scrollIntoView({behavior:smooth ? "smooth" : "auto", block:"start"});
+      });
+    };
+    archiveCategoryLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const id = link.dataset.archiveJump;
+        if (!id) return;
+        history.replaceState(null, "", `#${id}`);
+        openArchiveCategory(id, true);
+      });
+    });
+    const initialId = location.hash.replace(/^#/, "");
+    if (initialId && archiveCategoryLinks.some((link) => link.dataset.archiveJump === initialId)) {
+      openArchiveCategory(initialId, false);
+    }
+  }
+
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
       if (entry.isIntersecting) {
