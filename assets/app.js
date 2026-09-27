@@ -8,6 +8,36 @@
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
   const storyUrl = (song) => `/stories/${song.slug}`;
+  const setPageMeta = ({title, description, canonical, image, type = "website"}) => {
+    if (title) document.title = title;
+    const upsertMeta = (selector, attributes) => {
+      let element = qs(selector);
+      if (!element) {
+        element = document.createElement("meta");
+        document.head.appendChild(element);
+      }
+      Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+    };
+    if (description) upsertMeta('meta[name="description"]', {name:"description", content:description});
+    if (title) upsertMeta('meta[property="og:title"]', {property:"og:title", content:title});
+    if (description) upsertMeta('meta[property="og:description"]', {property:"og:description", content:description});
+    upsertMeta('meta[property="og:type"]', {property:"og:type", content:type});
+    if (canonical) {
+      const absoluteCanonical = canonical.startsWith("http") ? canonical : `${location.origin}${canonical}`;
+      let link = qs('link[rel="canonical"]');
+      if (!link) {
+        link = document.createElement("link");
+        link.rel = "canonical";
+        document.head.appendChild(link);
+      }
+      link.href = absoluteCanonical;
+      upsertMeta('meta[property="og:url"]', {property:"og:url", content:absoluteCanonical});
+    }
+    if (image) {
+      const absoluteImage = image.startsWith("http") ? image : `${location.origin}${image}`;
+      upsertMeta('meta[property="og:image"]', {property:"og:image", content:absoluteImage});
+    }
+  };
 
   const ensureAgeGate = async () => {
     if (sessionStorage.getItem("pc-age-ok")) return;
@@ -231,8 +261,8 @@
     };
     document.body.dataset.series = key;
     seriesRoot.className = `series-page series-page--${key}`;
-    document.title = `${series.name} — utwory`;
-    seriesRoot.innerHTML = `<section class="page-hero series-hero" style="background-image:url('${PC.drive(hero)}')"><div class="series-hero-shade"></div><div class="wrap"><span class="eyebrow">${series.label}</span><h1>${esc(series.name)}</h1><p>${esc(series.description)}</p><div class="series-signature-strip"><span>${temperatures[key]}</span>${signatures[key].map((item)=>`<b>${item}</b>`).join("")}</div></div></section><section class="section wrap series-page-catalog"><div class="section-head"><div><span class="eyebrow">${songs.length} HISTORII</span><h2>Utwory serii</h2></div><a class="btn ghost" href="/music.html">Cały katalog</a></div><div class="song-grid">${songs.map(renderCard).join("")}</div></section>`;
+    setPageMeta({title:`${series.name} — Piękne Ciała`, description:series.description, canonical:series.url, image:PC.drive(hero), type:"website"});
+    seriesRoot.innerHTML = `<section class="page-hero series-hero" style="background-image:url('${PC.drive(hero)}')"><div class="series-hero-shade"></div><div class="wrap"><span class="eyebrow">${series.label}</span><h1>${esc(series.name)}</h1><p>${esc(series.description)}</p><div class="series-signature-strip"><span>${temperatures[key]}</span>${signatures[key].map((item)=>`<b>${item}</b>`).join("")}</div></div></section><section class="section wrap series-page-catalog"><div class="section-head"><div><span class="eyebrow">${songs.length} HISTORII</span><h2>Utwory serii</h2></div><a class="btn ghost" href="/music">Cały katalog</a></div><div class="song-grid">${songs.map(renderCard).join("")}</div></section>`;
   }
 
   const stats = qs("#collection-stats");
@@ -534,6 +564,7 @@
       <div class="audio-id"><span>NOW PLAYING</span><strong>${esc(song.title)}</strong></div>
       <input class="audio-range" type="range" min="0" max="100" value="0" aria-label="Postęp utworu" data-audio-range>
       <time data-audio-time>0:00</time>
+      <span class="audio-status" data-audio-status aria-live="polite"></span>
       <audio preload="metadata" src="${esc(song.audio)}" data-audio></audio>
     </div>`;
   };
@@ -544,9 +575,19 @@
     const toggleButton = qs("[data-audio-toggle]", root);
     const range = qs("[data-audio-range]", root);
     const time = qs("[data-audio-time]", root);
+    const status = qs("[data-audio-status]", root);
     const formatTime = (seconds) => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, "0")}`;
     toggleButton?.addEventListener("click", async () => {
-      if (audio.paused) await audio.play(); else audio.pause();
+      if (!audio.paused) {
+        audio.pause();
+        return;
+      }
+      if (status) status.textContent = "Ładowanie…";
+      try {
+        await audio.play();
+      } catch {
+        if (status) status.textContent = "Nie udało się uruchomić utworu. Spróbuj ponownie.";
+      }
     });
     audio.addEventListener("play", () => {
       toggleButton.textContent = "❚❚";
@@ -555,6 +596,13 @@
     audio.addEventListener("pause", () => {
       toggleButton.textContent = "▶";
       toggleButton.setAttribute("aria-label", `Odtwórz ${song.title}`);
+    });
+    audio.addEventListener("waiting", () => { if (status) status.textContent = "Ładowanie…"; });
+    audio.addEventListener("canplay", () => { if (status) status.textContent = ""; });
+    audio.addEventListener("playing", () => { if (status) status.textContent = ""; });
+    audio.addEventListener("error", () => {
+      toggleButton.textContent = "▶";
+      if (status) status.textContent = "Nie udało się wczytać utworu. Sprawdź połączenie i spróbuj ponownie.";
     });
     audio.addEventListener("timeupdate", () => {
       if (!audio.duration) return;
@@ -571,7 +619,13 @@
     const path = location.pathname.split("/").filter(Boolean);
     const querySlug = new URLSearchParams(location.search).get("slug");
     const routeSlug = ["song", "story", "stories"].includes(path[0]) ? path[path.length - 1] : "";
-    const song = PC.getSong(querySlug || routeSlug) || PC_SONGS[0];
+    const requestedSlug = querySlug || routeSlug;
+    const song = PC.getSong(requestedSlug);
+    if (!song) {
+      setPageMeta({title:"Nie znaleziono — Piękne Ciała", description:"Ta historia nie istnieje.", canonical:location.pathname});
+      songRoot.innerHTML = `<section class="page-hero missing-story"><div class="wrap"><span class="eyebrow">404 · ZŁA NOC</span><h1>Nie ta historia.</h1><p>Ten utwór nie istnieje albo zmienił adres.</p><div class="hero-actions"><a class="btn primary" href="/music">Wróć do muzyki</a><a class="btn ghost" href="/">Strona główna</a></div></div></section>`;
+      return;
+    }
     const lyric = window.PC_LYRICS?.[song.slug];
     const seriesSongs = PC_SONGS.filter((item) => item.series === song.series);
     const seriesIndex = seriesSongs.findIndex((item) => item.slug === song.slug);
@@ -579,8 +633,7 @@
     const next = seriesSongs[(seriesIndex + 1) % seriesSongs.length];
     const series = PC.series[song.series];
 
-    document.title = `${song.title} — Piękne Ciała`;
-    qs('meta[name="description"]')?.setAttribute("content", song.story);
+    setPageMeta({title:`${song.title} — Piękne Ciała`, description:song.story, canonical:storyUrl(song), image:PC.drive(song.hero), type:"article"});
 
     songRoot.innerHTML = `
       <section class="song-art" style="--song-hero:url('${PC.drive(song.hero)}')">
