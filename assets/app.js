@@ -718,12 +718,12 @@
     const labels = {
       selected:"15 wybranych kadrów",
       all:"61 kadrów",
-      night:"NIGHT · 13 kadrów",
-      city:"CITY · 8 kadrów",
-      travel:"TRAVEL · 19 kadrów",
+      night:"NIGHT · 9 kadrów",
+      city:"CITY · 5 kadrów",
+      travel:"TRAVEL · 22 kadry",
       sport:"SPORT · 11 kadrów",
       everyday:"EVERYDAY · 7 kadrów",
-      "after-hours":"AFTER HOURS · 3 kadry"
+      "after-hours":"AFTER HOURS · 7 kadrów"
     };
     const hashes = {
       selected:"#gallery",
