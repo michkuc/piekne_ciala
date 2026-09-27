@@ -508,3 +508,18 @@ body[data-page="about"] .man-ending-actions .btn:hover{border-color:#b99b74;colo
   .series-page .series-hero{min-height:72svh}
   .series-signature-strip span{width:100%;margin-bottom:3px}
 }
+
+
+/* Audit fixes — player status and missing story */
+.audio-status{
+  grid-column:2/-1;
+  min-height:16px;
+  color:#c7a879;
+  font:500 9px/1.4 var(--sans);
+  letter-spacing:.06em;
+}
+.missing-story{min-height:78svh;background:radial-gradient(circle at 72% 28%,#311219 0,#09090b 42%,#060607 100%)}
+@media(max-width:560px){
+  .audio-status{grid-column:1/-1}
+  .missing-story{min-height:82svh}
+}
