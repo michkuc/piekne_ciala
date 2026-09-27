@@ -99,8 +99,8 @@ body.has-audio-dock{padding-bottom:104px}
 /* Night Archive — finishing polish */
 .archive-gallery .section-head{margin-bottom:22px}
 .archive-featured-meta{background:linear-gradient(90deg,rgba(255,255,255,.018),transparent 58%)}
-.archive-taxonomy span{position:relative;padding-left:12px}
-.archive-taxonomy span:before{content:"";position:absolute;left:0;top:50%;width:4px;height:4px;border-radius:50%;background:var(--gold);transform:translateY(-50%);opacity:.7}
+.archive-taxonomy .archive-taxonomy-link{position:relative;padding-left:12px;color:inherit;text-decoration:none;transition:color .2s ease}
+.archive-taxonomy .archive-taxonomy-link:before{content:"";position:absolute;left:0;top:50%;width:4px;height:4px;border-radius:50%;background:var(--gold);transform:translateY(-50%);opacity:.7}
 .archive-featured-grid{margin-bottom:2px}
 .gallery-open{cursor:zoom-in;outline:0}
 .gallery-open:before{content:"↗";position:absolute;z-index:3;top:14px;right:14px;display:grid;place-items:center;width:32px;height:32px;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:rgba(5,5,7,.38);color:#fff;font:400 14px var(--sans);opacity:0;transform:translateY(4px);transition:opacity .25s ease,transform .25s ease,background .25s ease}
@@ -523,3 +523,9 @@ body[data-page="about"] .man-ending-actions .btn:hover{border-color:#b99b74;colo
   .audio-status{grid-column:1/-1}
   .missing-story{min-height:82svh}
 }
+
+
+.archive-taxonomy .archive-taxonomy-link:hover,
+.archive-taxonomy .archive-taxonomy-link:focus-visible{color:var(--gold)}
+.archive-taxonomy .archive-taxonomy-link:focus-visible{outline:1px solid rgba(210,170,117,.55);outline-offset:5px}
+.archive-category{scroll-margin-top:96px}
