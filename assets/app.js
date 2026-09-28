@@ -670,7 +670,7 @@
           <div class="fact-line"><span>Tekst</span><strong>${lyric ? "pełny tekst archiwalny" : "do odzyskania z archiwum"}</strong></div>
         </div>
       </section>
-      ${song.video ? `<section class="song-video wrap reveal" id="teledysk" aria-label="Teledysk ${esc(song.title)}"><div class="section-head"><div><span class="eyebrow">OFICJALNY TELEDYSK</span><h2>${esc(song.title)}</h2></div></div><iframe title="Teledysk ${esc(song.title)}" src="${esc(song.video)}" loading="lazy" allow="autoplay; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><p><a href="https://drive.google.com/file/d/1ByYnPMy0-reECNDseIQJLWbBnY9hjXUC/view" target="_blank" rel="noopener noreferrer">Otwórz teledysk w nowej karcie</a></p></section>` : ""}
+      ${song.video ? `<section class="song-video wrap reveal" id="teledysk" aria-label="Teledysk ${esc(song.title)}"><div class="section-head"><div><span class="eyebrow">OFICJALNY TELEDYSK</span><h2>${esc(song.title)}</h2></div></div><div class="song-video-frame"><video class="song-video-player" controls controlsList="nodownload noremoteplayback" disablePictureInPicture playsinline preload="metadata" poster="${PC.drive(song.hero, 1800)}" aria-label="Teledysk ${esc(song.title)}"><source src="${esc(song.video)}" type="video/mp4">Twoja przeglądarka nie obsługuje odtwarzania wideo.</video></div></section>` : ""}
       <section class="chapter wrap reveal" data-tabs>
         <div class="chapter-tabs" role="tablist" aria-label="Materiały do utworu">
           <button id="tab-story" role="tab" aria-selected="true" aria-controls="panel-story">Historia</button>
@@ -707,6 +707,7 @@
 
     initTabs(qs("[data-tabs]", songRoot));
     initPlayer(songRoot, song);
+    qs(".song-video-player", songRoot)?.addEventListener("contextmenu", (event) => event.preventDefault());
     qs("[data-start-audio]", songRoot)?.addEventListener("click", () => qs("[data-audio-toggle]", songRoot)?.click());
   }
 
