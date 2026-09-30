@@ -538,7 +538,7 @@ body[data-page="about"] .man-ending-actions .btn:hover{border-color:#b99b74;colo
 .archive-unified-head>p{max-width:620px;color:var(--muted)}
 .archive-filter-shell{
   position:sticky;
-  top:72px;
+  top:78px;
   z-index:24;
   margin:0 0 18px;
   padding:12px 0;
@@ -627,13 +627,13 @@ body[data-page="about"] .man-ending-actions .btn:hover{border-color:#b99b74;colo
 
 @media(max-width:900px){
   .archive-unified{padding-top:70px}
-  .archive-filter-shell{top:64px;margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}
+  .archive-filter-shell{top:78px;margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}
   .archive-filter-status{align-items:flex-start;flex-direction:column;gap:6px}
 }
 @media(max-width:700px){
   .archive-unified{padding-top:58px;padding-bottom:90px}
   .archive-unified-head{margin-bottom:20px}
-  .archive-filter-shell{top:58px}
+  .archive-filter-shell{top:78px}
   .archive-filters{gap:7px}
   .archive-filter{min-height:34px;padding:0 10px;font-size:8px}
   .archive-unified-grid{grid-template-columns:1fr;grid-auto-rows:380px;gap:10px}

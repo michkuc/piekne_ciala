@@ -280,7 +280,7 @@
 
   const featured = qs("#featured-songs");
   if (featured) {
-    const picks = [PC_SONGS[0], PC_SONGS[2], PC_SONGS[6], PC_SONGS[12]];
+    const picks = [PC_SONGS[0], PC_SONGS[3], PC_SONGS[6], PC_SONGS[19]];
     featured.innerHTML = picks.map((song) => `
       <a class="feature-tile reveal" href="${storyUrl(song)}">
         <img loading="lazy" referrerpolicy="no-referrer" src="${PC.drive(song.hero, 1400)}" alt="Visual chapter ${esc(song.title)}">
