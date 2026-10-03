@@ -187,7 +187,7 @@
     lotnisko:{label:"AIRPORT",image:"/assets/art/american-girl-hero.webp",head:"Lot ma dwie godziny opóźnienia.",rational:"Naładuj telefon. Sprawdź gate.",internal:"„Dwie godziny to bardzo dużo czasu.”"},
     silownia:{label:"GYM",image:"/assets/art/silownia-i-lustra-hero.webp",head:"Przyszedłeś zrobić trening.",rational:"Jeszcze trzy serie. Patrz przed siebie.",internal:"„Lustro nie liczy się jako patrzenie.”"},
     biuro:{label:"OFFICE",image:"/assets/site/about-apartment.webp",head:"Zostało was dwoje i jedno światło.",rational:"Zamknij laptop. Jedź do domu.",internal:"„Jeszcze pięć minut brzmi podejrzanie długo.”"},
-    plaza:{label:"BEACH",image:"/assets/art/zamek-z-piasku-hero.webp",head:"Miałeś odpoczywać.",rational:"Czytaj książkę.",internal:"„Który to był akapit?”"},
+    plaza:{label:"BEACH",image:"/assets/art/poranek-hero.webp",head:"Miałeś odpoczywać.",rational:"Czytaj książkę.",internal:"„Który to był akapit?”"},
     miasto:{label:"CITY",image:"/assets/art/samotnosc-w-wielkim-miescie-hero.webp",head:"Miasto robi z trzech sekund całą noc.",rational:"Idź dalej.",internal:"„Ten zapach już gdzieś znam.”"}
   };
   const form=qs("[data-moment-form]");
