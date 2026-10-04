@@ -222,6 +222,7 @@
     if (!song) return;
     const overlay = "linear-gradient(180deg,rgba(5,5,7,.02),rgba(5,5,7,.12) 45%,rgba(5,5,7,.94))";
     element.style.backgroundImage = `${overlay},url("${PC.drive(song.hero)}")`;
+    if (song.artFocus) element.style.backgroundPosition = song.artFocus;
   });
 
   const renderCard = (song) => {
@@ -229,7 +230,7 @@
     const status = song.video ? "TELEDYSK · AUDIO" : song.audio ? "audio dostępne" : (lyricsReady ? "pełny tekst" : "visual chapter");
     return `<a class="song-card reveal" href="${storyUrl(song)}" aria-label="${esc(song.title)}">
       <div class="song-cover">
-        <img loading="lazy" referrerpolicy="no-referrer" src="${PC.drive(song.cover, 900)}" alt="Okładka ${esc(song.title)}">
+        <img loading="lazy" referrerpolicy="no-referrer" src="${PC.drive(song.cover, 900)}" style="${song.artFocus ? `object-position:${esc(song.artFocus)}` : ""}" alt="Okładka ${esc(song.title)}">
         <span class="card-status">${status}</span>
         ${song.artFallback ? `<span class="art-note">grafika serii</span>` : ""}
       </div>
@@ -642,7 +643,7 @@
     setPageMeta({title:`${song.title} — Piękne Ciała`, description:song.story, canonical:storyUrl(song), image:PC.drive(song.hero), type:"article"});
 
     songRoot.innerHTML = `
-      <section class="song-art" style="--song-hero:url('${PC.drive(song.hero)}')">
+      <section class="song-art" style="--song-hero:url('${PC.drive(song.hero)}');${song.artFocus ? `background-position:${esc(song.artFocus)}` : ""}">
         <div class="song-art-shade"></div>
         <div class="song-art-label wrap">
           <span>${esc(series.name)} · ${String(song.n).padStart(2, "0")}</span>
@@ -652,7 +653,7 @@
         </div>
       </section>
       <section class="song-body wrap">
-        <div class="cover-large reveal"><img referrerpolicy="no-referrer" src="${PC.drive(song.cover, 1200)}" alt="Okładka ${esc(song.title)}"></div>
+        <div class="cover-large reveal"><img referrerpolicy="no-referrer" src="${PC.drive(song.cover, 1200)}" style="${song.artFocus ? `object-position:${esc(song.artFocus)}` : ""}" alt="Okładka ${esc(song.title)}"></div>
         <div class="song-copy reveal">
           <span class="eyebrow">${esc(series.label)} · ${String(song.n).padStart(2, "0")}</span>
           <h2 class="song-title">${esc(song.title)}</h2>
