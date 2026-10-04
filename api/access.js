@@ -1,17 +1,26 @@
 const {createHash, timingSafeEqual} = require("node:crypto");
-const FALLBACK_PIN_HASH = "b9496b78de9917a6b216f92a7d03419d93269dc26280a72173c5a7f93cf0da1b";
-const hash = (value) => createHash("sha256").update(String(value)).digest();
+const {COOKIE, TTL, createSession, validSession} = require("../lib/access-session");
+const hash = value => createHash("sha256").update(value).digest();
 
 module.exports = async function handler(request, response) {
-  const configuredPin = process.env.SITE_PIN || "";
-  const expectedHash = configuredPin ? hash(configuredPin) : Buffer.from(FALLBACK_PIN_HASH, "hex");
-  response.setHeader("Cache-Control", "no-store, max-age=0");
+  response.setHeader("Cache-Control", "private, no-store");
+  response.setHeader("Vary", "Cookie");
   if (request.method === "GET") {
-    return response.status(200).json({required: true});
+    return response.status(200).json({required:true, authenticated:validSession(request.headers.cookie)});
   }
-  if (request.method !== "POST") return response.status(405).json({ok: false});
-  const suppliedPin = String(request.body?.pin || "");
-  const suppliedHash = hash(suppliedPin);
-  const ok = timingSafeEqual(suppliedHash, expectedHash);
-  return response.status(ok ? 200 : 401).json({ok});
+  if (request.method !== "POST") {
+    response.setHeader("Allow", "GET, POST");
+    return response.status(405).json({ok:false});
+  }
+  const origin = request.headers.origin;
+  const host = request.headers.host;
+  if (!origin || origin !== "https://" + host) return response.status(403).json({ok:false});
+  if (!process.env.SITE_PIN || !process.env.SITE_SESSION_SECRET) return response.status(503).json({ok:false});
+  const supplied = request.body?.pin;
+  if (typeof supplied !== "string" || supplied.length > 24) return response.status(401).json({ok:false});
+  const ok = timingSafeEqual(hash(supplied.trim()), hash(process.env.SITE_PIN));
+  if (!ok) return response.status(401).json({ok:false});
+  const token = createSession();
+  response.setHeader("Set-Cookie", COOKIE + "=" + token + "; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=" + TTL);
+  return response.status(200).json({ok:true});
 };

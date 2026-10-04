@@ -40,87 +40,11 @@
   };
 
   const ensureAgeGate = async () => {
-    if (sessionStorage.getItem("pc-age-ok")) return;
-    let pinRequired = false;
     try {
-      const accessResponse = await fetch("/api/access", {headers: {"Accept": "application/json"}});
-      if (accessResponse.ok) pinRequired = Boolean((await accessResponse.json()).required);
+      const response = await fetch("/api/access", {cache:"no-store", credentials:"same-origin", headers:{"Accept":"application/json"}});
+      if (response.ok && (await response.json()).authenticated) return;
     } catch {}
-    let gate = qs("#age-gate");
-    if (!gate) {
-      gate = document.createElement("div");
-      gate.id = "age-gate";
-      gate.className = "age-gate";
-      gate.setAttribute("role", "dialog");
-      gate.setAttribute("aria-modal", "true");
-      gate.setAttribute("aria-labelledby", "age-title");
-      gate.setAttribute("aria-describedby", "age-description");
-      gate.innerHTML = `<div class="age-box">
-        <span class="age-kicker">PRYWATNY KLUB · TREŚCI 18+</span>
-        <h2 id="age-title">Piękne Ciała</h2>
-        <strong>Wstęp 40+</strong>
-        <p>Bo po czterdziestce wchodzi się już tylko z klasą.</p>
-        <small id="age-description">Wstęp jest dla osób pełnoletnich. Projekt zawiera dojrzałe tematy, erotyczne napięcie i mocny język.</small>
-        <div class="age-actions">
-          <button class="btn primary" data-age-yes>Mam 18 lat · wchodzę</button>
-          <button class="btn ghost" data-age-no>Nie mam 18 lat</button>
-        </div>
-      </div>`;
-      document.body.appendChild(gate);
-    }
-    gate.classList.add("show");
-    document.body.classList.add("modal-open");
-    const previousFocus = document.activeElement;
-    const yes = gate.querySelector("[data-age-yes]");
-    const no = gate.querySelector("[data-age-no]");
-    let pinInput = null;
-    let pinError = null;
-    if (pinRequired) {
-      const pinBox = document.createElement("div");
-      pinBox.className = "pin-box";
-      pinBox.innerHTML = `<label for="site-pin">PIN dostępu</label><input id="site-pin" type="password" inputmode="numeric" autocomplete="one-time-code" maxlength="24" aria-describedby="pin-error"><small id="pin-error" aria-live="polite"></small>`;
-      gate.querySelector(".age-actions")?.before(pinBox);
-      pinInput = pinBox.querySelector("input");
-      pinError = pinBox.querySelector("#pin-error");
-      if (yes) yes.textContent = "Sprawdź PIN · wchodzę";
-    }
-    const focusable = [pinInput, yes, no].filter(Boolean);
-    (pinInput || yes)?.focus();
-    yes?.addEventListener("click", async () => {
-      if (pinRequired) {
-        pinError.textContent = "";
-        try {
-          const pinResponse = await fetch("/api/access", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({pin:pinInput.value})});
-          if (!pinResponse.ok) {
-            pinError.textContent = "Nieprawidłowy PIN.";
-            pinInput.select();
-            return;
-          }
-        } catch {
-          pinError.textContent = "Nie udało się sprawdzić PIN-u. Spróbuj ponownie.";
-          return;
-        }
-      }
-      sessionStorage.setItem("pc-age-ok", "1");
-      gate.classList.remove("show");
-      document.body.classList.remove("modal-open");
-      previousFocus?.focus?.();
-    });
-    no?.addEventListener("click", () => {
-      if (history.length > 1) history.back();
-      else location.href = "about:blank";
-    });
-    gate.addEventListener("keydown", (event) => {
-      if (event.key !== "Tab" || focusable.length < 2) return;
-      const index = focusable.indexOf(document.activeElement);
-      if (event.shiftKey && index <= 0) {
-        event.preventDefault();
-        focusable.at(-1).focus();
-      } else if (!event.shiftKey && index === focusable.length - 1) {
-        event.preventDefault();
-        focusable[0].focus();
-      }
-    });
+    location.replace("/login?next=" + encodeURIComponent(location.pathname + location.search + location.hash));
   };
 
   ensureAgeGate();

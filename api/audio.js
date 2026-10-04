@@ -1,4 +1,5 @@
 import { Readable } from "node:stream";
+import {validSession} from "../lib/access-session.js";
 
 const AUDIO_IDS = new Set([
   "1SuXyUfOStEH5deRssh6F-WoHRTZCEHHo",
@@ -26,6 +27,11 @@ const AUDIO_IDS = new Set([
 ]);
 
 export default async function handler(request, response) {
+  response.setHeader("Cache-Control", "private, no-store");
+  if (!validSession(request.headers.cookie)) {
+    response.status(401).json({error:"Unauthorized"});
+    return;
+  }
   const id = typeof request.query.id === "string" ? request.query.id : "";
   if (!AUDIO_IDS.has(id)) {
     response.status(404).json({ error: "Audio not found" });
@@ -45,7 +51,7 @@ export default async function handler(request, response) {
     response.status(upstream.status);
     response.setHeader("Content-Type", upstream.headers.get("content-type") || "audio/mpeg");
     response.setHeader("Accept-Ranges", "bytes");
-    response.setHeader("Cache-Control", "public, max-age=3600, s-maxage=86400");
+    response.setHeader("Cache-Control", "private, no-store");
     for (const header of ["content-length", "content-range", "etag", "last-modified"]) {
       const value = upstream.headers.get(header);
       if (value) response.setHeader(header, value);
