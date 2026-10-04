@@ -12,7 +12,7 @@
       ["W głowie jestem już w trzecim akcie filmu.",[3,10,6,6,8]],
       ["Zastanawiam się, czy kamera w windzie ma dźwięk.",[4,8,8,5,6]]
     ]},
-    {c:"CASE 02 · BAR",q:"Barmanka ma odkryte plecy i tatuaż smoka. Żona siedzi trzy metry dalej.",a:[
+    {c:"CASE 02 · BAR",q:"Barmanka uśmiecha się do ciebie trochę dłużej, niż wymaga uprzejmość. Żona siedzi trzy metry dalej.",a:[
       ["Zamawiam wodę. To bezpieczna infrastruktura.",[10,4,1,2,4]],
       ["Wysyłam kolegę po drinka.",[9,5,2,3,6]],
       ["Idę po drinka siódmy raz. Obsługa musi mieć ruch.",[2,7,10,8,8]],
@@ -118,11 +118,11 @@
       desc:"Teoretycznie niewinny. Praktycznie pamiętasz kolor sukienki, godzinę, zapach i po której stronie stała filiżanka. Niczego nie planujesz. Po prostu twój mózg prowadzi archiwum bez zgody administratora.",
       quote:"Nie patrzyłeś długo. Po prostu zapisałeś wszystko w 4K.",
       habitat:"Kawiarnia, siłownia, lobby, kolejka",danger:"Detal, który nie powinien być ważny",procedure:"Nie pytaj siebie, dlaczego pamiętasz. To tylko pogarsza sprawę.",
-      song:{title:"Piękne Ciała · Na co dzień",slug:"na-co-dzien",cover:"/assets/art/na-co-dzien-cover.webp",why:"Bo twój radar nie potrzebuje hotelu ani klubu. Wystarczy zwykły wtorek."}
+      song:{title:"Siłownia i Lustra",slug:"silownia-i-lustra",cover:"https://drive.google.com/thumbnail?id=1SUBEMm0rnp97tMqrRyUFeu17vN7TryGP&sz=w1200",why:"Bo u ciebie zwykłe spojrzenie w lustrze potrafi zostać zapisane dokładniej niż cały trening."}
     },
     romantic:{
       name:"Romantyk Po Godzinach",code:"CHEM-74",target:[48,84,50,78,75],
-      desc:"Twierdzisz, że nie chodzi o wygląd. Chodzi o energię, chemię, sposób mówienia i coś trudnego do nazwania. Dziwnym trafem chemia często ma odkryte plecy.",
+      desc:"Twierdzisz, że nie chodzi o wygląd. Chodzi o energię, chemię, sposób mówienia i coś trudnego do nazwania. Dziwnym trafem chemia pojawia się zwykle dokładnie wtedy, kiedy miało jej nie być.",
       quote:"To nie pożądanie. To bardzo zaawansowana interpretacja atmosfery.",
       habitat:"Bar, podróż, rozmowa po północy",danger:"Uśmiech z niewyjaśnionym znaczeniem",procedure:"Nie nadawaj chemii numeru telefonu.",
       song:{title:"Dotyk Nocy",slug:"dotyk-nocy",cover:"/assets/art/dotyk-nocy-cover.webp",why:"Bo kilka centymetrów i jedna sekunda wystarczą ci do zbudowania całej teorii chemii."}
@@ -306,7 +306,7 @@
   const scenes={
     winda:{label:"WINDA",image:"/assets/site/about-elevator.webp",heroine:"kobieta stojąca pół kroku obok",head:"To miała być tylko winda.",rational:"Patrz na numer piętra.",internal:"„Czy ona właśnie…?”"},
     hotel:{label:"HOTEL",image:"/assets/site/about-hotel.webp",heroine:"kobieta z hotelowego lobby",head:"Miałeś tylko odebrać kartę do pokoju.",rational:"Weź kartę. Idź do pokoju.",internal:"„Dlaczego ona też jeszcze nie poszła?”"},
-    bar:{label:"BAR",image:"/assets/art/ona-tanczy-hero.webp",heroine:"brunetka, której gest wygląda podejrzanie filmowo",head:"Miał być jeden drink.",rational:"Zamów i wróć do stolika.",internal:"„Może jednak wezmę jeszcze wodę.”"},
+    bar:{label:"BAR",image:"/assets/art/ona-tanczy-hero.webp",heroine:"kobieta przy barze, która właśnie łapie z tobą kontakt wzrokowy",head:"Miał być jeden drink.",rational:"Zamów i wróć do stolika.",internal:"„To był przypadek. Prawda?”"},
     lotnisko:{label:"AIRPORT",image:"/assets/art/american-girl-hero.webp",heroine:"kobieta z lotniskowego lounge",head:"Lot ma dwie godziny opóźnienia.",rational:"Naładuj telefon. Sprawdź gate.",internal:"„Dwie godziny to bardzo dużo czasu.”"},
     silownia:{label:"GYM",image:"/assets/art/silownia-i-lustra-hero.webp",heroine:"kobieta po drugiej stronie lustra",head:"Przyszedłeś zrobić trening.",rational:"Jeszcze trzy serie. Patrz przed siebie.",internal:"„Lustro nie liczy się jako patrzenie.”"},
     biuro:{label:"OFFICE",image:"/assets/site/about-apartment.webp",heroine:"kobieta, która też została po godzinach",head:"Zostało was dwoje i jedno światło.",rational:"Zamknij laptop. Jedź do domu.",internal:"„Jeszcze pięć minut brzmi podejrzanie długo.”"},
