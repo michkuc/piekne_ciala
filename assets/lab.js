@@ -268,7 +268,7 @@
     lotnisko:{label:"AIRPORT",image:"/assets/art/american-girl-hero.webp",heroine:"kobieta z lotniskowego lounge",head:"Lot ma dwie godziny opóźnienia.",rational:"Naładuj telefon. Sprawdź gate.",internal:"„Dwie godziny to bardzo dużo czasu.”"},
     silownia:{label:"GYM",image:"/assets/art/silownia-i-lustra-hero.webp",heroine:"kobieta po drugiej stronie lustra",head:"Przyszedłeś zrobić trening.",rational:"Jeszcze trzy serie. Patrz przed siebie.",internal:"„Lustro nie liczy się jako patrzenie.”"},
     biuro:{label:"OFFICE",image:"/assets/site/about-apartment.webp",heroine:"kobieta, która też została po godzinach",head:"Zostało was dwoje i jedno światło.",rational:"Zamknij laptop. Jedź do domu.",internal:"„Jeszcze pięć minut brzmi podejrzanie długo.”"},
-    plaza:{label:"BEACH",image:"/assets/art/zamek-z-piasku-hero.webp",heroine:"kobieta mijana podczas rodzinnego dnia na plaży",head:"Miałeś odpoczywać.",rational:"Czytaj książkę. Buduj zamek.",internal:"„Który to był akapit?”"},
+    plaza:{label:"BEACH",image:"https://drive.google.com/thumbnail?id=1GrhzgYVZr00YJ274F-KWWlbh3Qx4R0fV&sz=w1800",heroine:"kobieta mijana podczas rodzinnego dnia na plaży",head:"Miałeś odpoczywać.",rational:"Czytaj książkę. Buduj zamek.",internal:"„Który to był akapit?”"},
     miasto:{label:"CITY",image:"/assets/art/samotnosc-w-wielkim-miescie-hero.webp",heroine:"kobieta mijana w nocnym mieście",head:"Miasto robi z trzech sekund całą noc.",rational:"Idź dalej.",internal:"„Ten zapach już gdzieś znam.”"}
   };
 
