@@ -100,48 +100,82 @@
 
   const profiles={
     professor:{
-      name:"Profesor Samokontroli",code:"CTRL-92",target:[90,55,22,42,68],
+      name:"Profesor Samokontroli",code:"CTRL-92",target:[82,60,28,42,75],
       desc:"Na zewnątrz nic się nie dzieje. W środku trwa pełne posiedzenie zarządu. Twoją specjalnością nie jest brak impulsu — tylko profesjonalne zarządzanie jego widocznością.",
       quote:"„Nic nie zrobiłem” jest technicznie prawdą. I bardzo niepełnym raportem.",
       habitat:"Winda, restauracja, każde miejsce z lustrem",danger:"Sytuacja, w której ktoś naprawdę odwzajemnia spojrzenie",procedure:"Patrz na numer piętra. Nie analizuj numeru piętra.",
       song:{title:"Mam Żonę",slug:"mam-zone",cover:"/assets/art/mam-zone-cover.webp",why:"Bo granica działa — tylko mózg lubi przy niej postać sekundę za długo."}
     },
     director:{
-      name:"Reżyser",code:"CINEMA-40",target:[45,95,55,62,82],
+      name:"Reżyser",code:"CINEMA-40",target:[45,88,48,60,82],
       desc:"Jedno spojrzenie wystarcza, żeby powstały scena, dialog, światło, soundtrack i alternatywne zakończenie. Rzeczywistość dostarcza materiału. Resztę produkujesz sam.",
       quote:"Ona powiedziała „dzień dobry”. Ty masz już teaser, plakat i premierę.",
       habitat:"Hotel, lotnisko, nocne miasto",danger:"Dwie sekundy ciszy i dobre światło",procedure:"Oddziel materiał źródłowy od wersji reżyserskiej.",
       song:{title:"Po Północy",slug:"po-polnocy",cover:"/assets/art/po-polnocy-cover.webp",why:"Bo u ciebie prawdziwa historia zaczyna się zwykle wtedy, gdy oficjalna wersja wieczoru już śpi."}
     },
     observer:{
-      name:"Obserwator",code:"MEM-99",target:[67,75,35,48,96],
+      name:"Obserwator",code:"MEM-99",target:[66,70,32,45,94],
       desc:"Teoretycznie niewinny. Praktycznie pamiętasz kolor sukienki, godzinę, zapach i po której stronie stała filiżanka. Niczego nie planujesz. Po prostu twój mózg prowadzi archiwum bez zgody administratora.",
       quote:"Nie patrzyłeś długo. Po prostu zapisałeś wszystko w 4K.",
       habitat:"Kawiarnia, siłownia, lobby, kolejka",danger:"Detal, który nie powinien być ważny",procedure:"Nie pytaj siebie, dlaczego pamiętasz. To tylko pogarsza sprawę.",
       song:{title:"Piękne Ciała · Na co dzień",slug:"na-co-dzien",cover:"/assets/art/na-co-dzien-cover.webp",why:"Bo twój radar nie potrzebuje hotelu ani klubu. Wystarczy zwykły wtorek."}
     },
     romantic:{
-      name:"Romantyk Po Godzinach",code:"CHEM-74",target:[50,85,58,88,78],
+      name:"Romantyk Po Godzinach",code:"CHEM-74",target:[48,84,50,78,75],
       desc:"Twierdzisz, że nie chodzi o wygląd. Chodzi o energię, chemię, sposób mówienia i coś trudnego do nazwania. Dziwnym trafem chemia często ma odkryte plecy.",
       quote:"To nie pożądanie. To bardzo zaawansowana interpretacja atmosfery.",
       habitat:"Bar, podróż, rozmowa po północy",danger:"Uśmiech z niewyjaśnionym znaczeniem",procedure:"Nie nadawaj chemii numeru telefonu.",
       song:{title:"Dotyk Nocy",slug:"dotyk-nocy",cover:"/assets/art/dotyk-nocy-cover.webp",why:"Bo kilka centymetrów i jedna sekunda wystarczą ci do zbudowania całej teorii chemii."}
     },
     reasonable:{
-      name:"Człowiek Rozsądny™",code:"SAFE-ish",target:[88,50,25,40,55],
+      name:"Człowiek Rozsądny™",code:"SAFE-ish",target:[88,50,24,35,55],
       desc:"Praca, rodzina, rachunki, plan dnia. Wszystko działa. A potem coś drobnego przypomina, że dojrzałość nie wyłącza instynktu — tylko lepiej go opakowuje.",
       quote:"Rozsądek działa świetnie. Poza momentami, kiedy jest naprawdę potrzebny.",
       habitat:"Wszędzie tam, gdzie nic miało się nie wydarzyć",danger:"„Tylko szybka kawa”",procedure:"Kontynuuj życie. Nie czytaj logów systemowych.",
       song:{title:"Piękne Ciała",slug:"piekne-ciala",cover:"/assets/art/piekne-ciala-cover.webp",why:"Bo to profil najbliższy źródłowemu DNA: poker face na zewnątrz, pełny ruch w środku."}
     },
     disaster:{
-      name:"Katastrofa Kontrolowana",code:"RISK-RED",target:[35,72,92,78,65],
+      name:"Katastrofa Kontrolowana",code:"RISK-RED",target:[36,72,72,76,68],
       desc:"Wiesz, że to zły pomysł. Potrafisz nawet precyzyjnie wyjaśnić dlaczego. Informacja ta nie ma jednak zauważalnego wpływu na atrakcyjność pomysłu.",
       quote:"Ocena ryzyka: czerwona. Decyzja operacyjna: zobaczymy.",
       habitat:"Delegacja, bar, impreza, sytuacja bez świadków",danger:"Zdanie „co może pójść nie tak?”",procedure:"Jeśli właśnie to pomyślałeś — nie idź po kolejnego drinka.",
       song:{title:"Christmas Party",slug:"christmas-party",cover:"/assets/art/christmas-party-cover.webp",why:"Bo tam kultura organizacyjna też traci kontrolę dokładnie wtedy, gdy wszystko miało być profesjonalne."}
     }
   };
+
+  const metricBounds=metricKeysFromQuestions();
+  const profileCalibration={
+    professor:{mean:3149.516,sd:1866.680},
+    director:{mean:3067.572,sd:1816.857},
+    observer:{mean:3191.294,sd:1159.471},
+    romantic:{mean:3645.999,sd:2029.791},
+    reasonable:{mean:7283.095,sd:3100.151},
+    disaster:{mean:5919.782,sd:2521.409}
+  };
+  const calibrationBeta=.5;
+
+  function metricKeysFromQuestions(){
+    const min=[0,0,0,0,0],max=[0,0,0,0,0];
+    questions.forEach(item=>{
+      for(let i=0;i<5;i++){
+        const values=item.a.map(option=>option[1][i]);
+        min[i]+=Math.min(...values);
+        max[i]+=Math.max(...values);
+      }
+    });
+    const scale=questions.length*10;
+    return {
+      min:min.map(v=>v/scale*100),
+      max:max.map(v=>v/scale*100)
+    };
+  }
+
+  function normalizeMetrics(values){
+    return values.map((value,i)=>{
+      const lo=metricBounds.min[i],hi=metricBounds.max[i];
+      return Math.max(0,Math.min(100,(value-lo)/(hi-lo)*100));
+    });
+  }
 
   const metricKeys=["control","imagination","risk","ego","memory"];
   let idx=0,sums=[0,0,0,0,0],lastResult=null;
@@ -177,9 +211,17 @@
   }
 
   function nearestProfile(values){
+    const normalized=normalizeMetrics(values);
     return Object.entries(profiles)
-      .map(([key,p])=>({key,p,distance:p.target.reduce((sum,v,i)=>sum+Math.pow(values[i]-v,2),0)}))
-      .sort((a,b)=>a.distance-b.distance)[0];
+      .map(([key,p])=>{
+        const target=normalizeMetrics(p.target);
+        const distance=target.reduce((sum,v,i)=>sum+Math.pow(normalized[i]-v,2),0);
+        const calibration=profileCalibration[key];
+        const standardized=(distance-calibration.mean)/calibration.sd;
+        const score=standardized+calibrationBeta*(distance/10000);
+        return {key,p,distance,score};
+      })
+      .sort((a,b)=>a.score-b.score)[0];
   }
 
   function showResult(){
