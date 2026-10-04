@@ -673,3 +673,32 @@ body[data-page="about"] .man-ending-actions .btn:hover{border-color:#b99b74;colo
 .home-lab-readout em{color:#a9b0b4;font:normal 9px var(--sans)}
 @media(max-width:1050px){.home-lab-teaser{grid-template-columns:1fr}}
 @media(max-width:760px){.home-lab-teaser{padding-top:62px;padding-bottom:62px}}
+
+
+/* Home — MANUAL 40+ teaser */
+.home-manual-teaser{
+  position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1.08fr .92fr;gap:58px;align-items:center;
+  padding-top:82px;padding-bottom:82px;
+  border-bottom:1px solid rgba(255,255,255,.07)
+}
+.home-manual-teaser:before{
+  content:"MANUAL";position:absolute;right:-.04em;bottom:-.22em;
+  font:600 clamp(110px,18vw,290px)/1 var(--sans);letter-spacing:-.08em;
+  color:rgba(255,255,255,.018);pointer-events:none
+}
+.home-manual-copy{position:relative;z-index:1}
+.home-manual-copy h2{margin:8px 0 18px;font:400 clamp(44px,6vw,78px)/.94 var(--serif)}
+.home-manual-copy p{max-width:690px;color:var(--muted);line-height:1.8}
+.home-manual-card{
+  position:relative;z-index:1;padding:24px 26px;border:1px solid rgba(255,86,61,.28);
+  background:linear-gradient(180deg,rgba(255,86,61,.055),rgba(9,8,10,.88))
+}
+.home-manual-card>span,.home-manual-card small{display:block;color:#9e8f88;font-size:8px;letter-spacing:.2em;text-transform:uppercase}
+.home-manual-card>div{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.home-manual-card b{color:#ff6b50;font:500 10px var(--sans)}
+.home-manual-card strong{font:500 11px var(--sans);letter-spacing:.12em}
+.home-manual-card em{font:500 8px var(--sans);font-style:normal;letter-spacing:.12em;color:#d9b477}
+.home-manual-card small{margin-top:18px;color:#d9b477}
+@media(max-width:1050px){.home-manual-teaser{grid-template-columns:1fr}}
+@media(max-width:760px){.home-manual-teaser{padding-top:62px;padding-bottom:62px}}

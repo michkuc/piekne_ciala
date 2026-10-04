@@ -30,4 +30,9 @@
   <url><loc>https://piekne-ciala.vercel.app/stories/za-malo-miejsca</loc></url>
   <url><loc>https://piekne-ciala.vercel.app/stories/po-godzinach</loc></url>
   <url><loc>https://piekne-ciala.vercel.app/stories/zamek-z-piasku</loc></url>
+  <url>
+    <loc>https://piekne-ciala.vercel.app/manual</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
