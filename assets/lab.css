@@ -321,3 +321,6 @@ body.lab-page{background:#07090a}
   .lab-risk-table th,.lab-risk-table td{padding:8px}
   .lab-risk-table td{height:86px;font-size:8px}
 }
+
+.moment-context{grid-column:1/-1}
+@media(max-width:760px){.moment-context{grid-column:1}}
