@@ -306,11 +306,7 @@
     ctx.font='500 '+(story?105:84)+'px "Cormorant Garamond", Georgia, serif';
     wrapCanvasText(ctx,p.name.toUpperCase(),margin+38,titleY,W-margin*2-76,story?96:78,2);
 
-    ctx.fillStyle="#8c9498";
-    ctx.font='400 '+(story?24:21)+'px "Inter", Arial, sans-serif';
-    wrapCanvasText(ctx,p.desc,margin+38,titleY+(story?205:160),W-margin*2-76,story?37:33,story?4:3);
-
-    const qY=story?680:535;
+    const qY=story?690:535;
     ctx.strokeStyle="rgba(217,180,119,.28)";ctx.lineWidth=1;
     ctx.beginPath();ctx.moveTo(margin+38,qY-38);ctx.lineTo(W-margin-38,qY-38);ctx.stroke();
     ctx.fillStyle="#d9b477";
