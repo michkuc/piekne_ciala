@@ -91,3 +91,82 @@ test("Video points at an existing, allow-listed production source", () => {
   assert.match(video.destination, /^https:\/\/drive\.usercontent\.google\.com\/download\?/);
   assert.match(read("assets/songs.js"), /video:"\/media\/mlode-boginie\.mp4"/);
 });
+
+
+test("Audio API blocks guests, unknown files and non-audio Google responses", async () => {
+  process.env.SITE_SESSION_SECRET = "stage-a-test-session-secret-must-be-at-least-32-bytes";
+  const {COOKIE, createSession} = require("../lib/access-session.js");
+  const {default: handler} = await import("../api/audio.js");
+  const validCookie = COOKIE + "=" + createSession();
+  const firstAudioId = [...read("api/audio.js").matchAll(/"([A-Za-z0-9_-]{30,})"/g)][0][1];
+
+  const guest = fakeResponse();
+  await handler({method:"GET", headers:{cookie:""}, query:{id:firstAudioId}}, guest);
+  assert.equal(guest.statusCode, 401);
+
+  const missing = fakeResponse();
+  await handler({method:"GET", headers:{cookie:validCookie}, query:{id:"not-allowed"}}, missing);
+  assert.equal(missing.statusCode, 404);
+
+  const wrongMethod = fakeResponse();
+  await handler({method:"POST", headers:{cookie:validCookie}, query:{id:firstAudioId}}, wrongMethod);
+  assert.equal(wrongMethod.statusCode, 405);
+  assert.equal(wrongMethod.headers.allow, "GET, HEAD");
+
+  const originalFetch = global.fetch;
+  try {
+    global.fetch = async () => ({
+      ok:true,
+      status:200,
+      headers:{get(name) {return name === "content-type" ? "text/html; charset=utf-8" : null;}},
+      body:null
+    });
+    const html = fakeResponse();
+    await handler({method:"GET", headers:{cookie:validCookie}, query:{id:firstAudioId}}, html);
+    assert.equal(html.statusCode, 502);
+    assert.match(html.payload.error, /Audio source/);
+  } finally {
+    global.fetch = originalFetch;
+  }
+});
+
+test("Audio API forwards Range and streams valid MP3 bytes", async () => {
+  process.env.SITE_SESSION_SECRET = "stage-a-test-session-secret-must-be-at-least-32-bytes";
+  const {COOKIE, createSession} = require("../lib/access-session.js");
+  const {default: handler} = await import("../api/audio.js");
+  const firstAudioId = [...read("api/audio.js").matchAll(/"([A-Za-z0-9_-]{30,})"/g)][0][1];
+  const validCookie = COOKIE + "=" + createSession();
+  const {PassThrough} = require("node:stream");
+  const response = new PassThrough();
+  response.statusCode = 200;
+  response.headers = {};
+  response.setHeader = (key,value) => {response.headers[key.toLowerCase()] = value; return response;};
+  response.status = (code) => {response.statusCode = code; return response;};
+  response.json = (value) => {response.payload = value; response.end(); return response;};
+  const chunks = [];
+  response.on("data", (chunk) => chunks.push(chunk));
+  const finished = new Promise((resolve,reject)=>{response.on("end",resolve); response.on("error",reject);});
+  const originalFetch = global.fetch;
+  let sentRange = null;
+  try {
+    global.fetch = async (_url,options) => {
+      sentRange = options.headers.Range;
+      return {
+        ok:true,
+        status:206,
+        headers:{get(name) {
+          return ({"content-type":"audio/mpeg","content-length":"3","content-range":"bytes 0-2/100"}[name] || null);
+        }},
+        body:new ReadableStream({start(controller) {controller.enqueue(new Uint8Array([11,22,33]));controller.close();}})
+      };
+    };
+    await handler({method:"GET", headers:{cookie:validCookie,range:"bytes=0-2"}, query:{id:firstAudioId}}, response);
+    await finished;
+    assert.equal(response.statusCode, 206);
+    assert.equal(sentRange, "bytes=0-2");
+    assert.equal(response.headers["content-type"], "audio/mpeg");
+    assert.deepEqual(Buffer.concat(chunks), Buffer.from([11,22,33]));
+  } finally {
+    global.fetch = originalFetch;
+  }
+});
