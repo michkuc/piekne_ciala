@@ -28,8 +28,14 @@ const AUDIO_IDS = new Set([
 
 export default async function handler(request, response) {
   response.setHeader("Cache-Control", "private, no-store");
+  response.setHeader("Vary", "Cookie");
   if (!validSession(request.headers.cookie)) {
     response.status(401).json({error:"Unauthorized"});
+    return;
+  }
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    response.setHeader("Allow", "GET, HEAD");
+    response.status(405).end();
     return;
   }
   const id = typeof request.query.id === "string" ? request.query.id : "";
@@ -48,8 +54,14 @@ export default async function handler(request, response) {
       return;
     }
 
+    const contentType = (upstream.headers.get("content-type") || "").split(";")[0].trim().toLowerCase();
+    if (!contentType.startsWith("audio/") && !["application/octet-stream", "binary/octet-stream"].includes(contentType)) {
+      response.status(502).json({error:"Audio source did not return audio data"});
+      return;
+    }
+
     response.status(upstream.status);
-    response.setHeader("Content-Type", upstream.headers.get("content-type") || "audio/mpeg");
+    response.setHeader("Content-Type", contentType);
     response.setHeader("Accept-Ranges", "bytes");
     response.setHeader("Cache-Control", "private, no-store");
     for (const header of ["content-length", "content-range", "etag", "last-modified"]) {
