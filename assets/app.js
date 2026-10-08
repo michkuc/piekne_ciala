@@ -641,15 +641,18 @@
   if (archiveGrid && archiveFilterButtons.length) {
     const archiveCards = qsa("[data-archive-category]", archiveGrid);
     const status = qs("[data-archive-status]");
-    const labels = {
-      selected:"15 wybranych kadrów",
-      all:"61 kadrów",
-      night:"NIGHT · 9 kadrów",
-      city:"CITY · 5 kadrów",
-      travel:"TRAVEL · 22 kadry",
-      sport:"SPORT · 11 kadrów",
-      everyday:"EVERYDAY · 7 kadrów",
-      "after-hours":"AFTER HOURS · 7 kadrów"
+    const countLabel = (count) => {
+      if (count === 1) return "kadr";
+      const lastTwo = count % 100;
+      return count % 10 >= 2 && count % 10 <= 4 && (lastTwo < 12 || lastTwo > 14) ? "kadry" : "kadrów";
+    };
+    const statusLabel = (filter) => {
+      const count = archiveCards.filter((card) =>
+        filter === "all" || (filter === "selected" ? card.dataset.archiveSelected === "true" : card.dataset.archiveCategory === filter)
+      ).length;
+      if (filter === "selected") return `${count} wybranych ${countLabel(count)}`;
+      if (filter === "all") return `${count} ${countLabel(count)}`;
+      return `${filter.replaceAll("-", " ").toUpperCase()} · ${count} ${countLabel(count)}`;
     };
     const hashes = {
       selected:"#gallery",
@@ -681,7 +684,7 @@
         button.classList.toggle("active", active);
         button.setAttribute("aria-pressed", active ? "true" : "false");
       });
-      if (status) status.textContent = labels[filter] || labels.selected;
+      if (status) status.textContent = statusLabel(filter);
       if (updateHash && hashes[filter]) history.replaceState(null, "", hashes[filter]);
       if (scroll) qs("#gallery")?.scrollIntoView({behavior:"smooth", block:"start"});
     };
