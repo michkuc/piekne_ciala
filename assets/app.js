@@ -113,10 +113,43 @@
     qs(".lightbox-nav.next", lightbox).addEventListener("click", () => showImage(activeIndex + 1));
     lightbox.addEventListener("click", (event) => { if (event.target === lightbox) closeLightbox(); });
     lightbox.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeLightbox();
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeLightbox();
+      }
       if (event.key === "ArrowLeft") showImage(activeIndex - 1);
       if (event.key === "ArrowRight") showImage(activeIndex + 1);
+      // Keep keyboard focus inside the fullscreen gallery dialog.
+      if (event.key === "Tab") {
+        const controls = qsa("button:not([disabled])", lightbox);
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
     });
+    // Swipe photos on phones; ignore vertical scrolling and multi-touch zoom.
+    let touchStart = null;
+    const figure = qs("figure", lightbox);
+    figure.addEventListener("touchstart", (event) => {
+      touchStart = event.touches.length === 1
+        ? {x:event.touches[0].clientX, y:event.touches[0].clientY}
+        : null;
+    }, {passive:true});
+    figure.addEventListener("touchend", (event) => {
+      if (!touchStart || event.changedTouches.length !== 1) return;
+      const dx = event.changedTouches[0].clientX - touchStart.x;
+      const dy = event.changedTouches[0].clientY - touchStart.y;
+      touchStart = null;
+      if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.3) return;
+      showImage(activeIndex + (dx < 0 ? 1 : -1));
+    }, {passive:true});
+    figure.addEventListener("touchcancel", () => { touchStart = null; });
   }
 
   const nav = qs(".nav");
