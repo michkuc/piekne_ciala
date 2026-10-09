@@ -32,15 +32,15 @@
     },
     {
       "source": "/stories/:slug",
-      "destination": "/song?slug=:slug"
+      "destination": "/api/story?slug=:slug"
     },
     {
       "source": "/story/:slug",
-      "destination": "/song?slug=:slug"
+      "destination": "/api/story?slug=:slug"
     },
     {
       "source": "/song/:slug",
-      "destination": "/song?slug=:slug"
+      "destination": "/api/story?slug=:slug"
     }
   ],
   "headers": [

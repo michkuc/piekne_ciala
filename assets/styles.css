@@ -723,3 +723,21 @@ body[data-page="about"] .man-ending-actions .btn:hover{border-color:#b99b74;colo
 @media(prefers-reduced-motion:reduce){
   .archive-unified-grid .gallery-open{animation:none!important}
 }
+
+
+/* Stage C — preserved queue, share controls and song deep links */
+.playlist-story-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin:14px auto 0;padding:0 16px;border:1px solid rgba(210,170,117,.35);color:var(--gold);font:500 11px var(--sans);letter-spacing:.08em;text-decoration:none}
+.playlist-story-link[hidden]{display:none!important}
+.playlist-story-link:hover,.playlist-story-link:focus-visible{border-color:var(--gold);color:#f3d8ae}
+.playlist-persist-note{max-width:320px;margin:12px auto 0;color:#a1a1a4;text-align:center;font:400 10px/1.6 var(--sans)}
+.queue-tools{flex-wrap:wrap}
+.queue-tools [data-share-queue]{border-color:rgba(210,170,117,.4);color:var(--gold)}
+.queue-tools [data-share-queue]:disabled{opacity:.4;cursor:default}
+.queue-play-copy{min-height:44px;cursor:pointer}
+.queue-play-copy:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.playlist-controls button{min-width:44px;min-height:44px}
+@media(max-width:560px){
+  .queue-tools [data-share-queue]{grid-column:1/-1}
+  .playlist-story-link{width:100%}
+  .playlist-persist-note{font-size:11px}
+}
