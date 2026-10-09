@@ -17,7 +17,7 @@ test("New 23rd track is unique, indexed and available for playback", () => {
   const data = loadCatalog();
   const songs = data.PC_SONGS;
   assert.equal(songs.length,23);
-  assert.deepEqual(songs.map(s => s.n),Array.from({length:23},(_,i)=>i+1));
+  assert.deepEqual(Array.from(songs,s => s.n),Array.from({length:23},(_,i)=>i+1));
   assert.equal(new Set(songs.map(s=>s.slug)).size,23);
   assert.equal(new Set(songs.map(s=>s.audio)).size,23);
   const song = data.PC.getSong("cieply-grzech");
