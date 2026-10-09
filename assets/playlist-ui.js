@@ -87,7 +87,7 @@
     const exists = queue.length > 0;
     toggle.disabled = !exists;
     previous.disabled = !exists || currentIndex <= 0;
-    next.disabled = !exists || (currentIndex === queue.length - 1 && repeatMode === "off");
+    next.disabled = !exists || (currentIndex === queue.length - 1 && repeatMode !== "all");
     clearAll.disabled = !exists;
     addAll.disabled = queue.length >= songs.length;
     shuffle.disabled = queue.length < 2;
@@ -188,7 +188,9 @@
     persist();
   });
   addAll.addEventListener("click",() => {
+    const currentSlug = queue[currentIndex] && queue[currentIndex].slug;
     queue = [...songs];
+    currentIndex = currentSlug ? queue.findIndex(song => song.slug === currentSlug) : -1;
     renderLibrary();
     renderQueue();
     announce(queue.length + " utworów w kolejce.");
