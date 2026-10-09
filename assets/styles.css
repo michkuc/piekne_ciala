@@ -702,3 +702,24 @@ body[data-page="about"] .man-ending-actions .btn:hover{border-color:#b99b74;colo
 .home-manual-card small{margin-top:18px;color:#d9b477}
 @media(max-width:1050px){.home-manual-teaser{grid-template-columns:1fr}}
 @media(max-width:760px){.home-manual-teaser{padding-top:62px;padding-bottom:62px}}
+
+
+/* Stage B — touch-friendly controls and more readable gallery filters. */
+.nav-toggle{min-width:44px;min-height:44px;touch-action:manipulation}
+.archive-filter{min-height:44px;font-size:10px;color:#b9c0c6;touch-action:manipulation}
+.archive-filter em{color:#959da5}
+.archive-filter-status{font-size:10px;color:#a1a8af}
+.lightbox-close,.lightbox-nav{min-width:44px;min-height:44px;touch-action:manipulation}
+@media(max-width:1100px){
+  .nav{max-height:calc(100dvh - 94px);overflow-y:auto;gap:0}
+  .nav a{display:flex;align-items:center;min-height:44px;width:100%;font-size:13px}
+}
+@media(max-width:700px){
+  .archive-filter{min-height:44px;padding:0 12px;font-size:10px}
+  .archive-filter-status{font-size:10px;letter-spacing:.08em}
+  .track-add,.queue-action{min-width:44px;min-height:44px;width:44px;height:44px}
+  .audio-toggle{width:44px;height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+  .archive-unified-grid .gallery-open{animation:none!important}
+}
