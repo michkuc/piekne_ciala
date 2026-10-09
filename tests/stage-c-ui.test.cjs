@@ -41,6 +41,8 @@ function start(options={}){
     "[data-shuffle-queue]","[data-add-all]","[data-clear-queue]"
   ];
   const elements=Object.fromEntries(selectorList.map(key=>[key,element()]));
+  elements["[data-playlist-story]"].hidden=true;
+  elements["[data-playlist-cover]"].hidden=true;
   const audio=elements["[data-playlist-audio]"];
   audio.paused=true;
   audio.duration=180;
@@ -72,7 +74,7 @@ const clickLibrary=(ui,slug)=>ui.get("track-library").fire("click",{
 const clickQueue=(ui,action,index)=>ui.get("queue-list").fire("click",{
   target:{closest:(selector)=>selector==="button"?{
     dataset:{[action]:String(index)},
-    hasAttribute:(name)=>name==="data-"+action
+    hasAttribute:(name)=>name==="data-"+action.replace(/[A-Z]/g,char=>"-"+char.toLowerCase())
   }:null}
 });
 
