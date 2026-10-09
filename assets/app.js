@@ -380,6 +380,7 @@
           <div class="hero-actions">
             ${song.audio ? `<button class="btn primary" type="button" data-start-audio>Odtwórz utwór</button>` : `<span class="audio-pending">Audio · final master w przygotowaniu</span>`}
             ${song.audio ? `<a class="btn ghost" href="/playlist?add=${esc(song.slug)}">Dodaj do playlisty</a>` : ""}
+            <button class="btn ghost" type="button" data-share-song>Udostępnij utwór ↗</button>
             <a class="btn ghost" href="${series.url}">${esc(series.name)}</a>
           </div>
           <div class="fact-line"><span>Klimat</span><strong>${esc(song.tag)}</strong></div>
@@ -428,6 +429,19 @@
     initPlayer(songRoot, song);
     qs(".song-video-player", songRoot)?.addEventListener("contextmenu", (event) => event.preventDefault());
     qs("[data-start-audio]", songRoot)?.addEventListener("click", () => qs("[data-audio-toggle]", songRoot)?.click());
+    qs("[data-share-song]", songRoot)?.addEventListener("click", async (event) => {
+      const url = new URL(storyUrl(song), location.origin).href;
+      const button = event.currentTarget;
+      const shared = {title: song.title + " — Piękne Ciała", text: song.story, url};
+      if (navigator.share) {
+        try { await navigator.share(shared); button.textContent = "Udostępniono ✓"; return; }
+        catch (error) { if (error?.name === "AbortError") return; }
+      }
+      try {
+        await navigator.clipboard.writeText(url);
+        button.textContent = "Link skopiowany ✓";
+      } catch { button.textContent = "Nie udało się skopiować"; }
+    });
   }
 
   const archiveGrid = qs("[data-archive-grid]");
