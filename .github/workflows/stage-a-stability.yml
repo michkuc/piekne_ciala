@@ -1,9 +1,9 @@
-name: Stage A stability checks
+name: Site regression suite
 
 on:
   pull_request:
   push:
-    branches: [main, fix/stage-a-stabilization-20261008]
+    branches: [main, fix/stage-a-stabilization-20261008, feat/stage-c-playlist-share-20261009]
 
 permissions:
   contents: read
@@ -21,9 +21,12 @@ jobs:
       - name: Verify browser JavaScript syntax
         run: |
           node --check assets/app.js
+          node --check assets/playlist-state.js
+          node --check assets/playlist-ui.js
+          node --check api/story.js
           node --check assets/login.js
           node --check assets/lab.js
           node --check assets/manual.js
           node --check api/access.js
-      - name: Run Stage A smoke tests
-        run: node --test tests/stage-a.test.cjs tests/stage-b.test.cjs
+      - name: Run site regression tests
+        run: node --test tests/stage-a.test.cjs tests/stage-b.test.cjs tests/stage-c.test.cjs
