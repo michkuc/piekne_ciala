@@ -29,4 +29,4 @@ jobs:
           node --check assets/manual.js
           node --check api/access.js
       - name: Run site regression tests
-        run: node --test tests/stage-a.test.cjs tests/stage-b.test.cjs tests/stage-c.test.cjs tests/stage-c-ui.test.cjs
+        run: node --test tests/stage-a.test.cjs tests/stage-b.test.cjs tests/stage-c.test.cjs tests/stage-c-ui.test.cjs tests/track23.test.cjs
