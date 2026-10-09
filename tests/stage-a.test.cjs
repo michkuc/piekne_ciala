@@ -48,7 +48,7 @@ test("Login H1 is styled and XML sitemap has no literal escaped newline", () => 
   const css = read("assets/styles.css");
   assert.match(css, /\.age-box h1,\.age-box h2\{/);
   assert.doesNotMatch(read("sitemap.xml"), /\\n/);
-  assert.equal((read("sitemap.xml").match(/<loc>/g) || []).length, 32);
+  assert.equal((read("sitemap.xml").match(/<loc>/g) || []).length, 33);
 });
 
 test("Session signatures expire and resist tampering", () => {
