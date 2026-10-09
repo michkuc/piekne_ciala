@@ -9,7 +9,7 @@ const read = name => fs.readFileSync(path.join(root,name),"utf8");
 const songsSrc = read("assets/songs.js");
 const catalog = [...songsSrc.matchAll(/^\s*\{n:\d+,slug:"([^"]+)",title:"((?:[^"\\]|\\.)*)"/gm)]
   .map(m=>({slug:m[1],title:JSON.parse('"'+m[2]+'"')}));
-assert.equal(catalog.length,22);
+assert.equal(catalog.length,23);
 const fakeStorage = () => {
   const map = new Map();
   return {getItem:key=>map.get(key)||null,setItem:(key,value)=>map.set(key,value),map};
@@ -21,7 +21,7 @@ const fakeResponse = () => ({
   end(body){this.data=body||"";this.ended=true;return this;}
 });
 
-test("Playlist slugs validate every one of 22 tracks in order",()=>{
+test("Playlist slugs validate every one of 23 tracks in order",()=>{
   const list=catalog.map(x=>x.slug);
   assert.deepEqual(state.slugs(list,catalog),list);
   assert.deepEqual(state.slugs([list[0],"unknown",list[1],list[0],null],catalog),list.slice(0,2));
