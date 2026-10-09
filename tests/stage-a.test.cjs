@@ -18,14 +18,14 @@ function fakeResponse() {
   return r;
 }
 
-test("All 22 listed audio IDs are permitted by the server proxy", () => {
+test("All 23 listed audio IDs are permitted by the server proxy", () => {
   const songs = read("assets/songs.js");
   const proxy = read("api/audio.js");
   const block = songs.split("const PC_AUDIO_IDS = {")[1].split("};")[0];
   const ids = [...block.matchAll(/^\s*\d+:\s*"([^"]+)"/gm)].map((match) => match[1]);
   const allowed = [...proxy.split("const AUDIO_IDS = new Set([")[1].split("]);")[0].matchAll(/"([^"]+)"/g)].map((match) => match[1]);
-  assert.equal(ids.length, 22);
-  assert.equal(new Set(ids).size, 22);
+  assert.equal(ids.length, 23);
+  assert.equal(new Set(ids).size, 23);
   assert.deepEqual(new Set(ids), new Set(allowed));
 });
 
@@ -48,7 +48,7 @@ test("Login H1 is styled and XML sitemap has no literal escaped newline", () => 
   const css = read("assets/styles.css");
   assert.match(css, /\.age-box h1,\.age-box h2\{/);
   assert.doesNotMatch(read("sitemap.xml"), /\\n/);
-  assert.equal((read("sitemap.xml").match(/<loc>/g) || []).length, 32);
+  assert.equal((read("sitemap.xml").match(/<loc>/g) || []).length, 33);
 });
 
 test("Session signatures expire and resist tampering", () => {

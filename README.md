@@ -25,13 +25,14 @@ Static multi-page site for the music project **Piękne Ciała**.
 - Large audio/video files remain in Google Drive; they are not stored in the Git repository.
 
 ## Content status
-- **22 stories are live.**
+- **23 stories are live.**
 - **3 active series:** Piękne Ciała, Ciała świata, Za blisko.
-- **22 audio masters** are mapped through the project audio folder / `api/audio.js`.
-- **17 lyrics records are verified.**
+- **23 audio masters** are mapped through the project audio folder / `api/audio.js`.
+- **18 lyrics records are verified.**
 - **5 lyrics remain intentionally marked for source recovery:** Dubai, Tokyo, Dotyk Nocy, Poranek, Ona Tańczy. Do not reconstruct them from memory.
 - **Młode Boginie** has a native site video player; `/media/mlode-boginie.mp4` is rewritten by Vercel to the approved Drive video.
-- The playlist is intentionally session-only and resets after refresh / closing the page.
+- The playlist persists in local storage across refreshes and can be shared by a clean song-slug link.
+- **Ciepły Grzech** was added as song 23 with an existing curated jazz-bar photo used for the cover and hero.
 
 ## Active visual workflow
 The approved visual library is organized in Google Drive under `Grafiki/01_ACTIVE_SITE` with separate `COVERS` and `HEROES` folders.
