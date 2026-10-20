@@ -4,26 +4,26 @@ const fs = require("node:fs");
 const path = require("node:path");
 const read = (name) => fs.readFileSync(path.resolve(__dirname,"..",name),"utf8");
 
-test("Night Archive preserves 65 captions and full resolution lightbox images",()=>{
+test("Night Archive preserves 70 captions and full resolution lightbox images",()=>{
   const html=read("archive.html");
   const cards=[...html.matchAll(/<button class="gallery-open\b[\s\S]*?<\/button>/g)].map(match=>match[0]);
-  assert.equal(cards.length,65);
+  assert.equal(cards.length,70);
   assert.equal(cards.filter(card=>card.includes('data-archive-selected="true"')).length,15);
-  assert.equal(cards.filter(card=>card.includes('data-lightbox-src=')).length,65);
-  assert.equal(cards.filter(card=>card.includes('&sz=w1800') || card.includes('&amp;sz=w1800')).length,61);
+  assert.equal(cards.filter(card=>card.includes('data-lightbox-src=')).length,70);
+  assert.equal(cards.filter(card=>card.includes('&sz=w1800') || card.includes('&amp;sz=w1800')).length,66);
 });
 
-test("All 61 Google Drive gallery thumbnails have responsive candidates",()=>{
+test("All 66 Google Drive gallery thumbnails have responsive candidates",()=>{
   const html=read("archive.html");
   const cards=[...html.matchAll(/<button class="gallery-open\b[\s\S]*?<\/button>/g)].map(match=>match[0]);
   const drive=cards.filter(card=>/src="https:\/\/drive\.google\.com\/thumbnail\?id=[^"]+w960"/.test(card));
-  assert.equal(drive.length,61);
+  assert.equal(drive.length,66);
   for(const card of drive){
     assert.match(card,/srcset="[^"]+w480 480w,[^"]+w960 960w,[^"]+w1600 1600w"/);
     assert.match(card,/sizes="[^"]+"/);
     assert.match(card,/loading="lazy"/);
   }
-  assert.equal((html.match(/&amp;sz=w1800/g)||[]).length <= 65,true);
+  assert.equal((html.match(/data-lightbox-group="moment"/g)||[]).length,6);
 });
 
 test("Gallery supports touch swipes, keyboard focus trap and closing",()=>{
