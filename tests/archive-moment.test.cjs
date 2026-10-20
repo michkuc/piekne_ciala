@@ -36,7 +36,7 @@ test("Five new images extend main archive to 70 while preserving curated selecti
 test("Six unique Moment photos live in separate gallery with image captions and full resolution", () => {
   const html=read("archive.html");
   const section=html.split('id="moment-przed-po"')[1].split('class="archive-closing')[0];
-  const cards=[...section.matchAll(/<button type="button" class="moment-card"[\s\S]*?<\/button>/g)].map(m=>m[0]);
+  const cards=[...section.matchAll(/<article class="moment-card moment-card-v2"[\s\S]*?<\/article>/g)].map(m=>m[0]);
   assert.equal(cards.length,6);
   for(const [index,id] of momentIds.entries()){
     const card=cards[index];
@@ -44,7 +44,10 @@ test("Six unique Moment photos live in separate gallery with image captions and 
     assert.ok(card.includes('data-lightbox-group="moment"'),"isolated gallery");
     assert.match(card,/data-lightbox-src="[^"]+w1800"/);
     assert.match(card,/srcset="[^"]+480w,[^"]+960w,[^"]+1600w"/);
-    assert.match(card,/<small>[^<]+<\/small>/);
+    assert.match(card,/<h3>[^<]+<\/h3>/);
+    assert.match(card,/data-moment-mode="fact"/);
+    assert.match(card,/data-moment-mode="mind"/);
+    assert.match(card,/data-moment-mode="verdict"/);
     assert.match(card,/alt="[^"]+"/);
   }
   assert.equal(new Set([...galleryIds,...momentIds,manId]).size,12);
@@ -72,7 +75,7 @@ test("Lightbox swipe and arrows navigate within the opened archive or micro-stor
 test("Mobile editorial grids keep separate layouts and touch-friendly focus",()=>{
   const css=read("assets/styles.css");
   assert.match(css,/\.moment-grid\{display:grid;grid-template-columns:repeat\(3/);
-  assert.match(css,/\.moment-card:focus-visible/);
+  assert.match(css,/\.moment-card-v2 \.moment-visual:focus-visible/);
   assert.match(css,/@media\(max-width:700px\)[\s\S]*\.moment-grid\{grid-template-columns:1fr/);
   assert.match(css,/\.man-window-scene\{[^}]*display:grid/);
 });
