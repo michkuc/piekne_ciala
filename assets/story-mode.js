@@ -34,12 +34,12 @@
     img.src = PC.drive(scene.image,1800);
     img.alt = scene.heading + " — kadr z historii " + currentSong().title;
     img.style.objectPosition = scene.position || "center";
-    img.style.transform = `scale(${scene.zoom || 1})`;
+    img.style.setProperty("--story-zoom", String(scene.zoom || 1));
     cue.textContent = scene.cue;
     sourceLabel.textContent = scene.section + (scene.source === "lyrics" ? " · SŁOWA Z TEKSTU" : " · OPIS UTWORU");
     sourceNotice.textContent = scene.source === "lyrics" ? "Kadr inspirowany tekstem. Przechodź między scenami ręcznie." : "Pełny tekst tego utworu nie jest dostępny w archiwum. Sceny to interpretacja zatwierdzonego opisu, nie cytaty z piosenki.";
     steps.forEach((btn,i)=>{ const caption = btn.querySelector("strong"); if(caption) caption.textContent = selected()[i].stage; });
-    label.textContent = scene.label;
+    label.textContent = String(step + 1).padStart(2,"0") + " · " + scene.stage.toUpperCase();
     heading.textContent = scene.heading;
     copy.textContent = scene.text;
     counter.textContent = String(step+1).padStart(2,"0") + " / 04";
