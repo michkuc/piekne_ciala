@@ -10,7 +10,7 @@
 <meta property="og:image" content="https://piekne-ciala.vercel.app/assets/site/music-hero.webp">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/assets/styles.css">
-<link rel="stylesheet" href="/assets/story-mode.css">
+<link rel="stylesheet" href="/assets/story-mode.css?v=story-nav-2">
 </head>
 <body data-page="music" class="story-mode-page">
 <header class="site-header"><a class="brand" href="/">PIĘKNE CIAŁA<small>NIGHT STORIES</small></a>
@@ -30,11 +30,16 @@
     <button type="button" data-story-choose="po-godzinach" aria-pressed="false">21 · Po Godzinach</button>
     <button type="button" data-story-choose="ona-tanczy" aria-pressed="false">19 · Ona Tańczy</button>
   </div>
-  <div class="story-screen">
+  <div class="story-screen" data-story-screen role="group" aria-label="Kadry historii — dotknij zdjęcia, aby przejść dalej">
     <img data-story-image decoding="async" alt="" referrerpolicy="no-referrer">
     <div class="story-screen-shade"></div>
     <div class="story-screen-overline"><span>PIĘKNE CIAŁA · CINEMATIC STORIES</span><span data-story-counter>01 / 04</span></div>
-    <div class="story-screen-bottom">
+    <div class="story-frame-progress" aria-hidden="true"><span data-story-progress="0" class="is-current"></span><span data-story-progress="1"></span><span data-story-progress="2"></span><span data-story-progress="3"></span></div>
+    <button class="story-frame-nav story-frame-prev" type="button" data-story-frame-prev aria-label="Poprzednia scena" disabled>‹</button>
+    <button class="story-frame-nav story-frame-next" type="button" data-story-frame-next aria-label="Następna scena">›</button>
+    <span class="story-tap-hint" aria-hidden="true">Dotknij kadru lub przesuń palcem →</span>
+
+    <div class="story-screen-bottom" aria-live="off">
       <span class="eyebrow" data-story-label>RZECZYWISTOŚĆ</span>
       <h2 data-story-heading>Ciepły Grzech</h2>
       <p data-story-copy aria-live="polite">Wybierz utwór, aby zacząć.</p>
@@ -70,5 +75,5 @@
 <section class="wrap story-mode-outro"><span class="eyebrow">NO MORE SCROLLING, JUST STORIES</span><p>Nie pokazujemy, co każda kobieta myśli. Pokazujemy, jak bezczelnie własna wyobraźnia potrafi oszukać narratora.</p></section>
 </main>
 <footer class="footer"><div class="wrap"><div>PIĘKNE CIAŁA · STORY MODE</div><div>Trzy historie · po cztery sceny</div><div>© 2026 Slovian · Wszelkie prawa zastrzeżone</div></div></footer>
-<script src="/assets/songs.js"></script><script src="/assets/app.js"></script><script src="/assets/story-scenes.js"></script><script src="/assets/story-mode.js"></script>
+<script src="/assets/songs.js"></script><script src="/assets/app.js"></script><script src="/assets/story-scenes.js?v=story-nav-2"></script><script src="/assets/story-mode.js?v=story-nav-2"></script>
 </body></html>

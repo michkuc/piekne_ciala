@@ -12,7 +12,7 @@ test("Story Mode is discoverable from home and three song stories",()=>{
  assert.match(home,/href="\/story-mode\?slug=cieply-grzech"/);
  for(const slug of slugs)assert.match(page,new RegExp('data-story-choose="'+slug+'"'));
  assert.match(app,/includes\(song\.slug\).*Zobacz Story Mode/);
- assert.match(page,/src="\/assets\/story-mode\.js"/);
+ assert.match(page,/src="\/assets\/story-mode\.js(?:\?[^"]+)?"/);
  assert.match(page,/data-story-audio preload="none"/);
  assert.match(read("sitemap.xml"),/https:\/\/piekne-ciala\.vercel\.app\/story-mode/);
 });
@@ -123,4 +123,74 @@ test("Mobile, navigation, focus, and safe non-autoplay media controls remain sup
  assert.match(manual,/\.truth-card summary:focus-visible/);
  assert.match(read("assets/story-mode.js"),/audio\.play\(\)/);
  assert.match(read("story-mode.html"),/data-story-play aria-label="Odtwórz muzykę"/);
+});
+
+
+test("Story Mode actually boots, renders songs, changes scenes and starts sound in a browser-like DOM",async()=>{
+ const controls=new Map(),listeners=new Map();
+ const make=(attrs={})=>({
+   textContent:"",innerText:"",disabled:false,alt:"",src:"",href:"",
+   style:{setProperty(k,v){this[k]=v;}},
+   classList:{values:new Set(),toggle(k,on){if(on)this.values.add(k);else this.values.delete(k);}},
+   attrs:{},dataset:attrs,events:new Map(),
+   setAttribute(k,v){this.attrs[k]=v;},
+   removeAttribute(k){delete this.attrs[k];},
+   addEventListener(event,handler){this.events.set(event,handler);},
+   fire(event,data){return this.events.get(event)?.(data||{});},
+   getAttribute(name){return this.attrs[name]||null;},
+   removeAttribute(name){delete this.attrs[name];},
+   querySelector(){return {textContent:""};}
+ });
+ const names=["story-image","story-label","story-heading","story-copy","story-counter","story-cue","story-source","story-notice","story-audio","story-play","story-playback","story-track","story-prev","story-next","story-original","story-share","story-screen","story-frame-prev","story-frame-next"];
+ names.forEach(name=>controls.set("[data-"+name+"]",make()));
+ const choices=["cieply-grzech","po-godzinach","ona-tanczy"].map(storyChoose=>make({storyChoose}));
+ const steps=[0,1,2,3].map(storyStep=>make({storyStep:String(storyStep)}));
+ const progress=[0,1,2,3].map(storyProgress=>make({storyProgress:String(storyProgress)}));
+ const root={dataset:{},querySelector:s=>controls.get(s),querySelectorAll:s=>s==="[data-story-choose]"?choices:s==="[data-story-step]"?steps:s==="[data-story-progress]"?progress:[]};
+ const audio=controls.get("[data-story-audio]");
+ audio.currentTime=0; audio.paused=true;
+ audio.pause=function(){this.paused=true;this.fire("pause");};
+ audio.load=()=>{};
+ audio.play=async function(){this.paused=false;this.fire("play");};
+ Object.defineProperty(audio,"src",{get(){return this.attrs.src||"";},set(v){this.attrs.src=v;}});
+ const window={PC_SONGS:[],PC_STORY_SCENES:null};
+ const PC={getSong:slug=>({title:slug,audio:"/api/audio?id=abcdef"}),drive:id=>"https://drive.google.com/thumbnail?id="+id};
+ window.PC=PC;
+ const doc={title:"",querySelector:s=>s==="#story-mode"?root:null,addEventListener:(name,fn)=>listeners.set(name,fn)};
+ const location={href:"https://test.local/story-mode?slug=cieply-grzech",origin:"https://test.local",pathname:"/story-mode",search:"?slug=cieply-grzech"};
+ const vm=require("node:vm");
+ const context=vm.createContext({window,document:doc,PC,location,URL,URLSearchParams,history:{replaceState(){ }},navigator:{clipboard:{writeText:async()=>{}}},console});
+ vm.runInContext(read("assets/story-scenes.js"),context);
+ vm.runInContext(read("assets/story-mode.js"),context);
+ const get=k=>controls.get("[data-"+k+"]");
+ assert.match(get("story-heading").textContent,/Wszyscy śpią/);
+ assert.match(get("story-cue").textContent,/Patrzę na światła/);
+ assert.equal(choices[0].attrs["aria-pressed"],"true");
+ // On-screen button advances the full scene without scrolling below the photograph.
+ get("story-frame-next").fire("click");
+ assert.match(get("story-heading").textContent,/Śmiech jak ogień/);
+ assert.equal(get("story-counter").textContent,"02 / 04");
+ assert.equal(root.dataset.activeScene,"2");
+ assert.equal(progress[1].classList.values.has("is-current"),true);
+ // A tap on the image itself now advances; the first two scenes share no image.
+ get("story-screen").fire("click",{target:{closest:()=>null}});
+ assert.match(get("story-heading").textContent,/Jej usta są blisko/);
+ assert.equal(get("story-counter").textContent,"03 / 04");
+ get("story-frame-prev").fire("click");
+ assert.match(get("story-heading").textContent,/Śmiech jak ogień/);
+ choices[1].fire("click");
+ assert.match(get("story-heading").textContent,/Ona została/);
+ steps[2].fire("click");
+ assert.match(get("story-heading").textContent,/Koszula opada/);
+ get("story-next").fire("click");
+ assert.equal(get("story-counter").textContent,"04 / 04");
+ // Swipe left on the frame loops to the first scene.
+ get("story-screen").fire("touchstart",{changedTouches:[{clientX:300,clientY:240}]});
+ get("story-screen").fire("touchend",{changedTouches:[{clientX:90,clientY:250}]});
+ assert.equal(get("story-counter").textContent,"01 / 04");
+ choices[2].fire("click");
+ assert.match(get("story-notice").textContent,/Pełny tekst/);
+ await get("story-play").fire("click");
+ assert.match(get("story-playback").textContent,/Trwa odtwarzanie/);
+ assert.match(audio.src,/api\/audio/);
 });
