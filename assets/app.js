@@ -382,6 +382,7 @@
           <div class="hero-actions">
             ${song.audio ? `<button class="btn primary" type="button" data-start-audio>Odtwórz utwór</button>` : `<span class="audio-pending">Audio · final master w przygotowaniu</span>`}
             ${song.audio ? `<a class="btn ghost" href="/playlist?add=${esc(song.slug)}">Dodaj do playlisty</a>` : ""}
+            ${["cieply-grzech","po-godzinach","ona-tanczy"].includes(song.slug) ? `<a class="btn ghost" href="/story-mode?slug=${esc(song.slug)}">Zobacz Story Mode →</a>` : ""}
             <button class="btn ghost" type="button" data-share-song>Udostępnij utwór ↗</button>
             <a class="btn ghost" href="${series.url}">${esc(series.name)}</a>
           </div>
