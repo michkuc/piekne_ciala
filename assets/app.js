@@ -73,7 +73,8 @@
     const fullImage = qs("img", lightbox);
     const caption = qs("figcaption", lightbox);
     const counter = qs(".lightbox-counter", lightbox);
-    const visibleButtons = () => lightboxButtons.filter((button) => !button.hidden);
+    let activeGroup = "archive";
+    const visibleButtons = () => lightboxButtons.filter((button) => !button.hidden && (button.dataset.lightboxGroup || "archive") === activeGroup);
     let activeIndex = 0;
     let previousFocus = null;
     const showImage = (index) => {
@@ -92,6 +93,7 @@
       });
     };
     const openLightbox = (button) => {
+      activeGroup = button.dataset.lightboxGroup || "archive";
       const buttons = visibleButtons();
       const index = buttons.indexOf(button);
       if (index < 0) return;
