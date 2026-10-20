@@ -11,7 +11,7 @@
 .story-mode-picker button[aria-pressed="true"]{color:#efd7b9;border-color:#bd9164;background:rgba(159,92,76,.11)}
 .story-mode-picker button:hover,.story-mode-picker button:focus-visible{border-color:#c29a6b;outline:none}
 .story-screen{height:clamp(450px,57vw,740px);position:relative;background:#130b0e;overflow:hidden;isolation:isolate}
-.story-screen>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:story-fade .42s ease both}
+.story-screen>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(var(--story-zoom,1));transition:transform .55s ease,object-position .55s ease;animation:story-fade .42s ease both}
 .story-screen-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,5,7,.96),rgba(6,5,7,.13) 65%,rgba(0,0,0,.36));pointer-events:none}
 .story-screen-overline{position:absolute;top:26px;left:28px;right:28px;display:flex;justify-content:space-between;align-items:center;gap:16px;color:#e9d9c8;font:600 10px var(--sans);letter-spacing:.18em;text-shadow:0 2px 12px #000}
 .story-screen-bottom{position:absolute;bottom:44px;left:clamp(20px,5vw,80px);right:clamp(20px,5vw,80px);max-width:920px;text-shadow:0 2px 20px #000}
@@ -36,7 +36,7 @@
 .story-end-links{display:flex;flex-wrap:wrap;gap:10px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1)}
 .story-mode-outro{padding-bottom:110px;text-align:center}
 .story-mode-outro p{max-width:850px;margin:12px auto 0;font:400 clamp(27px,3.6vw,45px)/1.13 var(--serif);color:#ded0c3}
-@keyframes story-fade{from{opacity:.35;transform:scale(1.025)}to{opacity:1;transform:scale(1)}}
+@keyframes story-fade{from{opacity:.35}to{opacity:1}}
 @media(max-width:950px){.story-mode-intro{grid-template-columns:1fr;padding-top:128px;gap:18px}.story-mode-intro .story-mode-note{max-width:750px}}
 @media(max-width:700px){
 .story-mode-intro h1{font-size:74px}.story-mode-intro>div>p{font-size:20px}
@@ -54,3 +54,13 @@
 .story-end-links .btn{flex:1;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){.story-screen>img{animation:none}.story-timeline button{transition:none}}
+
+
+/* Lyric-grounded scenes: a clear, source-specific cue beneath the cinematic frame. */
+.story-lyric-strip{position:relative;display:flex;flex-direction:column;gap:7px;padding:23px 26px 24px;margin:0;background:linear-gradient(125deg,#191319,#0d0b0d);border:1px solid rgba(207,157,111,.24);border-top:0}
+.story-lyric-strip>.eyebrow{color:#d4ab7b;font-size:10px;letter-spacing:.18em}
+.story-lyric-strip p{margin:0;font:400 clamp(21px,2.7vw,33px)/1.16 var(--serif);font-style:italic;color:#e7d2bc;letter-spacing:-.015em}
+.story-lyric-strip small{color:#a49a93;font:400 11px/1.5 var(--sans);margin-top:7px}
+.story-screen>img{will-change:auto}
+@media(max-width:700px){.story-lyric-strip{padding:19px 16px 20px}.story-lyric-strip p{font-size:24px}.story-lyric-strip small{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.story-screen>img{transition:none;animation:none}}
