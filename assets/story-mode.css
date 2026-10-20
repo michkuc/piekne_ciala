@@ -64,3 +64,28 @@
 .story-screen>img{will-change:auto}
 @media(max-width:700px){.story-lyric-strip{padding:19px 16px 20px}.story-lyric-strip p{font-size:24px}.story-lyric-strip small{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.story-screen>img{transition:none;animation:none}}
+
+
+/* Stage navigation lives on the photograph: discoverable on desktop and mobile. */
+.story-screen[data-story-screen]{cursor:pointer;touch-action:pan-y}
+.story-frame-progress{position:absolute;top:61px;left:26px;right:26px;z-index:5;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;pointer-events:none}
+.story-frame-progress span{height:4px;border-radius:2px;background:rgba(255,255,255,.30);box-shadow:0 1px 6px #0004;transition:background .18s}
+.story-frame-progress span.is-complete{background:#b78a62}
+.story-frame-progress span.is-current{background:#ffe2b6}
+.story-frame-nav{position:absolute;top:45%;z-index:6;width:54px;height:64px;border:1px solid rgba(255,255,255,.48);color:#fff;background:rgba(10,8,12,.55);font:300 44px/1 var(--serif);display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+.story-frame-nav:hover,.story-frame-nav:focus-visible{background:rgba(173,107,67,.69);border-color:#e8c59c;outline:none}
+.story-frame-nav:disabled{opacity:.25;cursor:default;pointer-events:none}
+.story-frame-prev{left:16px}
+.story-frame-next{right:16px}
+.story-tap-hint{position:absolute;z-index:5;right:27px;top:79px;font:500 10px/1.3 var(--sans);letter-spacing:.08em;text-shadow:0 2px 8px #000;color:#eee0d1;pointer-events:none}
+.story-screen-bottom,.story-screen-shade{pointer-events:none}
+.story-screen>[data-story-image]{pointer-events:none}
+@media(max-width:700px){
+ .story-frame-progress{top:49px;left:15px;right:15px;gap:5px}
+ .story-frame-progress span{height:4px}
+ .story-tap-hint{top:69px;left:15px;right:auto;font-size:10px}
+ .story-frame-nav{top:43%;width:44px;height:58px;font-size:36px}
+ .story-frame-prev{left:7px}.story-frame-next{right:7px}
+ .story-screen-bottom{padding-left:12px;padding-right:12px}
+}
+@media(prefers-reduced-motion:reduce){.story-frame-progress span{transition:none}}
