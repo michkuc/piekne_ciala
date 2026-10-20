@@ -12,7 +12,7 @@ test("Story Mode is discoverable from home and three song stories",()=>{
  assert.match(home,/href="\/story-mode\?slug=cieply-grzech"/);
  for(const slug of slugs)assert.match(page,new RegExp('data-story-choose="'+slug+'"'));
  assert.match(app,/includes\(song\.slug\).*Zobacz Story Mode/);
- assert.match(page,/src="\/assets\/story-mode\.js"/);
+ assert.match(page,/src="\/assets\/story-mode\.js(?:\?[^"]+)?"/);
  assert.match(page,/data-story-audio preload="none"/);
  assert.match(read("sitemap.xml"),/https:\/\/piekne-ciala\.vercel\.app\/story-mode/);
 });
