@@ -47,3 +47,36 @@
 @media(max-width:1000px){.manual-hero-grid,.manual-section-head{grid-template-columns:1fr}.manual-grid{grid-template-columns:1fr}.manual-card-final{grid-column:auto;grid-template-columns:1fr}.manual-card-final header{border-bottom:1px solid var(--manual-line);padding-bottom:22px}.manual-card-final blockquote{padding:20px 0 0;border-left:0;border-top:1px solid rgba(217,180,119,.2)}.manual-readout{max-width:720px}}
 @media(max-width:720px){.manual-hero{min-height:auto;padding:130px 0 62px}.manual-hero-grid{gap:42px}.manual-hero-copy h1{font-size:80px}.manual-hero-copy>p{font-size:25px}.manual-readout>div{grid-template-columns:100px 1fr auto}.manual-emergency .wrap{grid-template-columns:1fr;gap:13px}.manual-emergency ol{display:grid;grid-template-columns:1fr 1fr;gap:9px 16px}.manual-intro-grid{grid-template-columns:1fr;gap:18px}.manual-card{padding:22px}.manual-do,.manual-dont{grid-template-columns:1fr;gap:10px}.manual-rule40{padding:86px 0}.panic-box{padding:34px 24px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.panic-box li{transition:none}}
+
+
+/* Brutal Truth: satirical cards, not generic dating advice. */
+.manual-truth{padding:110px 0 120px;border-top:1px solid var(--manual-line);background:radial-gradient(circle at 65% 30%,rgba(104,41,52,.12),transparent 46%),#0a090b;scroll-margin-top:100px}
+.manual-truth-head h2{font:400 clamp(45px,5.9vw,87px)/.97 var(--serif);margin:9px 0 0;letter-spacing:-.035em}
+.manual-truth-head em{color:#d4a478;font-style:italic;font-weight:300}
+.manual-truth-head p{max-width:430px;color:#a89c96;font:400 16px/1.7 var(--sans)}
+.truth-controls{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.truth-filters{display:flex;gap:8px;flex-wrap:wrap}
+.truth-filters button{min-height:44px;border:1px solid rgba(255,255,255,.13);background:#141114;color:#a9a0a1;padding:0 15px;font:600 10px var(--sans);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.truth-filters button[aria-pressed="true"]{color:#ebc79e;background:rgba(179,114,78,.15);border-color:#b88b61}
+.truth-filters button:hover,.truth-filters button:focus-visible{border-color:#d0a373;outline:none}
+.truth-filters button span{color:#cba37b;margin-left:5px}
+.truth-random{min-height:46px}
+.truth-count{color:#988f89;text-transform:uppercase;letter-spacing:.12em;font:500 10px var(--sans);margin:12px 0 21px}
+.truth-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:14px}
+.truth-card{border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,#191218,#100d10);min-width:0;scroll-margin-top:145px}
+.truth-card[hidden]{display:none!important}
+.truth-card summary{display:flex;flex-direction:column;gap:13px;list-style:none;cursor:pointer;padding:25px 27px 24px;min-height:250px}
+.truth-card summary::-webkit-details-marker{display:none}
+.truth-card summary:focus-visible{outline:2px solid #d0a373;outline-offset:-4px}
+.truth-index{font:600 10px var(--sans);letter-spacing:.2em;color:#ba8966}
+.truth-card summary strong{font:400 clamp(27px,2.9vw,38px)/1.05 var(--serif);color:#eee0d3}
+.truth-belief{flex:1;color:#d2c9c2;font:400 18px/1.45 var(--serif)}
+.truth-belief b{display:block;color:#9b8d84;font:600 9px var(--sans);letter-spacing:.18em;margin-bottom:9px}
+.truth-open-hint{font:600 10px var(--sans);letter-spacing:.08em;color:#cfac80}
+.truth-card[open] .truth-open-hint{color:#9e8d82}
+.truth-answer{padding:23px 27px 28px;border-top:1px solid rgba(216,161,117,.26);background:rgba(144,59,45,.13)}
+.truth-answer span{font:700 10px var(--sans);letter-spacing:.2em;color:#ec906f}
+.truth-answer p{font:400 22px/1.35 var(--serif);color:#f2e8dd;margin:12px 0 0}
+.truth-disclaimer{max-width:800px;margin:31px 0 0;font:400 12px/1.65 var(--sans);color:#857d78}
+@media(max-width:950px){.truth-grid{grid-template-columns:1fr 1fr}.truth-card summary{min-height:275px}}
+@media(max-width:720px){.manual-truth{padding:80px 0}.manual-truth-head h2{font-size:48px}.truth-grid{grid-template-columns:1fr}.truth-card summary{min-height:0;padding:23px}.truth-belief{font-size:19px}.truth-answer{padding:22px}.truth-answer p{font-size:22px}.truth-filters button{font-size:10px}}
