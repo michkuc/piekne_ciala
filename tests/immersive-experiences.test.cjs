@@ -131,6 +131,7 @@ test("Story Mode actually boots, renders songs, changes scenes and starts sound 
  const make=(attrs={})=>({
    textContent:"",innerText:"",disabled:false,alt:"",src:"",href:"",
    style:{setProperty(k,v){this[k]=v;}},
+   classList:{values:new Set(),toggle(k,on){if(on)this.values.add(k);else this.values.delete(k);}},
    attrs:{},dataset:attrs,events:new Map(),
    setAttribute(k,v){this.attrs[k]=v;},
    removeAttribute(k){delete this.attrs[k];},
@@ -140,11 +141,12 @@ test("Story Mode actually boots, renders songs, changes scenes and starts sound 
    removeAttribute(name){delete this.attrs[name];},
    querySelector(){return {textContent:""};}
  });
- const names=["story-image","story-label","story-heading","story-copy","story-counter","story-cue","story-source","story-notice","story-audio","story-play","story-playback","story-track","story-prev","story-next","story-original","story-share"];
+ const names=["story-image","story-label","story-heading","story-copy","story-counter","story-cue","story-source","story-notice","story-audio","story-play","story-playback","story-track","story-prev","story-next","story-original","story-share","story-screen","story-frame-prev","story-frame-next"];
  names.forEach(name=>controls.set("[data-"+name+"]",make()));
  const choices=["cieply-grzech","po-godzinach","ona-tanczy"].map(storyChoose=>make({storyChoose}));
  const steps=[0,1,2,3].map(storyStep=>make({storyStep:String(storyStep)}));
- const root={querySelector:s=>controls.get(s),querySelectorAll:s=>s==="[data-story-choose]"?choices:s==="[data-story-step]"?steps:[]};
+ const progress=[0,1,2,3].map(storyProgress=>make({storyProgress:String(storyProgress)}));
+ const root={dataset:{},querySelector:s=>controls.get(s),querySelectorAll:s=>s==="[data-story-choose]"?choices:s==="[data-story-step]"?steps:s==="[data-story-progress]"?progress:[]};
  const audio=controls.get("[data-story-audio]");
  audio.currentTime=0; audio.paused=true;
  audio.pause=function(){this.paused=true;this.fire("pause");};
@@ -164,12 +166,28 @@ test("Story Mode actually boots, renders songs, changes scenes and starts sound 
  assert.match(get("story-heading").textContent,/Wszyscy śpią/);
  assert.match(get("story-cue").textContent,/Patrzę na światła/);
  assert.equal(choices[0].attrs["aria-pressed"],"true");
- get("story-next").fire("click");
+ // On-screen button advances the full scene without scrolling below the photograph.
+ get("story-frame-next").fire("click");
+ assert.match(get("story-heading").textContent,/Śmiech jak ogień/);
+ assert.equal(get("story-counter").textContent,"02 / 04");
+ assert.equal(root.dataset.activeScene,"2");
+ assert.equal(progress[1].classList.values.has("is-current"),true);
+ // A tap on the image itself now advances; the first two scenes share no image.
+ get("story-screen").fire("click",{target:{closest:()=>null}});
+ assert.match(get("story-heading").textContent,/Jej usta są blisko/);
+ assert.equal(get("story-counter").textContent,"03 / 04");
+ get("story-frame-prev").fire("click");
  assert.match(get("story-heading").textContent,/Śmiech jak ogień/);
  choices[1].fire("click");
  assert.match(get("story-heading").textContent,/Ona została/);
  steps[2].fire("click");
  assert.match(get("story-heading").textContent,/Koszula opada/);
+ get("story-next").fire("click");
+ assert.equal(get("story-counter").textContent,"04 / 04");
+ // Swipe left on the frame loops to the first scene.
+ get("story-screen").fire("touchstart",{changedTouches:[{clientX:300,clientY:240}]});
+ get("story-screen").fire("touchend",{changedTouches:[{clientX:90,clientY:250}]});
+ assert.equal(get("story-counter").textContent,"01 / 04");
  choices[2].fire("click");
  assert.match(get("story-notice").textContent,/Pełny tekst/);
  await get("story-play").fire("click");
