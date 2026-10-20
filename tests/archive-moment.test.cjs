@@ -74,5 +74,5 @@ test("Mobile editorial grids keep separate layouts and touch-friendly focus",()=
   assert.match(css,/\.moment-grid\{display:grid;grid-template-columns:repeat\(3/);
   assert.match(css,/\.moment-card:focus-visible/);
   assert.match(css,/@media\(max-width:700px\)[\s\S]*\.moment-grid\{grid-template-columns:1fr/);
-  assert.match(css,/\.man-window-scene\{display:grid/);
+  assert.match(css,/\.man-window-scene\{[^}]*display:grid/);
 });
