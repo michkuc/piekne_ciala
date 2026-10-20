@@ -29,15 +29,15 @@ test("All 23 listed audio IDs are permitted by the server proxy", () => {
   assert.deepEqual(new Set(ids), new Set(allowed));
 });
 
-test("Night Archive counters reflect the 65 actual cards", () => {
+test("Night Archive counters reflect the 70 actual cards", () => {
   const archive = read("archive.html");
   const app = read("assets/app.js");
   const cards = [...archive.matchAll(/<button class="gallery-open[^>]*?data-archive-category="([^"]+)"[^>]*?>/g)];
-  assert.equal(cards.length, 65);
+  assert.equal(cards.length, 70);
   assert.equal(cards.filter((match) => match[0].includes('data-archive-selected="true"')).length, 15);
   const actual = {};
   for (const card of cards) actual[card[1]] = (actual[card[1]] || 0) + 1;
-  assert.deepEqual(actual, {night:10,travel:24,sport:11,city:7,"after-hours":7,everyday:6});
+  assert.deepEqual(actual, {night:10,travel:24,sport:11,city:8,"after-hours":10,everyday:7});
   assert.match(app, /const statusLabel = \(filter\)/);
   assert.match(app, /status\.textContent = statusLabel\(filter\)/);
   assert.doesNotMatch(app, /all:"61 kadrów"/);
