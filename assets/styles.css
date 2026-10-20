@@ -741,3 +741,50 @@ body[data-page="about"] .man-ending-actions .btn:hover{border-color:#b99b74;colo
   .playlist-story-link{width:100%}
   .playlist-persist-note{font-size:11px}
 }
+
+
+/* New editorial micro-stories. Separate from the 70-image filtered gallery. */
+.moment-section{padding-top:24px;padding-bottom:108px;scroll-margin-top:120px}
+.moment-head{margin-bottom:28px;align-items:end}
+.moment-head h2{font:400 clamp(42px,6vw,80px)/.98 var(--serif);margin:12px 0 0;letter-spacing:-.035em}
+.moment-head h2 em{font-weight:300;color:var(--gold);font-style:italic}
+.moment-head>p{max-width:450px;color:var(--muted);font:400 clamp(16px,2vw,20px)/1.5 var(--serif)}
+.moment-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.moment-card{position:relative;display:block;width:100%;aspect-ratio:4/3;min-height:280px;overflow:hidden;border:1px solid rgba(212,166,112,.16);background:#141114;color:#fff;text-align:left;cursor:zoom-in;isolation:isolate;padding:0}
+.moment-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.2,.7,.2,1);filter:saturate(.87)}
+.moment-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,8,.20),transparent 38%,rgba(5,5,7,.9) 100%);pointer-events:none}
+.moment-card:hover img,.moment-card:focus-visible img{transform:scale(1.055)}
+.moment-card:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.moment-card-number{position:absolute;top:16px;left:17px;z-index:1;color:#f1d0a1;font:500 10px var(--sans);letter-spacing:.22em;text-shadow:0 1px 8px #000}
+.moment-card-copy{position:absolute;bottom:0;left:0;right:0;z-index:1;display:flex;flex-direction:column;gap:8px;padding:54px 22px 22px}
+.moment-card-copy strong{font:400 clamp(25px,2.6vw,36px)/1.04 var(--serif);letter-spacing:-.02em}
+.moment-card-copy small{font:400 13px/1.5 var(--sans);color:#e7dace;max-width:300px}
+.moment-footnote{text-align:center;font:400 21px/1.4 var(--serif);color:#b99e87;margin:30px 0 0}
+.man-window-scene{padding-top:20px;padding-bottom:115px;display:grid;grid-template-columns:.76fr 1.24fr;gap:38px;align-items:center}
+.man-window-copy{max-width:440px}
+.man-window-copy h2{font:400 clamp(36px,4.1vw,62px)/1.05 var(--serif);margin:17px 0 21px;letter-spacing:-.025em}
+.man-window-copy p{font:400 19px/1.6 var(--serif);color:var(--muted);margin:0 0 27px}
+.man-window-link{display:inline-flex;align-items:center;min-height:44px;color:var(--gold);font:500 11px/1.4 var(--sans);letter-spacing:.08em;text-decoration:none;border-bottom:1px solid rgba(210,170,117,.46)}
+.man-window-link:hover,.man-window-link:focus-visible{color:#f4d1a0;border-color:currentColor}
+.man-window-photo{position:relative;margin:0;aspect-ratio:16/10;min-height:330px;overflow:hidden;background:#130f10}
+.man-window-photo img{width:100%;height:100%;display:block;object-fit:cover}
+.man-window-photo:after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.78));pointer-events:none}
+.man-window-photo figcaption{position:absolute;z-index:1;left:24px;bottom:22px;font:400 17px/1.35 var(--serif);color:#f2e6da}
+.man-window-photo figcaption span{display:block;font:500 10px var(--sans);letter-spacing:.17em;color:#c8a77c;margin-bottom:7px}
+@media(max-width:1100px){.moment-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.moment-card{min-height:250px}}
+@media(max-width:900px){.man-window-scene{grid-template-columns:1fr;gap:24px}.man-window-copy{max-width:650px}.man-window-photo{min-height:270px}}
+@media(max-width:700px){
+  .moment-section{padding-top:12px;padding-bottom:85px}
+  .moment-head{margin-bottom:22px}
+  .moment-grid{grid-template-columns:1fr;gap:12px}
+  .moment-card{min-height:0;aspect-ratio:16/11}
+  .moment-card-copy{padding:48px 18px 18px}
+  .moment-card-copy strong{font-size:30px}
+  .moment-card-copy small{font-size:12px}
+  .moment-footnote{font-size:17px}
+  .man-window-scene{padding-top:0;padding-bottom:80px}
+  .man-window-copy h2{font-size:44px}
+  .man-window-photo{aspect-ratio:4/3;min-height:0}
+  .man-window-photo figcaption{left:16px;bottom:16px;font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){.moment-card img{transition:none}.moment-card:hover img,.moment-card:focus-visible img{transform:none}}
