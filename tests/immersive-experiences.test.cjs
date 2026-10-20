@@ -17,15 +17,28 @@ test("Story Mode is discoverable from home and three song stories",()=>{
  assert.match(read("sitemap.xml"),/https:\/\/piekne-ciala\.vercel\.app\/story-mode/);
 });
 
-test("Three storyboard arcs have four distinct, correctly titled steps and use existing audio",()=>{
+test("Three song-specific storyboards follow song structure and keep manual audio",()=>{
  const js=read("assets/story-mode.js");
- for(const slug of slugs)assert.ok(js.includes('"'+slug+'"'),slug);
- for(const label of ["RZECZYWISTOŚĆ","W JEGO GŁOWIE","WERSJA OFICJALNA","PO WSZYSTKIM"])assert.ok(js.includes(label),label);
- assert.match(js,/const song=currentSong\(\)/);
+ const html=read("story-mode.html");
+ const scenes=require("../assets/story-scenes.js");
+ const slugs=["cieply-grzech","po-godzinach","ona-tanczy"];
+ for(const slug of slugs){
+   assert.equal(scenes[slug].length,4);
+   for(const scene of scenes[slug]){
+     assert.ok(scene.stage&&scene.heading&&scene.text&&scene.cue&&scene.image);
+     assert.ok(["lyrics","synopsis"].includes(scene.source));
+     assert.ok(/^1[A-Za-z0-9_-]{25,}$/.test(scene.image),"source Drive artwork");
+   }
+ }
+ assert.match(js,/const cases = window\.PC_STORY_SCENES/);
  assert.match(js,/audio\.src=song\.audio/);
  assert.doesNotMatch(js,/audio\.autoplay|autoplay\s*=\s*true/);
  assert.match(js,/params\.get\("scene"\)/);
  assert.match(js,/history\.replaceState/);
+ assert.match(html,/assets\/story-scenes\.js/);
+ assert.match(html,/data-story-cue/);
+ assert.match(html,/data-story-source/);
+ assert.match(html,/data-story-notice/);
  assert.match(read("assets/story-mode.css"),/prefers-reduced-motion/);
 });
 
