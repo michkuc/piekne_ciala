@@ -124,3 +124,55 @@ test("Mobile, navigation, focus, and safe non-autoplay media controls remain sup
  assert.match(read("assets/story-mode.js"),/audio\.play\(\)/);
  assert.match(read("story-mode.html"),/data-story-play aria-label="Odtwórz muzykę"/);
 });
+
+
+test("Story Mode actually boots, renders songs, changes scenes and starts sound in a browser-like DOM",async()=>{
+ const controls=new Map(),listeners=new Map();
+ const make=(attrs={})=>({
+   textContent:"",innerText:"",disabled:false,alt:"",src:"",href:"",
+   style:{setProperty(k,v){this[k]=v;}},
+   attrs:{},dataset:attrs,events:new Map(),
+   setAttribute(k,v){this.attrs[k]=v;},
+   removeAttribute(k){delete this.attrs[k];},
+   addEventListener(event,handler){this.events.set(event,handler);},
+   fire(event,data){return this.events.get(event)?.(data||{});},
+   getAttribute(name){return this.attrs[name]||null;},
+   removeAttribute(name){delete this.attrs[name];},
+   querySelector(){return {textContent:""};}
+ });
+ const names=["story-image","story-label","story-heading","story-copy","story-counter","story-cue","story-source","story-notice","story-audio","story-play","story-playback","story-track","story-prev","story-next","story-original","story-share"];
+ names.forEach(name=>controls.set("[data-"+name+"]",make()));
+ const choices=["cieply-grzech","po-godzinach","ona-tanczy"].map(storyChoose=>make({storyChoose}));
+ const steps=[0,1,2,3].map(storyStep=>make({storyStep:String(storyStep)}));
+ const root={querySelector:s=>controls.get(s),querySelectorAll:s=>s==="[data-story-choose]"?choices:s==="[data-story-step]"?steps:[]};
+ const audio=controls.get("[data-story-audio]");
+ audio.currentTime=0; audio.paused=true;
+ audio.pause=function(){this.paused=true;this.fire("pause");};
+ audio.load=()=>{};
+ audio.play=async function(){this.paused=false;this.fire("play");};
+ Object.defineProperty(audio,"src",{get(){return this.attrs.src||"";},set(v){this.attrs.src=v;}});
+ const window={PC_SONGS:[],PC_STORY_SCENES:null};
+ const PC={getSong:slug=>({title:slug,audio:"/api/audio?id=abcdef"}),drive:id=>"https://drive.google.com/thumbnail?id="+id};
+ window.PC=PC;
+ const doc={title:"",querySelector:s=>s==="#story-mode"?root:null,addEventListener:(name,fn)=>listeners.set(name,fn)};
+ const location={href:"https://test.local/story-mode?slug=cieply-grzech",origin:"https://test.local",pathname:"/story-mode",search:"?slug=cieply-grzech"};
+ const vm=require("node:vm");
+ const context=vm.createContext({window,document:doc,PC,location,URL,URLSearchParams,history:{replaceState(){ }},navigator:{clipboard:{writeText:async()=>{}}},console});
+ vm.runInContext(read("assets/story-scenes.js"),context);
+ vm.runInContext(read("assets/story-mode.js"),context);
+ const get=k=>controls.get("[data-"+k+"]");
+ assert.match(get("story-heading").textContent,/Wszyscy śpią/);
+ assert.match(get("story-cue").textContent,/Patrzę na światła/);
+ assert.equal(choices[0].attrs["aria-pressed"],"true");
+ get("story-next").fire("click");
+ assert.match(get("story-heading").textContent,/Śmiech jak ogień/);
+ choices[1].fire("click");
+ assert.match(get("story-heading").textContent,/Ona została/);
+ steps[2].fire("click");
+ assert.match(get("story-heading").textContent,/Koszula opada/);
+ choices[2].fire("click");
+ assert.match(get("story-notice").textContent,/Pełny tekst/);
+ await get("story-play").fire("click");
+ assert.match(get("story-playback").textContent,/Trwa odtwarzanie/);
+ assert.match(audio.src,/api\/audio/);
+});
