@@ -53,7 +53,7 @@ test("Story Mode shows source attribution, lyric cue and stage progression",()=>
  const html=read("story-mode.html");
  const js=read("assets/story-mode.js");
  const css=read("assets/story-mode.css");
- assert.match(html,/src="\/assets\/story-scenes\.js"/);
+ assert.match(html,/src="\/assets\/story-scenes\.js(?:\?[^"]+)?"/);
  assert.ok(html.indexOf("/assets/story-scenes.js")<html.indexOf("/assets/story-mode.js"));
  assert.match(html,/data-story-cue/);
  assert.match(html,/data-story-notice/);
