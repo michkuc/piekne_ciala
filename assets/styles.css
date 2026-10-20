@@ -788,3 +788,31 @@ body[data-page="about"] .man-ending-actions .btn:hover{border-color:#b99b74;colo
   .man-window-photo figcaption{left:16px;bottom:16px;font-size:15px}
 }
 @media(prefers-reduced-motion:reduce){.moment-card img{transition:none}.moment-card:hover img,.moment-card:focus-visible img{transform:none}}
+
+
+/* Moment przed / po 2.0: six scenes remain in Night Archive, with independent viewpoints. */
+.moment-grid .moment-card-v2{aspect-ratio:auto;min-height:0;height:auto;display:flex;flex-direction:column;cursor:default;border-color:rgba(212,166,112,.19);background:#100d10}
+.moment-grid .moment-card-v2:after{display:none}
+.moment-card-v2 .moment-visual{position:relative;display:block;flex:0 0 auto;width:100%;aspect-ratio:16/10;padding:0;border:0;background:#09090b;color:#fff;cursor:zoom-in;overflow:hidden;text-align:left}
+.moment-card-v2 .moment-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+.moment-card-v2 .moment-visual:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.38))}
+.moment-card-v2 .moment-visual:hover img,.moment-card-v2 .moment-visual:focus-visible img{transform:scale(1.045)}
+.moment-card-v2 .moment-visual:focus-visible,.moment-card-v2 .moment-switch button:focus-visible{outline:2px solid #d5a873;outline-offset:-2px}
+.moment-card-v2 .moment-visual .moment-card-number{z-index:2}
+.moment-grid .moment-card-v2 .moment-card-copy{position:relative;inset:auto;flex:1;padding:22px 21px 20px;gap:0;display:flex;flex-direction:column;background:linear-gradient(155deg,#171316,#0e0d10)}
+.moment-card-v2 h3{font:400 clamp(26px,2.8vw,36px)/1.06 var(--serif);margin:0 0 18px;color:#f2e6da}
+.moment-perspective-label{font:600 9px/1.2 var(--sans);letter-spacing:.19em;color:#bd956b;margin-bottom:9px}
+.moment-card-v2 p[data-moment-copy]{flex:1;min-height:75px;margin:0 0 21px;color:#d7cdc4;font:400 17px/1.46 var(--serif)}
+.moment-switch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
+.moment-switch button{min-height:44px;padding:8px 6px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.02);color:#a9a0a0;font:500 9px/1.3 var(--sans);letter-spacing:.035em;cursor:pointer}
+.moment-switch button[aria-pressed="true"]{background:rgba(195,135,83,.19);border-color:#bb8c60;color:#eec79c}
+.moment-switch button:hover{color:#fff;border-color:#a07c5c}
+.moment-to-story{text-align:center;margin:24px auto 0}
+.moment-to-story .btn{min-height:48px}
+@media(max-width:700px){
+.moment-card-v2 .moment-visual{aspect-ratio:16/10}
+.moment-grid .moment-card-v2 .moment-card-copy{padding:20px 17px}
+.moment-card-v2 h3{font-size:32px}
+.moment-card-v2 p[data-moment-copy]{min-height:0;font-size:17px}
+.moment-switch button{font-size:10px}
+}
