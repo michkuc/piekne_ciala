@@ -12,4 +12,35 @@
   openers.forEach(b=>b.addEventListener("click",()=>open(b))); closer.addEventListener("click",close);
   panel.addEventListener("click",e=>{if(e.target===panel)close();});
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&panel.classList.contains("show"))close();});
+  // Brutal Truth — independent interactive section within Manual 40+.
+  const truthGrid=document.querySelector("[data-truth-grid]");
+  if(truthGrid){
+    const cards=[...truthGrid.querySelectorAll("[data-truth-card]")];
+    const filters=[...document.querySelectorAll("[data-truth-filter]")];
+    const status=document.querySelector("[data-truth-count]");
+    let lastRandom=-1;
+    const applyFilter=(value)=>{
+      let shown=0;
+      cards.forEach(card=>{
+        card.hidden=value!=="all" && card.dataset.truthCategory!==value;
+        if(!card.hidden)shown++;
+      });
+      filters.forEach(button=>button.setAttribute("aria-pressed",button.dataset.truthFilter===value?"true":"false"));
+      if(status)status.textContent=shown+" historii do odkrycia";
+    };
+    filters.forEach(button=>button.addEventListener("click",()=>applyFilter(button.dataset.truthFilter)));
+    document.querySelector("[data-truth-random]")?.addEventListener("click",()=>{
+      const available=cards.filter(card=>!card.hidden);
+      if(!available.length)return;
+      let index=Math.floor(Math.random()*available.length);
+      if(available.length>1 && available[index]===cards[lastRandom])index=(index+1)%available.length;
+      const chosen=available[index];
+      lastRandom=cards.indexOf(chosen);
+      available.forEach(card=>card.open=card===chosen);
+      chosen.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"});
+      chosen.querySelector("summary")?.focus({preventScroll:true});
+    });
+    applyFilter("all");
+  }
+
 })();
