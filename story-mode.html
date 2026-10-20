@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070708">
+<title>Story Mode — Piękne Ciała</title>
+<meta name="description" content="Zobacz jak z jednej chwili rodzi się historia. Trzy filmowe opowieści z muzyką z Pięknych Ciał.">
+<link rel="canonical" href="https://piekne-ciala.vercel.app/story-mode">
+<meta property="og:type" content="website"><meta property="og:title" content="Story Mode — Piękne Ciała">
+<meta property="og:description" content="Rzeczywistość trwa trzy sekundy. Reszta to kino w jego głowie.">
+<meta property="og:image" content="https://piekne-ciala.vercel.app/assets/site/music-hero.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/assets/styles.css">
+<link rel="stylesheet" href="/assets/story-mode.css">
+</head>
+<body data-page="music" class="story-mode-page">
+<header class="site-header"><a class="brand" href="/">PIĘKNE CIAŁA<small>NIGHT STORIES</small></a>
+<button class="nav-toggle" aria-label="Otwórz menu" aria-expanded="false" aria-controls="site-nav">☰</button>
+<nav class="nav" id="site-nav"><a data-nav="home" href="/">Home</a><a data-nav="music" href="/music">Music</a><a data-nav="playlist" href="/playlist">Playlista</a><a data-nav="archive" href="/archive">Night Archive</a><a data-nav="about" href="/about">The Man</a><a data-nav="manual" href="/manual">Manual</a><a data-nav="lab" href="/lab">LAB 40+</a></nav></header>
+<main>
+<section class="story-mode-intro wrap">
+  <div><span class="eyebrow">EXPERIENCE 01 · W GŁOWIE NARRATORA</span>
+    <h1>Story <em>Mode</em></h1>
+    <p>Zdarzenie trwa trzy sekundy. W jego głowie ma już obsadę, montaż i soundtrack. Wybierz historię, przewijaj sceny i włącz muzykę, kiedy zechcesz.</p>
+  </div>
+  <p class="story-mode-note">Jeden narrator. Cztery kadry. Dwie prawdy: to, co się wydarzyło, i to, co sobie dopisał.</p>
+</section>
+<section class="wrap story-mode-theatre" id="story-mode" aria-label="Filmowa historia">
+  <div class="story-mode-picker" role="group" aria-label="Wybierz utwór">
+    <button type="button" data-story-choose="cieply-grzech" aria-pressed="false">23 · Ciepły Grzech</button>
+    <button type="button" data-story-choose="po-godzinach" aria-pressed="false">21 · Po Godzinach</button>
+    <button type="button" data-story-choose="ona-tanczy" aria-pressed="false">19 · Ona Tańczy</button>
+  </div>
+  <div class="story-screen">
+    <img data-story-image decoding="async" alt="" referrerpolicy="no-referrer">
+    <div class="story-screen-shade"></div>
+    <div class="story-screen-overline"><span>PIĘKNE CIAŁA · CINEMATIC STORIES</span><span data-story-counter>01 / 04</span></div>
+    <div class="story-screen-bottom">
+      <span class="eyebrow" data-story-label>RZECZYWISTOŚĆ</span>
+      <h2 data-story-heading>Ciepły Grzech</h2>
+      <p data-story-copy aria-live="polite">Wybierz utwór, aby zacząć.</p>
+    </div>
+  </div>
+  <div class="story-timeline" role="group" aria-label="Etapy historii">
+    <button type="button" data-story-step="0" aria-current="step"><span>01</span><strong>To się wydarzyło</strong></button>
+    <button type="button" data-story-step="1"><span>02</span><strong>W jego głowie</strong></button>
+    <button type="button" data-story-step="2"><span>03</span><strong>Oficjalna wersja</strong></button>
+    <button type="button" data-story-step="3"><span>04</span><strong>Po wszystkim</strong></button>
+  </div>
+  <div class="story-actions">
+    <div class="story-navigation">
+      <button class="btn ghost" type="button" data-story-prev disabled>← Poprzednia</button>
+      <button class="btn primary" type="button" data-story-next>Następna scena →</button>
+    </div>
+    <div class="story-soundtrack">
+      <button class="story-play" type="button" data-story-play aria-label="Odtwórz muzykę">▶</button>
+      <div class="story-soundtrack-info"><small>ORYGINALNY SOUNDTRACK</small><strong data-story-track>Ciepły Grzech</strong><span data-story-playback role="status" aria-live="polite">Muzyka nie wystartuje sama.</span></div>
+      <audio data-story-audio preload="none"></audio>
+    </div>
+  </div>
+  <div class="story-end-links"><a class="btn ghost" data-story-original href="/stories/cieply-grzech">Cała historia i tekst ↗</a>
+    <a class="btn ghost" href="/archive#moment-przed-po">Moment przed / po ↗</a>
+    <button class="btn ghost" type="button" data-story-share>Udostępnij scenę ↗</button>
+  </div>
+</section>
+<section class="wrap story-mode-outro"><span class="eyebrow">NO MORE SCROLLING, JUST STORIES</span><p>Nie pokazujemy, co każda kobieta myśli. Pokazujemy, jak bezczelnie własna wyobraźnia potrafi oszukać narratora.</p></section>
+</main>
+<footer class="footer"><div class="wrap"><div>PIĘKNE CIAŁA · STORY MODE</div><div>Trzy historie · po cztery sceny</div><div>© 2026 Slovian · Wszelkie prawa zastrzeżone</div></div></footer>
+<script src="/assets/songs.js"></script><script src="/assets/app.js"></script><script src="/assets/story-mode.js"></script>
+</body></html>
