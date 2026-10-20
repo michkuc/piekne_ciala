@@ -12,7 +12,7 @@
   const frame = $("[data-story-screen]");
   const framePrev = $("[data-story-frame-prev]");
   const frameNext = $("[data-story-frame-next]");
-  const progress = $("[data-story-progress]");
+  const progress = Array.from(root.querySelectorAll("[data-story-progress]"));
   let ignoreTapUntil = 0;
   const label = $("[data-story-label]");
   const heading = $("[data-story-heading]");
