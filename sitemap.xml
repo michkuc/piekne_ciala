@@ -38,4 +38,9 @@
   </url>
   <url><loc>https://piekne-ciala.vercel.app/stories/cieply-grzech</loc></url>
   <url><loc>https://piekne-ciala.vercel.app/story-mode</loc></url>
+  <url>
+    <loc>https://piekne-ciala.vercel.app/brutal-true</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
