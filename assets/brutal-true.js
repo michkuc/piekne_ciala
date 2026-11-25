@@ -18,7 +18,7 @@
   panels.forEach(p=>{p.hidden=p!==active;if(p.hidden)getCards(p).forEach(c=>c.open=false);});
   links.forEach(a=>{if(a.dataset.btSeriesLink===active.dataset.btSeries)a.setAttribute("aria-current","true");else a.removeAttribute("aria-current");});
  };
- const sync=()=>{if(location.hash==="#randka")activate("02");else if(location.hash==="#cases"||!location.hash)activate("01");};
+ const sync=()=>{const id=links.find(a=>a.getAttribute("href")===location.hash)?.dataset.btSeriesLink;if(id)activate(id);else if(!location.hash)activate("01");};
  panels.forEach(p=>{
   p.querySelectorAll("[data-bt-filter]").forEach(b=>b.addEventListener("click",()=>apply(p,b.dataset.btFilter)));
   const cs=getCards(p);
