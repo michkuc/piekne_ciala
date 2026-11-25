@@ -15,3 +15,14 @@
 @media(max-width:1050px){.bt-hero-grid{grid-template-columns:1fr}.bt-readout{max-width:760px}.bt-grid{grid-template-columns:1fr 1fr}.bt-toolbar{align-items:flex-start;flex-direction:column}}
 @media(max-width:720px){.bt-hero{min-height:auto;padding:130px 0 62px}.bt-hero-grid{gap:42px}.bt-hero-copy h1{font-size:78px}.bt-hero-copy>p{font-size:25px}.bt-readout>div{grid-template-columns:105px 1fr auto}.bt-premise .wrap{padding-top:18px;padding-bottom:18px}.bt-premise span{width:100%}.bt-premise i{display:none}.bt-intro{padding-top:78px}.bt-grid{grid-template-columns:1fr}.bt-toolbar{top:78px;margin-left:-14px;margin-right:-14px;padding:12px 14px;background:#09080af2;backdrop-filter:blur(10px)}.bt-filters{width:100%}.bt-filters button{flex:1 1 auto}.bt-shuffle{width:100%}.bt-card summary{min-height:0;padding:23px}.bt-answer{padding:22px}.bt-answer p{font-size:22px}.bt-final{padding:88px 0}.bt-final h2{font-size:58px}}
 @media(prefers-reduced-motion:reduce){.bt-card.flash{animation:none}}
+/* Two-volume reality check */
+[data-bt-series][hidden]{display:none!important}
+.bt-series{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-top:48px;scroll-margin-top:98px}
+.bt-series a{display:flex;flex-direction:column;gap:8px;min-height:140px;padding:24px;border:1px solid #4a3939;background:#100d10;color:#e9ddd2}
+.bt-series a[aria-current="true"]{border-color:#d68c67;background:linear-gradient(135deg,#30201d,#100d10)}
+.bt-series a small{font:600 10px var(--sans);letter-spacing:.15em;color:#e2a486}
+.bt-series a strong{font:400 36px/1 var(--serif)}.bt-series a span{color:#b9aaa2;font-size:13px;line-height:1.5}
+.bt-series a:hover{border-color:#d68c67}
+.bt-date .bt-intro{padding-top:65px}.bt-date .bt-card{background:linear-gradient(145deg,#21151a,#100d10)}
+#randka,#cases{scroll-margin-top:95px}.bt-date-end{padding:40px 0 90px}.bt-date-end h2{font:400 clamp(40px,6vw,82px)/.96 var(--serif);margin:14px 0}.bt-date-end p{color:#c9b5ac;max-width:700px;line-height:1.7}
+@media(max-width:720px){.bt-series{gap:8px;padding-top:30px}.bt-series a{padding:14px;min-height:120px}.bt-series a strong{font-size:26px}.bt-series a small{font-size:9px;letter-spacing:.06em}.bt-series a span{font-size:12px}.bt-date .bt-toolbar{position:static}.bt-card{scroll-margin-top:95px}}
